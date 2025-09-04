@@ -5,7 +5,7 @@ import React from "react";
 export default function SecondPage() {
   return (
     <div className="space-y-10 px-10 py-5">
-      <header className="flex justify-between items-center">
+      <header className="sticky z-30 py-5 bg-white top-0 inset-x-10 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <GlobeLock />
           <h1 className="text-3xl font-semibold">/Sales@gmail.com</h1>
@@ -27,7 +27,7 @@ export default function SecondPage() {
       {/* Main */}
       <main className="flex justify-between p-10 min-h[300px] rounded-2xl bg-gradient-to-b from-stone-400 via-stone-300 to-stone-100">
         {/* Left */}
-        <div className="flex flex-col justify-between space-y-5 w-1/2">
+        <div className="flex h-[100vh] flex-col justify-between space-y-5 w-1/2">
           <div className="flex gap-4">
             <Bomb size={30} />
             <div>
@@ -77,7 +77,7 @@ export default function SecondPage() {
 
         {/* Right */}
         <div className="w-1/2 flex flex-col items-center mx-auto">
-          <div className="relative w-[3/5]">
+          <div className="relative w-[3/5] z-10">
             <Image
               src="/images/femme-sport.jpg"
               alt="Asian girl"
