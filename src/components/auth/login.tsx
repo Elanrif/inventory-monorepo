@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -29,8 +28,7 @@ const formSchema = z.object({
   }),
 })
 
-export default function LoginForm() {
-    //Pour définir mon formulaire
+export default function Login() {
     const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,10 +36,7 @@ export default function LoginForm() {
         password: "",
     },
   })
-    // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values)
   }
   const [checked, setChecked] = useState(false)
@@ -57,8 +52,8 @@ export default function LoginForm() {
         />
         <div className="absolute inset-0" >
             <div className="absolute bottom-0 flex flex-col items-center justify-center text-white p-8">
-                <h1 className="text-4xl font-bold mb-4">"Simply all the tools that <br />
-                my team and i need."</h1>
+                <h1 className="text-4xl font-bold mb-4">Simply all the tools that <br />
+                my team and i need.</h1>
                 <p className=""><span className='font-bold'>Karen Yue</span><br />
                 Director of Digital Marketing Technologie</p>
             </div>
@@ -131,7 +126,7 @@ export default function LoginForm() {
         <Button type="submit" className="rounded-3xl w-[355px] bg-gray-300 text-black relative flex items-center justify-center pl-10 ">
         <FcGoogle  className=" absolute left-4 size-7"/>Continuer avec Google
         </Button>
-        <p className="text-center text-gray-500">Vous n'avez pas de compte ? <a href="#" className="text-blue-500 hover:underline">Inscrivez-vous</a></p>
+        <p className="text-center text-gray-500">Vous n&apos;avez pas de compte ? <a href="#" className="text-blue-500 hover:underline">Inscrivez-vous</a></p>
       </div>
     </div>
   )
