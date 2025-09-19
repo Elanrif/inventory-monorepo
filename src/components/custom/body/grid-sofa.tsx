@@ -1,0 +1,77 @@
+import React from "react";
+import CardSofa, { CardSofaProps } from "./card-sofa";
+
+export const cardSofaData: CardSofaProps[] = [
+  {
+    imageUrl: "/images/sofa1.jpg",
+    title: "avondable wood leg sofa",
+    price: 180,
+    description: "A comfortable and stylish sofa.",
+    circle1: "bg-lime-500",
+    circle2: "bg-stone-400",
+    circle3: "bg-gray-500",
+    circle4: "bg-gray-700",
+  },
+  {
+    imageUrl: "/images/sofa2.jpg",
+    title: "modern leather sofa",
+    price: 250,
+    description: "A sleek and modern leather sofa.",
+    circle1: "bg-stone-500",
+    circle2: "bg-gray-400",
+    circle3: "bg-stone-300",
+    circle4: "bg-gray-900",
+  },
+  {
+    imageUrl: "/images/sofa3.jpg",
+    title: "classic fabric sofa",
+    price: 220,
+    description: "A timeless classic fabric sofa.",
+    circle1: "bg-rose-500",
+    circle2: "bg-gray-600",
+    circle3: "bg-stone-500",
+    circle4: "bg-gray-300",
+  },
+  {
+    imageUrl: "/images/sofa4.jpg",
+    title: "luxury corner sofa",
+    price: 320,
+    description: "A spacious luxury corner sofa.",
+    circle1: "bg-green-500",
+    circle2: "bg-purple-500",
+    circle3: "bg-pink-500",
+    circle4: "bg-gray-500",
+  },
+  {
+    imageUrl: "/images/sofa5.jpg",
+    title: "minimalist sofa",
+    price: 150,
+    description: "A minimalist and elegant sofa.",
+    circle1: "bg-yellow-500",
+    circle2: "bg-gray-500",
+    circle3: "bg-stone-900",
+    circle4: "bg-gray-500",
+  },
+  {
+    imageUrl: "/images/sofa6.jpg",
+    title: "compact sofa",
+    price: 110,
+    description: "A compact sofa for small spaces.",
+    circle1: "bg-orange-500",
+    circle2: "bg-teal-500",
+    circle3: "bg-indigo-500",
+    circle4: "bg-gray-500",
+  },
+];
+
+export default function GridSofa() {
+  return (
+    <div className="grid grid-cols-3 gap-4 mt-10 mb-10 mx-3">
+      {cardSofaData.map((Sofa, index) => (
+        <div className="" key={index}>
+          <CardSofa {...Sofa} />
+        </div>
+      ))}
+    </div>
+  );
+}
