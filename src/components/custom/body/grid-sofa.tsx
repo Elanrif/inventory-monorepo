@@ -1,6 +1,7 @@
 import React from "react";
 import CardSofa, { CardSofaProps } from "./card-sofa";
 
+
 export const cardSofaData: CardSofaProps[] = [
   {
     imageUrl: "/images/sofa1.jpg",
