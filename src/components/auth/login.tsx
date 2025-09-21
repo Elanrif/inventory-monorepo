@@ -18,6 +18,8 @@ import { FaBowlingBall } from 'react-icons/fa'
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { FcGoogle } from "react-icons/fc"
+import { loginUser } from "@/lib/user/services/user.service"
+import { toast } from "react-toastify"
 
 const formSchema = z.object({
   email: z.string().min(2, {
@@ -26,7 +28,7 @@ const formSchema = z.object({
   password: z.string().min(8, {
     message: "Votre mot de passe doit contenir au moins 8 caractères.",
   }),
-})
+});
 
 export default function Login() {
     const form = useForm<z.infer<typeof formSchema>>({
@@ -35,10 +37,37 @@ export default function Login() {
         email: "",
         password: "",
     },
-  })
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
-  }
+  });
+
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+      try {
+        const user = await loginUser(data);
+        // user = axios.then ->  User || axios.catch -> throw new Error
+        if (user) {
+          toast.success("Connexion réussie !", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          form.reset();
+        }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (error: any) {
+        toast.error(`Erreur: ${error.message}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    }
   const [checked, setChecked] = useState(false)
 
   return (
