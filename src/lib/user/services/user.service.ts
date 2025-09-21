@@ -46,6 +46,16 @@ export const createUser = async (
     });
 
 //LOGIN
+export async function loginUser(userData: Partial<UserReqDTO>): Promise<UserDto> {
+  return axios
+    .post<UserDto>(`${userUrl}/login`, userData)
+    .then((response) => (response.data))
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    .catch((error: any) => {
+      const err = error?.response?.data?.message;
+      throw new Error(err);
+    });
+}
 
 export async function updateUser(
   id: number,
