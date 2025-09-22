@@ -27,7 +27,7 @@ export default function SubFooter() {
               className="flex flex-row items-center gap-2 border border-stone-900 rounded-full text-md bg-stone-900 text-white px-4 py-3"
             >
               {item.icon}
-              <p className="text-lg font-semibold">{item.name}</p>
+              <p className="text-sm">{item.name}</p>
             </Card>
           ))}
         </div>
