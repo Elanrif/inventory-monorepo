@@ -19,20 +19,21 @@ import { Input } from "@/components/ui/input";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
 
 const formSchema = z.object({
   username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "Le nom d'utilisateur doit comporter au moins 2 caractères.",
   }),
   email: z.email(),
   phone: z.string().min(2, {
-    message: "email must be at least 2 characters.",
+    message: "L'adresse mail doit comporter au moins 2 caractères.",
   }),
   password: z.string().min(8, {
-    message: "Password must be at least 8 characters.",
+    message: "Le mot de passe doit comporter au moins 8 caractères.",
   }),
   address: z.string().min(2, {
-    message: "Address must be at least 2 characters.",
+    message: "Le adresse doit comporter au moins 2 caractères.",
   }),
 });
 
@@ -83,12 +84,12 @@ export function Register() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6 max-w-[400px]"
+          className="space-y-4 max-w-[400px]"
         >
           <div className="flex flex-col items-center text-center">
             <p className="font-bold text-2xl">Créer votre compte</p>
-            <span className="opacity-60 whitespace-nowrap overflow-hidden overflow-ellipsis px-3">
-              Rejoignez Nucleus UI et commencez à concevoir en toute simplicité
+            <span className="opacity-60 px-3">
+              Rejoignez Nucleus UI et commencez à concevoir en toute simplicité.
             </span>
           </div>
           <FormField
@@ -96,7 +97,7 @@ export function Register() {
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>Nom de l&apos;utilisateur</FormLabel>
                 <FormControl>
                   <Input placeholder="Entrez votre Nom" {...field} />
                 </FormControl>
@@ -111,7 +112,7 @@ export function Register() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Saisir votre email" {...field} />
+                  <Input placeholder="Saisissez votre email" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -151,7 +152,7 @@ export function Register() {
             name="address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Addresse</FormLabel>
+                <FormLabel>Adresse</FormLabel>
                 <FormControl>
                   <Input placeholder="Entrez votre adresse" {...field} />
                 </FormControl>
@@ -164,9 +165,9 @@ export function Register() {
               Créer un compte
             </Button>
             <div className="w-[355px] flex items-center text-gray-700">
-              <div className="flex-1 border-t border-gray-300" />
-              <span className="mx-4">OR</span>
-              <div className="flex-1 border-t border-gray-300" />
+              <div className="flex-1 border-1 border-gray-300" />
+              <span className="mx-2 text-gray-500">OR</span>
+              <div className="flex-1 border-1 border-gray-300" />
             </div>
             <Button
               type="submit"
@@ -176,7 +177,11 @@ export function Register() {
               <span className="flex-1 text-center">Se connecter avec Google</span>
             </Button>
           </div>
-          <p>Vous avez un compte? <span className="text-purple-700">Se connecter</span></p>
+          <p className="opacity-60">Vous avez un compte? <Link href="/login">
+      <span className="text-purple-700 hover:underline cursor-pointer font-bold">
+        Se connecter
+      </span>
+    </Link></p>
         </form>
       </Form>
     </>
