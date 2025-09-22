@@ -15,3 +15,8 @@ export interface UserReqDTO {
     address: string;
     password: string;
 }
+
+export interface LoginReqDTO {
+    email: string;
+    password: string;
+}
