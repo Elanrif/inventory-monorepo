@@ -22,9 +22,9 @@ export default function Header() {
             <Link href="#">Contact</Link>
           </div>
           <div className="flex items-center gap-6">
-            <Search />
-            <Handbag />
-            <p>|</p>
+            <Search className="sm:hidden lg:block" />
+            <Handbag className="sm:hidden lg:block" />
+            <p className="sm:hidden lg:block">|</p>
             <Link href="#">Login</Link>
           </div>
         </CardHeader>

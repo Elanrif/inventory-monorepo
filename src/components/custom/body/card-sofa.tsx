@@ -25,18 +25,18 @@ export default function CardSofa({
   circle4,
 }: CardSofaProps) {
   return (
-    <Card className="relative bg-stone-200 w-[420px] h-[500px] ms-5 mb-10">
+    <Card className="relative bg-stone-200 w-[370px] h-[400px] ms-5 mb-10">
       <Image
         src={imageUrl}
         alt="sofa"
-        width={500}
-        height={500}
-        className="absolute rounded-3xl object-cover mix-blend-multiply"
+        width={300}
+        height={30}
+        className="absolute rounded-3xl object-cover mix-blend-multiply top-10 left-10"
       />
       <p className="absolute top-4 left-4 bg-white font-bold capitalize px-3 py-1 rounded-full">
-        best sale
+        {title}
       </p>
-      <div className="flex absolute left-70">
+      <div className="flex absolute left-60">
         <p className={`absolute left-2 border rounded-full p-4 ${circle1}`}></p>
         <p className={`absolute left-7 border rounded-full p-4 ${circle2}`}></p>
         <p className={`absolute left-14 border rounded-full p-4 ${circle3}`}></p>
@@ -44,7 +44,7 @@ export default function CardSofa({
       </div>
       <div className="absolute bottom-5 left-5 flex justify-between items-center w-[90%]">
         <div>
-          <p className="text-lg capitalize pb-2">{title}</p>
+          <p className="text-lg capitalize pb-2">{description}</p>
           <p className="font-bold text-xl">${price}.00</p>
         </div>
         <div className="p-3 border rounded-full bg-white">
