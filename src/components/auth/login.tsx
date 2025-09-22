@@ -18,6 +18,8 @@ import { FaBowlingBall } from 'react-icons/fa'
 import React, { useState } from 'react'
 import Image from 'next/image'
 import { FcGoogle } from "react-icons/fc"
+import { toast } from "react-toastify"
+import { createUser, loginUser } from "@/lib/user/services/user.service"
 
 const formSchema = z.object({
   email: z.string().min(2, {
@@ -36,26 +38,54 @@ export default function Login() {
         password: "",
     },
   })
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
+  async function onSubmit(data: z.infer<typeof formSchema>) {
+    //console.log(data)
+    try {
+      const user = await loginUser(data);
+      if (user) {
+        toast.success("Connexion réussie !", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        if ((user as any).token) {
+          localStorage.setItem("token", (user as any).token);
+        }
+        form.reset();
+      }
+    } catch (error: any) {
+      toast.error(`Erreur: ${error.message}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   }
   const [checked, setChecked] = useState(false)
 
   return (
-    <div className="flex min-h-screen rounded-3xl overflow-hidden m-4 ">
+    <div className="flex min-h-[90vh] rounded-3xl overflow-hidden mx-5 ">
       <div className="relative w-1/3 h-screen">
         <Image
-          src="/images/loginImage.jpg"
+          src="/images/imageLogin.png"
           alt="Description de l'image"
           fill
           className="object-cover"
         />
         <div className="absolute inset-0" >
             <div className="absolute bottom-0 flex flex-col items-center justify-center text-white p-8">
-                <h1 className="text-4xl font-bold mb-4">Simply all the tools that <br />
-                my team and i need.</h1>
+                <h1 className="text-2xl font-bold mb-3">Simplement tous les outils que <br />
+                mon équipe et moi avons besoin.</h1>
                 <p className=""><span className='font-bold'>Karen Yue</span><br />
-                Director of Digital Marketing Technologie</p>
+                Directeur des technologies de marketing numérique</p>
             </div>
             <div className="absolute top-5 left-10 m-4 flex items-center gap-2">
                 <p><FaBowlingBall  className='text-white text-2xl' /></p>
@@ -65,9 +95,9 @@ export default function Login() {
       </div>
       <div className="w-2/3  flex flex-col gap-5 items-center justify-center mt-10">
         <div className="flex flex-col items-center justify-start ">
-            <h2 className="text-3xl font-bold mb-6">Welcome back to Nucleus</h2>
+            <h2 className="text-3xl font-bold mb-6">Bienvenue à Nucleus</h2>
             <p className="text-slate-600 text-center">
-                Build your design system effortlessly with our <br /> powerful components library.
+                Créez votre système de design sans effort avec notre <br /> puissante bibliothèque de composants.
             </p>
         </div>
         <div className="w-[355px]"> 
@@ -101,7 +131,7 @@ export default function Login() {
             />
             <a href="#" className="text-md text-blue-500 hover:underline font-bold">Mot de passe oublié ?</a>
             <div className="flex items-center gap-31 mt-4">
-                <p>Remember Sign in details</p>
+                <p>Se souvenir des détails de connexion</p>
                   <button
                   type="button"
                   onClick={() => setChecked((v) => !v)}
@@ -120,10 +150,10 @@ export default function Login() {
         </div>
         <div className="w-[355px] flex items-center">
             <hr className="flex-1 border-t" />
-            <span className="mx-4 text-gray-500">or</span>
+            <span className="mx-4 text-gray-500">ou</span>
             <hr className="flex-1 border-t" />
         </div>
-        <Button type="submit" className="rounded-3xl w-[355px] bg-gray-300 text-black relative flex items-center justify-center pl-10 ">
+        <Button type="submit" className="rounded-3xl w-[355px] bg-gray-100 hover:bg-gray-300 text-black relative flex items-center justify-center pl-10 ">
         <FcGoogle  className=" absolute left-4 size-7"/>Continuer avec Google
         </Button>
         <p className="text-center text-gray-500">Vous n&apos;avez pas de compte ? <a href="#" className="text-blue-500 hover:underline">Inscrivez-vous</a></p>
