@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
+import Image from 'next/image';
 import { createUser } from "@/lib/user/services/user.service";
 import {
   Form,
@@ -17,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -81,11 +83,13 @@ export function Register() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 max-w-[600px]"
+          className="space-y-6 max-w-[400px]"
         >
-          <div>
-            <p className="font-bold text-2xl">Create your account</p>
-            <span> Join Nucleus UI and start deseigning with ease</span>
+          <div className="flex flex-col items-center text-center">
+            <p className="font-bold text-2xl">Créer votre compte</p>
+            <span className="opacity-60 whitespace-nowrap overflow-hidden overflow-ellipsis px-3">
+              Rejoignez Nucleus UI et commencez à concevoir en toute simplicité
+            </span>
           </div>
           <FormField
             control={form.control}
@@ -118,7 +122,7 @@ export function Register() {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>password</FormLabel>
+                <FormLabel>Mot de passe</FormLabel>
                 <FormControl>
                   <Input placeholder="Entrez votre mot de passe" {...field} />
                 </FormControl>
@@ -131,7 +135,7 @@ export function Register() {
             name="phone"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>phone</FormLabel>
+                <FormLabel>Téléphone</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Entrez votre numéro de téléphone"
@@ -147,7 +151,7 @@ export function Register() {
             name="address"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>addresse</FormLabel>
+                <FormLabel>Addresse</FormLabel>
                 <FormControl>
                   <Input placeholder="Entrez votre adresse" {...field} />
                 </FormControl>
@@ -156,17 +160,23 @@ export function Register() {
             )}
           />
           <div className="flex flex-col gap-4">
-            <Button type="submit" className="bg-purple-700 rounded-full w-3xs">
-              Create account
+            <Button type="submit" className="bg-purple-700 rounded-full w-full">
+              Créer un compte
             </Button>
+            <div className="w-[355px] flex items-center text-gray-700">
+              <div className="flex-1 border-t border-gray-300" />
+              <span className="mx-4">OR</span>
+              <div className="flex-1 border-t border-gray-300" />
+            </div>
             <Button
               type="submit"
-              className="bg-gray-200 rounded-full w-3xs text-black font-bold"
+              className="bg-gray-200 rounded-full w-full text-black font-bold flex items-center px-4"
             >
-              Sing up with Google
+              <FcGoogle className="size-6" />
+              <span className="flex-1 text-center">Se connecter avec Google</span>
             </Button>
           </div>
-          <p>Have an account? </p>
+          <p>Vous avez un compte? <span className="text-purple-700">Se connecter</span></p>
         </form>
       </Form>
     </>
