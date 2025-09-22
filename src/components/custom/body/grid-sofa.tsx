@@ -5,7 +5,7 @@ import CardSofa, { CardSofaProps } from "./card-sofa";
 export const cardSofaData: CardSofaProps[] = [
   {
     imageUrl: "/images/sofa1.jpg",
-    title: "avondable wood leg sofa",
+    title: "best sale",
     price: 180,
     description: "A comfortable and stylish sofa.",
     circle1: "bg-lime-500",
@@ -15,7 +15,7 @@ export const cardSofaData: CardSofaProps[] = [
   },
   {
     imageUrl: "/images/sofa2.jpg",
-    title: "modern leather sofa",
+    title: "top rated",
     price: 250,
     description: "A sleek and modern leather sofa.",
     circle1: "bg-stone-500",
@@ -25,7 +25,7 @@ export const cardSofaData: CardSofaProps[] = [
   },
   {
     imageUrl: "/images/sofa3.jpg",
-    title: "classic fabric sofa",
+    title: "best price",
     price: 220,
     description: "A timeless classic fabric sofa.",
     circle1: "bg-rose-500",
@@ -35,7 +35,7 @@ export const cardSofaData: CardSofaProps[] = [
   },
   {
     imageUrl: "/images/sofa4.jpg",
-    title: "luxury corner sofa",
+    title: "top rated",
     price: 320,
     description: "A spacious luxury corner sofa.",
     circle1: "bg-green-500",
@@ -45,7 +45,7 @@ export const cardSofaData: CardSofaProps[] = [
   },
   {
     imageUrl: "/images/sofa5.jpg",
-    title: "minimalist sofa",
+    title: "best price",
     price: 150,
     description: "A minimalist and elegant sofa.",
     circle1: "bg-yellow-500",
@@ -55,7 +55,7 @@ export const cardSofaData: CardSofaProps[] = [
   },
   {
     imageUrl: "/images/sofa6.jpg",
-    title: "compact sofa",
+    title: "best sale",
     price: 110,
     description: "A compact sofa for small spaces.",
     circle1: "bg-orange-500",
@@ -67,7 +67,7 @@ export const cardSofaData: CardSofaProps[] = [
 
 export default function GridSofa() {
   return (
-    <div className="grid grid-cols-3 gap-4 mt-10 mb-10 mx-3">
+    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  mt-10 mb-10 mx-12">
       {cardSofaData.map((Sofa, index) => (
         <div className="" key={index}>
           <CardSofa {...Sofa} />
