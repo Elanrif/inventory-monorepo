@@ -171,7 +171,7 @@ export function Register() {
             </div>
             <Button
               type="submit"
-              className="bg-gray-200 rounded-full w-full text-black font-bold flex items-center px-4"
+              className="bg-gray-200 hover:bg-slate-200 rounded-full w-full text-black font-bold flex items-center px-4"
             >
               <FcGoogle className="size-6" />
               <span className="flex-1 text-center">Se connecter avec Google</span>
