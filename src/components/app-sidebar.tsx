@@ -100,7 +100,7 @@ const data = {
   ],
   customer: [
     {
-      title: "Client",
+      title: "Clients",
       url: "#",
       icon: Users,
     },
@@ -133,11 +133,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavSecondary items={data.home} />
-        <NavSecondary items={data.customer} />
         <NavMain items={data.navMain} />
-        <NavSecondary items={data.secondary} />
-        <NavSecondary items={data.navsecondary} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
