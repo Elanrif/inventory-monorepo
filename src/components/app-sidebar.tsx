@@ -24,7 +24,6 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { NavSecondary } from "./nav-secondary"
 
 // This is sample data.
 const data = {
@@ -37,7 +36,6 @@ const data = {
     {
       name: "Fixoria Sales",
       logo: GalleryVerticalEnd,
-      plan: "Enterprise",
     },
     {
       name: "Acme Corp.",
@@ -51,6 +49,11 @@ const data = {
     },
   ],
   navMain: [
+    {
+      title: "Accueil",
+      url: "#",
+      icon: House,
+    },
     {
       title: "Ma boutique",
       url: "#",
@@ -79,14 +82,21 @@ const data = {
       title: "Finance",
       url: "#",
       icon: Database,
+      items: [
+      ],
+    },
+    {
+      title: "Clients",
+      url: "#",
+      icon: Users,
     },
     {
       title: "Rapport d'analyse",
       url: "#",
       icon: BookOpen,
+      items: [
+      ],
     },
-  ],
-  secondary: [
     {
       title: "Marketing",
       url: "#",
@@ -98,14 +108,7 @@ const data = {
       icon: Settings,
     },
   ],
-  customer: [
-    {
-      title: "Clients",
-      url: "#",
-      icon: Users,
-    },
-  ],
-  navsecondary: [
+  navsecond:[
     {
       title: "Boutique en ligne",
       url: "#",
@@ -116,13 +119,7 @@ const data = {
       url: "#",
       icon: House,
     },
-  ],
-  home: [
-    {
-      title: "Accueil",
-      url: "#",
-      icon: House,
-    },
+    
   ],
 }
 
@@ -133,7 +130,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={data.navMain} label="MAIN MENU"/>
+        <NavMain items={data.navsecond} label="SALES CHENNELS"/>
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
