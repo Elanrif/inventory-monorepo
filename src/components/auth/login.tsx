@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -12,14 +12,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { FaBowlingBall } from 'react-icons/fa'
-import React, { useState } from 'react'
-import Image from 'next/image'
-import { FcGoogle } from "react-icons/fc"
-import { toast } from "react-toastify"
-import { createUser, loginUser } from "@/lib/user/services/user.service"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { loginUser } from "@/lib/user/services/user.service";
+import { useRouter } from "next/navigation";
+import { ROUTES } from "@/utils/route";
+import { FcGoogle } from "react-icons/fc";
+import Link from "next/link";
 
 const formSchema = z.object({
   email: z.string().min(2, {
@@ -28,18 +29,19 @@ const formSchema = z.object({
   password: z.string().min(8, {
     message: "Votre mot de passe doit contenir au moins 8 caractères.",
   }),
-})
+});
 
 export default function Login() {
-    const form = useForm<z.infer<typeof formSchema>>({
+  const route = useRouter();
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-        email: "",
-        password: "",
+      email: "",
+      password: "",
     },
-  })
+  });
+
   async function onSubmit(data: z.infer<typeof formSchema>) {
-    //console.log(data)
     try {
       const user = await loginUser(data);
       if (user) {
@@ -52,11 +54,11 @@ export default function Login() {
           draggable: true,
           progress: undefined,
         });
-        if ((user as any).token) {
-          localStorage.setItem("token", (user as any).token);
-        }
+        //nextNavigation to dashboard.
+        route.push(ROUTES.DASHBOARD);
         form.reset();
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(`Erreur: ${error.message}`, {
         position: "top-right",
@@ -69,95 +71,84 @@ export default function Login() {
       });
     }
   }
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
 
   return (
-    <div className="flex min-h-[90vh] rounded-3xl overflow-hidden mx-5 ">
-      <div className="relative w-1/3 h-screen">
-        <Image
-          src="/images/imageLogin.png"
-          alt="Description de l'image"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0" >
-            <div className="absolute bottom-0 flex flex-col items-center justify-center text-white p-8">
-                <h1 className="text-2xl font-bold mb-3">Simplement tous les outils que <br />
-                mon équipe et moi avons besoin.</h1>
-                <p className=""><span className='font-bold'>Karen Yue</span><br />
-                Directeur des technologies de marketing numérique</p>
-            </div>
-            <div className="absolute top-5 left-10 m-4 flex items-center gap-2">
-                <p><FaBowlingBall  className='text-white text-2xl' /></p>
-                <p className='text-white text-2xl'>Nucleus</p>
-            </div>
-        </div>
-      </div>
-      <div className="w-2/3  flex flex-col gap-5 items-center justify-center mt-10">
-        <div className="flex flex-col items-center justify-start ">
-            <h2 className="text-3xl font-bold mb-6">Bienvenue à Nucleus</h2>
-            <p className="text-slate-600 text-center">
-                Créez votre système de design sans effort avec notre <br /> puissante bibliothèque de composants.
-            </p>
-        </div>
-        <div className="w-[355px]"> 
-            <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
-                <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                <FormItem>
+    <>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5 w-[450px">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                <Input placeholder="Saisir votre Email" {...field} />
+                  <Input placeholder="Saisir votre Email" {...field} />
                 </FormControl>
                 <FormMessage />
-                </FormItem>
-                )}
-            />
-            <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                <FormItem>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
                 <FormLabel>Mot de passe</FormLabel>
                 <FormControl>
-                <Input placeholder="Saisir votre mot de passe" {...field} />
+                  <Input placeholder="Saisir votre mot de passe" {...field} />
                 </FormControl>
                 <FormMessage />
-                </FormItem>
-                )}
-            />
-            <a href="#" className="text-md text-blue-500 hover:underline font-bold">Mot de passe oublié ?</a>
-            <div className="flex items-center gap-31 mt-4">
-                <p>Se souvenir des détails de connexion</p>
-                  <button
-                  type="button"
-                  onClick={() => setChecked((v) => !v)}
-                  className={`w-12 h-6 flex items-center rounded-full p-1 duration-300 ease-in-out
+              </FormItem>
+            )}
+          />
+          <a href="#" className="text-md text-blue-500 hover:underline">
+            Mot de passe oublié ?
+          </a>
+          <div className="flex items-center gap-31 mt-4">
+            <p>Se souvenir des détails de connexion</p>
+            <button
+              type="button"
+              onClick={() => setChecked((v) => !v)}
+              className={`w-12 h-6 flex items-center rounded-full p-1 duration-300 ease-in-out
                     ${checked ? "bg-blue-500" : "bg-gray-300"}`}
-                >
-                  <div
-                    className={`bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out
+            >
+              <div
+                className={`bg-white w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out
                       ${checked ? "translate-x-6" : "translate-x-0"}`}
-                  />
-                </button>
+              />
+            </button>
+          </div>
+          <div className="flex flex-col gap-4">
+            <Button type="submit" className="bg-purple-700 rounded-full w-full">
+              Se connecter
+            </Button>
+            <div className="w-[355px] flex items-center text-gray-700">
+              <div className="flex-1 border-1 border-gray-300" />
+              <span className="mx-2 text-gray-500">OU</span>
+              <div className="flex-1 border-1 border-gray-300" />
             </div>
-            <Button type="submit" className="rounded-3xl w-[355px] text-white bg-blue-500 hover:bg-blue-600 mt-3">Se connecter</Button>
-            </form>
-            </Form> 
-        </div>
-        <div className="w-[355px] flex items-center">
-            <hr className="flex-1 border-t" />
-            <span className="mx-4 text-gray-500">ou</span>
-            <hr className="flex-1 border-t" />
-        </div>
-        <Button type="submit" className="rounded-3xl w-[355px] bg-gray-100 hover:bg-gray-300 text-black relative flex items-center justify-center pl-10 ">
-        <FcGoogle  className=" absolute left-4 size-7"/>Continuer avec Google
-        </Button>
-        <p className="text-center text-gray-500">Vous n&apos;avez pas de compte ? <a href="#" className="text-blue-500 hover:underline">Inscrivez-vous</a></p>
-      </div>
-    </div>
-  )
+            <Button
+              type="submit"
+              className="bg-gray-200 hover:bg-slate-200 rounded-full w-full text-black font-bold flex items-center px-4"
+            >
+              <FcGoogle className="size-6" />
+              <span className="flex-1 text-center">
+                Se connecter avec Google
+              </span>
+            </Button>
+          </div>
+          <div className="opacity-60">
+            Vous n&apos;avez pas de compte?{" "}
+            <Link href={ROUTES.REGISTER}>
+              <span className="text-purple-700 hover:underline cursor-pointer font-bold">
+                S&apos;inscrire
+              </span>
+            </Link>
+          </div>
+        </form>
+      </Form>
+    </>
+  );
 }

@@ -3,9 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
 import { Button } from "@/components/ui/button";
-import Image from 'next/image';
 import { createUser } from "@/lib/user/services/user.service";
 import {
   Form,
@@ -16,10 +14,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import { ROUTES } from "@/utils/route";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -84,14 +82,8 @@ export function Register() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-4 max-w-[400px]"
+          className="space-y-4 w-[450px]"
         >
-          <div className="flex flex-col items-center text-center">
-            <p className="font-bold text-2xl">Créer votre compte</p>
-            <span className="opacity-60 px-3">
-              Rejoignez Nucleus UI et commencez à concevoir en toute simplicité.
-            </span>
-          </div>
           <FormField
             control={form.control}
             name="username"
@@ -166,22 +158,26 @@ export function Register() {
             </Button>
             <div className="w-[355px] flex items-center text-gray-700">
               <div className="flex-1 border-1 border-gray-300" />
-              <span className="mx-2 text-gray-500">OR</span>
+              <span className="mx-2 text-gray-500">OU</span>
               <div className="flex-1 border-1 border-gray-300" />
             </div>
             <Button
-              type="submit"
               className="bg-gray-200 hover:bg-slate-200 rounded-full w-full text-black font-bold flex items-center px-4"
             >
               <FcGoogle className="size-6" />
-              <span className="flex-1 text-center">Se connecter avec Google</span>
+              <span className="flex-1 text-center">
+                S&apos;inscrire avec Google
+              </span>
             </Button>
           </div>
-          <p className="opacity-60">Vous avez un compte? <Link href="/login">
-      <span className="text-purple-700 hover:underline cursor-pointer font-bold">
-        Se connecter
-      </span>
-    </Link></p>
+          <div className="opacity-60">
+            Vous avez un compte?{" "}
+            <Link href={ROUTES.LOGIN}>
+              <span className="text-purple-700 hover:underline cursor-pointer font-bold">
+                Se connecter
+              </span>
+            </Link>
+          </div>
         </form>
       </Form>
     </>

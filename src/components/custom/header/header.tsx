@@ -4,7 +4,15 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { ArrowDown, Flower, Handbag, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ROUTES } from "@/utils/route";
 
+const navItems = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "#" },
+  { name: "Product", href: "#" },
+  { name: "Collection", href: "#" },
+  { name: "Contact", href: "#" },
+];
 export default function Header() {
   return (
     <div className="relative h-[638px]">
@@ -15,17 +23,17 @@ export default function Header() {
             <h1 className="text-2xl font-bold">FurniSphere</h1>
           </Link>
           <div className="flex items-center gap-8">
-            <Link href="/">Home</Link>
-            <Link href="#">About</Link>
-            <Link href="#">Product</Link>
-            <Link href="#">Collection</Link>
-            <Link href="#">Contact</Link>
+            {navItems.map((item) => (
+              <Link key={item.name} href={item.href}>
+                {item.name}
+              </Link>
+            ))}
           </div>
           <div className="flex items-center gap-6">
             <Search className="sm:hidden lg:block" />
             <Handbag className="sm:hidden lg:block" />
             <p className="sm:hidden lg:block">|</p>
-            <Link href="#">Login</Link>
+            <Link href={ROUTES.LOGIN}>Login</Link>
           </div>
         </CardHeader>
         <CardContent className="flex flex-col items-center text-center pt-20">
