@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export default function Section() {
     return (
-        <div className="p-2 mb-5 text-center flex flex-col items-center">
+        <div className="space-y-2 px-2 mb-12 text-center flex flex-col items-center">
             <Image
                 src="/images/cat.jpg"
                 alt="Placeholder"

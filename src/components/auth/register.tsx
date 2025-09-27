@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import Image from 'next/image';
 import { createUser } from "@/lib/user/services/user.service";
 import {
   Form,

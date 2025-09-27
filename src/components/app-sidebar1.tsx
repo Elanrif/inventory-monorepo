@@ -13,15 +13,14 @@ import {
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
 import Section from "./section"
+import UserFooter from "./user-footer"
 
 // This is sample data.
 const data = {
@@ -74,16 +73,15 @@ const data = {
 export function AppSidebar1({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="px-6">
         <Menu size={20} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain}/>
         <Section/>
+        <div className="border-b border-border"/>
+        <UserFooter/>
       </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
       <SidebarRail />
     </Sidebar>
   )

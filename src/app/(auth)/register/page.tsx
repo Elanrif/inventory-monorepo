@@ -22,7 +22,7 @@ export default function RegisterPage() {
         </div>
         <div className='absolute left-10 bottom-4  text-white space-y-2'>
           <p className="text-lg font-bold">
-           "Simplement tous les outils dont mon équipe et moi avons besoin"
+           Simplement tous les outils dont mon équipe et moi avons besoin
           </p>
           <div>
             <p className="font-bold">Karen Yue</p>

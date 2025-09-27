@@ -1,3 +1,5 @@
+"use client"
+
 import * as React from "react"
 import { type LucideIcon } from "lucide-react"
 
@@ -18,14 +20,15 @@ export function NavSecondary({
     url: string
     icon: LucideIcon
   }[]
+  className?: string
 } & React.ComponentPropsWithoutRef<typeof SidebarGroup>) {
   return (
     <SidebarGroup {...props}>
-      <SidebarGroupContent>
-        <SidebarMenu>
+      <SidebarGroupContent >
+        <SidebarMenu className="font-medium">
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild size="sm">
+              <SidebarMenuButton asChild size="lg">
                 <a href={item.url}>
                   <item.icon />
                   <span>{item.title}</span>
