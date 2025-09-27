@@ -1,3 +1,4 @@
+"use client";
 import GridSofa from "@/components/custom/body/grid-sofa";
 import Header from "@/components/custom/header/header";
 import SubHeader from "@/components/custom/header/sub-header";

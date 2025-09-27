@@ -2,19 +2,21 @@
 
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
-// Types pour les données du contexte
-interface AppContextType {
-  user: {
+export type User = {
     id: string;
     email: string;
     name: string;
+    phone: string;
+    address: string;
   } | null;
+
+interface AppContextType {
+  user: User;
   loading: boolean;
-  setUser: (user: AppContextType["user"]) => void;
+  setUser: (user: User) => void;
   setLoading: (loading: boolean) => void;
 }
 
-// Création du contexte
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 // Props du provider
@@ -24,7 +26,7 @@ interface AppProviderProps {
 
 // Provider du contexte
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<AppContextType["user"]>(null);
+  const [user, setUser] = useState<User>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const contextValue: AppContextType = {

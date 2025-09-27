@@ -6,4 +6,5 @@ export const ROUTES = {
   DASHBOARD: "/dashboard",
   DASHBOARD_CATEGORIES: "/dashboard/categories",
   DASHBOARD_PRODUCTS: "/dashboard/products",
+  HIERARCHY: "/hierarchy",
 } as const;
