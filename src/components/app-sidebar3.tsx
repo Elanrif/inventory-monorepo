@@ -17,7 +17,6 @@ import {
   Users,
 } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
 import {
@@ -28,7 +27,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import SubHeader from "./sub-header"
-import { NavSecondary1 } from "./nav-secondary1"
+import { NavSecondary3 } from "./nav-secondary3"
+import { NavMain3 } from "./nav-main3"
 
 // This is sample data.
 const data = {
@@ -122,19 +122,21 @@ const data = {
       items: [],
     },
   ],
-  afterFooter:[
+  setting:[
     {  
     title: "Settings",
     url: "#",
     icon: CircleQuestionMark,
     },
-  ], afterFooter1:[
+  ], 
+  contact:[
     {  
     title: "Contact Support",
     url: "#",
     icon: PhoneCall,
     },
-  ],afterFooter2:[
+  ],
+  feedback:[
     {  
     title: "Feedback",
     url: "#",
@@ -151,11 +153,11 @@ export function AppSidebar3({ ...props }: React.ComponentProps<typeof Sidebar>) 
       </SidebarHeader>
       <SidebarContent>
       <SubHeader/>
-      <NavSecondary1 items={data.navSecondary} />
-        <NavMain items={data.navMain}/>
-        <NavSecondary1 items={data.afterFooter}/>
-        <NavSecondary1 items={data.afterFooter1}/>
-        <NavSecondary1 items={data.afterFooter2}/>
+      <NavSecondary3 items={data.navSecondary} />
+        <NavMain3 items={data.navMain}/>
+        <NavSecondary3 items={data.setting} className="-mb-9"/>
+        <NavSecondary3 items={data.contact} className="-mb-9"/>
+        <NavSecondary3 items={data.feedback}/>
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

@@ -18,7 +18,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 
-export function NavMain({
+export function NavMain3({
   items,
   label,
 }: {
@@ -40,7 +40,7 @@ export function NavMain({
       <SidebarGroupLabel>
         <span className="uppercase">{label}</span>
       </SidebarGroupLabel>)}
-      <SidebarMenu className="font-medium">
+      <SidebarMenu className="font-medium -mt-6">
         {items.map((item, index) => (
           <div key={index}>
             <Collapsible

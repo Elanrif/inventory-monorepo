@@ -11,7 +11,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-export function NavSecondary1({
+export function NavSecondary3({
   items,
   ...props
 }: {
@@ -25,7 +25,7 @@ export function NavSecondary1({
   return (
     <SidebarGroup {...props}>
       <SidebarGroupContent >
-        <SidebarMenu className="font-medium gap-0">
+        <SidebarMenu className="font-medium">
           {items.map((item) => (
             <SidebarMenuItem key={item.title}>
               <SidebarMenuButton asChild size="lg">
