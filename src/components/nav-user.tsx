@@ -1,12 +1,12 @@
 "use client"
 
 import {
-  BadgeCheck,
   Bell,
   ChevronsUpDown,
-  CreditCard,
+  Download,
   LogOut,
-  Sparkles,
+  Settings,
+  UserPlus,
 } from "lucide-react"
 
 import {
@@ -84,23 +84,23 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
+                <Settings />
+                Account Settings
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Bell />
+                Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <BadgeCheck />
-                Account
+                <UserPlus />
+                Invite Membres
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
+                <Download />
+                Get Mac app
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />

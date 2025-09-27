@@ -28,7 +28,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import SubHeader from "./sub-header"
-import { NavSecondary } from "./nav-secondary"
+import { NavSecondary } from "./nav-secondary1"
 
 // This is sample data.
 const data = {
