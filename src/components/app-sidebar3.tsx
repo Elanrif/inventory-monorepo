@@ -28,7 +28,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import SubHeader from "./sub-header"
-import { NavSecondary } from "./nav-secondary1"
+import { NavSecondary1 } from "./nav-secondary1"
 
 // This is sample data.
 const data = {
@@ -151,11 +151,11 @@ export function AppSidebar3({ ...props }: React.ComponentProps<typeof Sidebar>) 
       </SidebarHeader>
       <SidebarContent>
       <SubHeader/>
-      <NavSecondary items={data.navSecondary} />
+      <NavSecondary1 items={data.navSecondary} />
         <NavMain items={data.navMain}/>
-        <NavSecondary items={data.afterFooter}/>
-        <NavSecondary items={data.afterFooter1}/>
-        <NavSecondary items={data.afterFooter2}/>
+        <NavSecondary1 items={data.afterFooter}/>
+        <NavSecondary1 items={data.afterFooter1}/>
+        <NavSecondary1 items={data.afterFooter2}/>
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
