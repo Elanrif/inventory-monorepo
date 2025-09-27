@@ -73,8 +73,8 @@ const data = {
 export function AppSidebar1({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader className="px-6">
-        <Menu size={20} />
+      <SidebarHeader>
+        <Menu size={30} className="m-4"/>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain}/>

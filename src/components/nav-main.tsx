@@ -35,7 +35,7 @@ export function NavMain({
   label?: string
 }) {
   return (
-    <SidebarGroup className="mb-10">
+    <SidebarGroup className="mb-10 mt-8">
       {label !== undefined && (
       <SidebarGroupLabel>
         <span className="uppercase">{label}</span>
