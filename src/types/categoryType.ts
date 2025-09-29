@@ -1,9 +1,10 @@
 export type CategoryType = {
   id: number;
-  header: string;
+  product_name:string;
+  name: string;
   type: string;
-  status: 'Done' | 'In Process' | 'Pending'; // adapte selon tes cas
-  target: number;
-  limit: number;
-  reviewer: string;
+  status: string;
+  description: string;
+  imageUrl?: string;
+  createdAt?: string;
 };
