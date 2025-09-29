@@ -63,39 +63,51 @@ export const columns: ColumnDef<CategoryType>[] = [
         enableHiding: false,
     },
     {
-  accessorKey: "CategoryName",
-  header: ({ column }) => (
-    <Button
-      variant="ghost"
-      onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-    >
-      Category Name
-    </Button>
-  ),
-  cell: ({ row }) => {
-    const categoryName = row.getValue("CategoryName") as string
-    const imageUrl = row.original.imageUrl 
+        accessorKey: "CategoryName",
+        header: ({ column }) => (
+            <Button
+                variant="ghost"
+                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+            >
+                Category Name
+            </Button>
+        ),
+        cell: ({ row }) => {
+            const categoryName = row.getValue("CategoryName") as string
+            const imageUrl = row.original.imageUrl
 
-    return (
-      <div className="flex items-center gap-2">
-        <Image
-                  src={imageUrl}
-                  alt="Placeholder"
-                  width={30}
-                  height={30}
-                  className="w-[30px] h-[30px] object-cover"
-                />
-        <span className="capitalize">{categoryName}</span>
-      </div>
-    )
-  },
-},
+            return (
+                <div className="flex items-center gap-2">
+                    <Image
+                        src={imageUrl}
+                        alt="Placeholder"
+                        width={30}
+                        height={30}
+                        className="w-[30px] h-[30px] object-cover"
+                    />
+                    <span className="capitalize">{categoryName}</span>
+                </div>
+            )
+        },
+    },
     {
         accessorKey: "status",
         header: "Status",
         cell: ({ row }) => (
             <div className="capitalize">{row.getValue("status")}</div>
         ),
+    },
+    {
+        accessorKey: "description",
+        header: "Description",
+        cell: ({ row }) => {
+            const description = row.getValue("description") as string;
+            return (
+                <div className="flex flex-col gap-2">
+                    <p className="text-gray-700">{description}</p>
+                </div>
+            )
+        }
     },
     {
         id: "actions",
