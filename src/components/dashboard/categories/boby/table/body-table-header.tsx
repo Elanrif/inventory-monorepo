@@ -10,13 +10,11 @@ type Props = {
 
 const TableHeadersData:Props[] = [
   { title: <Checkbox className="border-2 border-gray-400 rounded-xs" /> },
-  { title: "Category name" },
-  { title: "Category" },
-  { title: "SKU" },
-  { title: "Incoming" },
-  { title: "Stock" },
+  { title: "Name" },
+  { title: "Description" },
   { title: "Status", icon: ChevronDown },
-  { title: "Price" },
+  { title: "Is_featured" },
+  { title: "Created_at" },
   { title: "Action" },
 ];
 

@@ -9,18 +9,16 @@ type TableDataType = {
     title: string;
     image: string;
   }[];
-  category: string;
-  sku: string;
-  incoming: number;
-  stock: number;
+  Description: string;
   status: {
-    title: string;
+    title: "active" | "inactive";
     color: string;
   }[];
-  price: string;
+  Is_featured: boolean;
+  Created_at: string;
 };
 
-const TableData: TableDataType[] = [
+const TableDataMock: TableDataType[] = [
   {
     categoryName: [
       {
@@ -28,17 +26,15 @@ const TableData: TableDataType[] = [
         image: "/images/categories/iphone.jpg",
       },
     ],
-    category: "Smartphone",
-    sku: "IP15-001",
-    incoming: 50,
-    stock: 120,
+  Description: "iPhone 15, puce A17.",
     status: [
       {
-        title: "In Stock",
+        title: "active",
         color: "bg-green-100 text-green-500",
       },
     ],
-    price: "$999",
+    Is_featured: true,
+  Created_at: "2025-09-12",
   },
   {
     categoryName: [
@@ -47,17 +43,15 @@ const TableData: TableDataType[] = [
         image: "/images/categories/samsung.jpg",
       },
     ],
-    category: "Smartphone",
-    sku: "SS24-002",
-    incoming: 30,
-    stock: 80,
+  Description: "Samsung S24, Snapdragon 8.",
     status: [
       {
-        title: "Low Stock",
-        color: "bg-yellow-100 text-yellow-500",
+        title: "inactive",
+        color: "bg-red-100 text-red-500",
       },
     ],
-    price: "$899",
+    Is_featured: false,
+  Created_at: "2025-10-01",
   },
   {
     categoryName: [
@@ -66,17 +60,15 @@ const TableData: TableDataType[] = [
         image: "/images/categories/macbook-pro.jpg",
       },
     ],
-    category: "Laptop",
-    sku: "MBP-003",
-    incoming: 10,
-    stock: 40,
+  Description: "MacBook Pro, puce M3.",
     status: [
       {
-        title: "In Stock",
+        title: "active",
         color: "bg-green-100 text-green-500",
       },
     ],
-    price: "$2,199",
+    Is_featured: true,
+    Created_at: "2025-08-22",
   },
   {
     categoryName: [
@@ -85,17 +77,15 @@ const TableData: TableDataType[] = [
         image: "/images/categories/airpods-pro.jpg",
       },
     ],
-    category: "Accessories",
-    sku: "APP-004",
-    incoming: 100,
-    stock: 200,
+  Description: "Écouteurs sans fil, ANC.",
     status: [
       {
-        title: "In Stock",
-        color: "bg-green-100 text-green-500",
+        title: "inactive",
+        color: "bg-red-100 text-red-500",
       },
     ],
-    price: "$249",
+    Is_featured: false,
+  Created_at: "2025-07-10",
   },
   {
     categoryName: [
@@ -104,17 +94,15 @@ const TableData: TableDataType[] = [
         image: "/images/categories/apple-watch.jpg",
       },
     ],
-    category: "Wearables",
-    sku: "AW-005",
-    incoming: 25,
-    stock: 60,
+  Description: "Montre connectée santé.",
     status: [
       {
-        title: "In Stock",
+        title: "active",
         color: "bg-green-100 text-green-500",
       },
     ],
-    price: "$399",
+    Is_featured: true,
+  Created_at: "2025-09-20",
   },
   {
     categoryName: [
@@ -123,24 +111,23 @@ const TableData: TableDataType[] = [
         image: "/images/categories/ipad-pro.jpg",
       },
     ],
-    category: "Tablet",
-    sku: "IPAD-006",
-    incoming: 15,
-    stock: 35,
+  Description: "iPad Pro, puce M2.",
     status: [
       {
-        title: "Out of Stock",
-        color: "bg-red-100 text-red-500 ",
+        title: "inactive",
+        color: "bg-red-100 text-red-500",
       },
     ],
-    price: "$1,099",
+    Is_featured: false,
+  Created_at: "2025-06-15",
   },
 ];
+
 
 export default function BodyTableBody() {
   return (
     <TableBody className="text-md">
-      {TableData.map((data, index) => (
+      {TableDataMock.map((data, index) => (
         <TableRow key={index}>
           <TableCell>
             <Checkbox className="border-2 border-gray-400 rounded-xs" />
@@ -157,17 +144,18 @@ export default function BodyTableBody() {
               {categoryNameItem.title}
             </TableCell>
           ))}
-          <TableCell>{data.category}</TableCell>
-          <TableCell>{data.sku}</TableCell>
-          <TableCell>{data.incoming}</TableCell>
-          <TableCell>{data.stock}</TableCell>
+          <TableCell>{data.Description}</TableCell>
           {data.status.map((statusItem, id) => (
-            <TableCell className={`flex w-fit border rounded-full px-1.5 py-0.5 ${statusItem.color}`} key={id}>
+            <TableCell
+              className={`flex w-fit border rounded-full px-1.5 py-0.5 ${statusItem.color}`}
+              key={id}
+            >
               <Dot />
               {statusItem.title}
             </TableCell>
           ))}
-          <TableCell>{data.price}</TableCell>
+          <TableCell className="ps-8">{data.Is_featured ? "Yes" : "No"}</TableCell>
+          <TableCell>{data.Created_at}</TableCell>
           <TableCell className="text-center">
             <ButtonAction />
           </TableCell>

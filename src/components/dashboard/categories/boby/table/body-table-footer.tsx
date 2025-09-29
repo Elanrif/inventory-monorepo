@@ -70,7 +70,7 @@ export default function BodyTableFooter() {
                 </Button>
               ))}
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 me-16">
               {ButtonData.slice(1).map((button, index) => (
                 <Button
                   key={index}
