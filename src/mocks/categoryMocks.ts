@@ -1,46 +1,52 @@
 
 export type CategoryType = {
   id: string
-  CategoryName: string
-  status: "In stock" | "Out of stock" | "Low stock"
+  Name: string
+  status: "active" | "inactive"
   description: string
+  is_featured: string
   imageUrl: string
 }
 
 export const categoryMocks: CategoryType[] = [
   {
     id: "m5gr84i9",
-    CategoryName: "Electronics",
-    status: "In stock",
+    Name: "Electronics",
+    status: "active",
     description:"description de la categorie",
+    is_featured:"Yes",
     imageUrl: "/images/iphone16.jpg",
   },
   {
     id: "3u1reuv4",
-    CategoryName: "Electronics",
-    status: "In stock",
+    Name: "Electronics",
+    status: "active",
     description:"description de la categorie",
+    is_featured:"Yes",
     imageUrl: "/images/pc gaming.jpg",
   },
   {
     id: "derv1ws0",
-    CategoryName: "Apparel",
-    status: "Out of stock",
+    Name: "Apparel",
+    status: "inactive",
     description:"description de la categorie",
+    is_featured:"No",
     imageUrl: "/images/vetements.jpg",
   },
   {
     id: "5kma53ae",
-    CategoryName: "Apparel",
-    status: "Low stock",
+    Name: "Apparel",
+    status: "active",
     description:"description de la categorie",
+    is_featured:"No",
     imageUrl: "/images/children apparel.jpg",
   },
   {
     id: "bhqecj4p",
-    CategoryName: "Wellness",
-    status: "In stock",
+    Name: "Wellness",
+    status: "inactive",
     description:"description de la categorie",
+    is_featured:"Yes",
     imageUrl: "/images/crème.jpg",
   },
 ]

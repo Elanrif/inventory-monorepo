@@ -1,32 +1,4 @@
-"use client"
-import Image from "next/image"
-import * as React from "react"
-import {
-    ColumnDef,
-    ColumnFiltersState,
-    flexRender,
-    getCoreRowModel,
-    getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    SortingState,
-    useReactTable,
-    VisibilityState,
-} from "@tanstack/react-table"
-import { ChevronDown, MoreHorizontal } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
+import Image from "next/image";
 import {
     Table,
     TableBody,
@@ -35,240 +7,63 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import { FooterCategory } from "./footer-category"
 
-import { categoryMocks, CategoryType } from "@/mocks/categoryMocks"
+import { categoryMocks } from "@/mocks/categoryMocks"
 
-export const columns: ColumnDef<CategoryType>[] = [
-    {
-        id: "select",
-        header: ({ table }) => (
-            <Checkbox
-                checked={
-                    table.getIsAllPageRowsSelected() ||
-                    (table.getIsSomePageRowsSelected() && "indeterminate")
-                }
-                onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-                aria-label="Select all"
-            />
-        ),
-        cell: ({ row }) => (
-            <Checkbox
-                checked={row.getIsSelected()}
-                onCheckedChange={(value) => row.toggleSelected(!!value)}
-                aria-label="Select row"
-            />
-        ),
-        enableSorting: false,
-        enableHiding: false,
-    },
-    {
-        accessorKey: "CategoryName",
-        header: ({ column }) => (
-            <Button
-                variant="ghost"
-                onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-            >
-                Category Name
-            </Button>
-        ),
-        cell: ({ row }) => {
-            const categoryName = row.getValue("CategoryName") as string
-            const imageUrl = row.original.imageUrl
-
-            return (
-                <div className="flex items-center gap-2">
-                    <Image
-                        src={imageUrl}
-                        alt="Placeholder"
-                        width={30}
-                        height={30}
-                        className="w-[30px] h-[30px] object-cover"
-                    />
-                    <span className="capitalize">{categoryName}</span>
-                </div>
-            )
-        },
-    },
-    {
-        accessorKey: "status",
-        header: "Status",
-        cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("status")}</div>
-        ),
-    },
-    {
-        accessorKey: "description",
-        header: "Description",
-        cell: ({ row }) => {
-            const description = row.getValue("description") as string;
-            return (
-                <div className="flex flex-col gap-2">
-                    <p className="text-gray-700">{description}</p>
-                </div>
-            )
-        }
-    },
-    {
-        id: "actions",
-        enableHiding: false,
-        header: () => (
-            <div className="flex justify-end pr-2">
-                Action
-            </div>
-        ),
-        cell: ({ row }) => {
-            const payment = row.original
-
-            return (
-                <div className="flex justify-end pr-2">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="h-8 w-8 p-0">
-                                <span className="sr-only">Open menu</span>
-                                <MoreHorizontal />
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                            <DropdownMenuItem
-                                onClick={() => navigator.clipboard.writeText(payment.id)}
-                            >
-                                Copy payment ID
-                            </DropdownMenuItem>
-                            <DropdownMenuSeparator />
-                            <DropdownMenuItem>View customer</DropdownMenuItem>
-                            <DropdownMenuItem>View payment details</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-            )
-        },
-    },
-]
 
 export function CategoryTable() {
-    const [sorting, setSorting] = React.useState<SortingState>([])
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-        []
-    )
-    const [columnVisibility, setColumnVisibility] =
-        React.useState<VisibilityState>({})
-    const [rowSelection, setRowSelection] = React.useState({})
-
-    const table = useReactTable({
-        data: categoryMocks,
-        columns,
-        onSortingChange: setSorting,
-        onColumnFiltersChange: setColumnFilters,
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-        getFilteredRowModel: getFilteredRowModel(),
-        onColumnVisibilityChange: setColumnVisibility,
-        onRowSelectionChange: setRowSelection,
-        state: {
-            sorting,
-            columnFilters,
-            columnVisibility,
-            rowSelection,
-        },
-    })
     return (
-        <div className="w-full">
-            <div className="flex items-center py-4 w-[500px]">
-                <Input
-                    placeholder="Search..."
-                    value={(table.getColumn("CategoryName")?.getFilterValue() as string) ?? ""}
-                    onChange={(event) =>
-                        table.getColumn("CategoryName")?.setFilterValue(event.target.value)
-                    }
-                />
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="outline" className="ml-auto">
-                            Columns <ChevronDown />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        {table
-                            .getAllColumns()
-                            .filter((column) => column.getCanHide())
-                            .map((column) => {
-                                return (
-                                    <DropdownMenuCheckboxItem
-                                        key={column.id}
-                                        className="capitalize"
-                                        checked={column.getIsVisible()}
-                                        onCheckedChange={(value) =>
-                                            column.toggleVisibility(!!value)
-                                        }
-                                    >
-                                        {column.id}
-                                    </DropdownMenuCheckboxItem>
-                                )
-                            })}
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            </div>
-            <div className="overflow-hidden rounded-md border">
-                <Table>
-                    <TableHeader>
-                        {table.getHeaderGroups().map((headerGroup) => (
-                            <TableRow key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => {
-                                    return (
-                                        <TableHead key={header.id}>
-                                            {header.isPlaceholder
-                                                ? null
-                                                : flexRender(
-                                                    header.column.columnDef.header,
-                                                    header.getContext()
-                                                )}
-                                        </TableHead>
-                                    )
-                                })}
-                            </TableRow>
-                        ))}
-                    </TableHeader>
-                    <TableBody>
-                        {table.getRowModel().rows?.length ? (
-                            table.getRowModel().rows.map((row) => (
-                                <TableRow
-                                    key={row.id}
-                                    data-state={row.getIsSelected() && "selected"}
+        <Table>
+            <TableHeader>
+                <TableRow>
+                    <TableHead className="w-[100px]">id</TableHead>
+                    <TableHead>Name</TableHead>
+                    <TableHead>Description</TableHead>
+                    <TableHead className="bg-">Status</TableHead>
+                    <TableHead>Is_Featured</TableHead>
+                    <TableHead>Created at</TableHead>
+                    <TableHead className="text-right">Action</TableHead>
+                </TableRow>
+            </TableHeader>
+            <TableBody>
+                {categoryMocks.map((category, Index) => (
+                    <TableRow key={Index}>
+                        <TableCell className="font-medium">{category.id}</TableCell>
+                        <TableCell>
+                            <div className="flex items-center gap-2">
+                                <Image
+                                    src={category.imageUrl}
+                                    alt="Placeholder"
+                                    width={30}
+                                    height={30}
+                                    className="w-[30px] h-[30px] object-cover"
+                                />
+                                {category.Name}
+                            </div>
+                        </TableCell>
+                        <TableCell>{category.description}</TableCell>
+                        <TableCell>
+                            <div className="flex items-center gap-2">
+                                <span
+                                    className={`flex items-center gap-2 px-2 py-1 rounded-full text-sm ${category.status === "active"
+                                            ? "bg-green-100 text-green-700"
+                                            : "bg-red-100 text-red-700"
+                                        }`}
                                 >
-                                    {row.getVisibleCells().map((cell) => (
-                                        <TableCell key={cell.id}>
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext()
-                                            )}
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
-                            ))
-                        ) : (
-                            <TableRow>
-                                <TableCell
-                                    colSpan={columns.length}
-                                    className="h-24 text-center"
-                                >
-                                    No results.
-                                </TableCell>
-                            </TableRow>
-                        )}
-                    </TableBody>
-                </Table>
-            </div>
-            <div className="flex items-center justify-between space-x-2 py-4">
-                <div className="flex text-muted-foreground text-sm">
-                    {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                    {table.getFilteredRowModel().rows.length} row(s) selected.
-                </div>
-                <FooterCategory />
-            </div>
+                                    <span
+                                        className={`h-2.5 w-2.5 rounded-full ${category.status === "active" ? "bg-green-500" : "bg-red-500"
+                                            }`}
+                                    />
+                                    {category.status}
+                                </span>
+                            </div>
+                        </TableCell>
 
-        </div>
+                        <TableCell className="text-right">{category.is_featured}</TableCell>
+                        <TableCell>{new Date().toLocaleDateString()}</TableCell>
+                    </TableRow>
+                ))}
+            </TableBody>
+        </Table>
     )
 }
