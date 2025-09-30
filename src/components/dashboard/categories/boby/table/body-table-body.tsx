@@ -1,13 +1,11 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { cn } from "@/lib/utils";
 import { Dot, MoreHorizontal, Pen, Trash } from "lucide-react";
 import Image from "next/image";
+
+
 
 type TableDataProps = {
   name: string;
@@ -62,7 +60,7 @@ export default function BodyTableBody({
   );
 }
 
-export function ButtonAction() {
+export  function ButtonAction() {
   const actions = [
     {
       icon: <Pen color="blue" />,
@@ -83,7 +81,7 @@ export function ButtonAction() {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         {actions.map((action, id) => (
-          <DropdownMenuItem className={action.className} key={id}>
+          <DropdownMenuItem className={cn("ps-5",action.className)}  key={id}>
             {action.icon}
             {action.label}
           </DropdownMenuItem>
