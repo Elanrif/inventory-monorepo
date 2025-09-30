@@ -4,119 +4,119 @@ export const categoryMocks: CategoryType[] = [
   
   {
     "id": 1,
-    "product_name":"Ecran plat",
-    "name": "Cover page",
+    "is_featured":true ,
+    "name": "Air Pod",
     "type": "Cover page",
-    "status": "In Process",
+    "status": "Low Stock",
     "description": "Cover page description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/airpod1.jpeg"
   },
   {
     "id": 2,
-    "product_name":"Smart pen",
-    "name": "Table of contents",
+    "is_featured":false ,
+    "name": "Casque",
     "type": "Table of contents",
-    "status":"Done",
+    "status":"Out Stock",
     "description": "Table of contents description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/casque1.jpeg"
   },
   {
     "id": 3,
-    "product_name":"Smart pen",
-    "name": "Executive summary",
+    "is_featured":true ,
+    "name": "Mac 1er generation",
     "type": "Narrative",
-    "status":"Done",
+    "status":"In Stock",
     "description": "Executive summary description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/mac.jpeg"
   },
   {
     "id": 4,
-    "product_name":"Smart pen",
-    "name": "Technical approach",
+    "is_featured":false ,
+    "name": "Mac 2em generation",
     "type": "Narrative",
-    "status":"Done",
+    "status":"Out Stock",
     "description": "Technical approach description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/mac2.jpeg"
   },
   {
     "id": 5,
-    "product_name":"Smart pen",
+    "is_featured":true ,
     "name": "Montre Samsung",
     "type": "Narrative",
-    "status":"Done",
+    "status":"In Stock",
     "description": "Design description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/products/iphone-2.jpg"
   },
   {
     "id": 6,
-    "product_name":"Nokia 17",
+    "is_featured":false ,
     "name": "Telephone",
     "type": "Narrative",
-    "status":"Done",
+    "status":"Out Stock",
     "description": "Design description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/products/iphone-1.jpg"
   },
     {
     "id": 7,
-    "product_name":"Tablette Samsung",
+    "is_featured":true ,
     "name": "Tablette ",
     "type": "Narrative",
-    "status":"Done",
+    "status":"In Stock",
     "description": "Design description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/tablette.jpeg"
   },
     {
     "id": 8,
-    "product_name":"PC gamer",
-    "name": "Gamer",
+    "is_featured":false ,
+    "name": " PC Gamer",
     "type": "Narrative",
-    "status":"Done",
+    "status":"Out Stock",
     "description": "Design description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/PC_portable.jpeg"
   },
     {
     "id": 9,
-    "product_name":"PC programmeur",
-    "name": "Programmation",
+    "is_featured":false ,
+    "name": "Lunettes Smart",
     "type": "Narrative",
-    "status":"Done",
+    "status":"In Stock",
     "description": "Iphone description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/smart_lunette.jpeg"
   },
     {
     "id": 10,
-    "product_name":" PC MAC ",
-    "name": "PC portable",
+    "is_featured":true ,
+    "name": "PC Bureau",
     "type": "Narrative",
-    "status":"Done",
+    "status":"Low Stock",
     "description": "PC description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/PC_bureau.jpeg"
   },
     {
     "id": 11,
-    "product_name":"PC gamer",
-    "name": "Lunettes VR",
+    "is_featured":true ,
+    "name": "Air Pods 2025",
     "type": "Narrative",
-    "status":"Done",
+    "status":"In Stock",
     "description": "Lunettes description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/airpod1.jpg"
   },
     {
     "id": 12,
-    "product_name":"Apple  Watch",
+    "is_featured":true ,
     "name": "Telephone ",
     "type": "Narrative",
-    "status": "In Process",
+    "status":"In Stock",
     "description": "Apple description",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/airpod1.jpg"
   },
     {
     "id": 13,
-    "product_name":"Airpods Pro",
+    "is_featured":false ,
     "name": "Ecouteurs ",
     "type": "Narrative",
-    "status":"Done",
+    "status":"Low Stock",
     "description": "Airpods Original",
-    "imageUrl": "/images/Google logo.jpg"
+    "imageUrl": "/images/categories/airpod1.jpg"
   }
 ]

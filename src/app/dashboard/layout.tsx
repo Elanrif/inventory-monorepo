@@ -1,4 +1,5 @@
 import { AppSidebar } from "@/components/app-sidebar";
+import SidebarBreadcrumb from "@/components/sidebar-breadcrumb";
 import {
   SidebarInset,
   SidebarProvider,
@@ -9,6 +10,7 @@ export default function DashboardLayout({children}: {children: React.ReactNode})
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
+       <SidebarBreadcrumb label="Chargement des données" />
         {children}
       </SidebarInset>
     </SidebarProvider>

@@ -1,8 +1,8 @@
 export type CategoryType = {
   id: number;
-  product_name:string;
   name: string;
   type: string;
+  is_featured: boolean;
   status: string;
   description: string;
   imageUrl?: string;

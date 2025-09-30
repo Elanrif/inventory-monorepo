@@ -19,12 +19,6 @@ export default function InventoryCard({
   totalProducts,
   stock,
 }: InventoryCardProps) {
-  const total = stock.inStock + stock.lowStock + stock.outOfStock
-
-  const inStockPercent = (stock.inStock / total) * 100
-  const lowStockPercent = (stock.lowStock / total) * 100
-  const outOfStockPercent = (stock.outOfStock / total) * 100
-
   return (
     <Card className="p-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between ">
       <CardHeader className="pb-2 ">
@@ -39,18 +33,18 @@ export default function InventoryCard({
           {totalProducts} <span className="text-base text-muted-foreground font-normal">Product</span>
         </div>
         {/* Barre multi-couleurs */}
-        <div className="flex h-3 w-full overflow-hidden rounded-full">
+        <div className="flex  gap-1 h-2 w-full overflow-hidden rounded-full">
           <div
-            className="bg-green-500"
-            style={{ width: `${inStockPercent}%` }}
+            className="bg-green-500 rounded-2xl w-45"
+            //style={{ width: `${inStockPercent}%` }}
           />
           <div
-            className="bg-yellow-400"
-            style={{ width: `${lowStockPercent}%` }}
+            className="bg-yellow-500 w-20 rounded-2xl"
+            //style={{ width: `${lowStockPercent}%` }}
           />
           <div
-            className="bg-red-500"
-            style={{ width: `${outOfStockPercent}%` }}
+            className="bg-red-500 w-30 rounded-2xl"
+            //style={{ width: `${outOfStockPercent}%` }}
           />
         </div>
 

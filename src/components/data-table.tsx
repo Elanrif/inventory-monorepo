@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Image from "next/image";
-
+import { Pencil, Trash2 } from 'lucide-react';
 import {
   closestCenter,
   DndContext,
@@ -24,15 +24,9 @@ import {
 import { CSS } from "@dnd-kit/utilities"
 import {
   IconChevronDown,
-  IconChevronLeft,
-  IconChevronRight,
-  IconChevronsLeft,
-  IconChevronsRight,
-  IconCircleCheckFilled,
   IconDotsVertical,
   IconGripVertical,
   IconLayoutColumns,
-  IconLoader,
   IconTrendingUp,
 } from "@tabler/icons-react"
 import {
@@ -55,7 +49,6 @@ import { toast } from "sonner"
 import { z } from "zod"
 
 import { useIsMobile } from "@/hooks/use-mobile"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   ChartContainer,
@@ -104,12 +97,12 @@ import {
   TabsContent,
 } from "@/components/ui/tabs"
 import { SearchForm } from "./search-form";
-import { ListFilterPlus } from "lucide-react";
+import { Calendar, ChevronDown, ListFilterPlus } from "lucide-react";
 
 export const schema = z.object({
   id: z.number(),
-  product_name: z.string(),
   name: z.string(),
+  is_featured:z.boolean(),
   status: z.string(),
   createdAt: z.string().optional(), 
   description: z.string(),
@@ -170,37 +163,57 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     accessorKey: "Header",
-    header: "Product Name",
+    header: "Name",
     cell: ({ row }) => {
       return <TableCellViewer item={row.original} />
     },
     enableHiding: false,
   },
   {
-    accessorKey: "type",
-    header: "Category",
-    cell: ({ row }) => (
-      <div className="w-32">
-        <Badge variant="outline" className="text-muted-foreground px-1.5">
-          {row.original.name}
-        </Badge>
-      </div>
-    ),
+  accessorKey: "is_featured",
+  header: "Is Featured",
+  cell: ({ row }) => (
+    <div className="w-32 font-semibold pl-5">
+      <p>{row.original.is_featured ? "Yes" : "No"}</p>
+    </div>
+  ),
+
   },
-  {
-    accessorKey: "status",
-    header: "Status",
-    cell: ({ row }) => (
-      <Badge variant="outline" className="text-muted-foreground px-1.5">
-        {row.original.status === "Done" ? (
-          <IconCircleCheckFilled className="fill-green-500 dark:fill-green-400" />
-        ) : (
-          <IconLoader />
-        )}
-        {row.original.status}
-      </Badge>
-    ),
+
+{
+  accessorKey: "status",
+  header: () => (
+    <div className="flex items-center gap-1">
+      Status
+      <ChevronDown className="w-4 h-4 text-gray-500" />
+    </div>
+  ),
+  cell: ({ row }) => {
+    const status = row.original.status
+
+    let styles = ""
+    if (status === "In Stock") {
+      styles =
+        "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
+    } else if (status === "Low Stock") {
+      styles =
+        "bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-300"
+    } else if (status === "Out Stock") {
+      styles =
+        "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-300"
+    }
+
+    return (
+      <span
+        className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-sm font-medium ${styles}`}
+      >
+        <span className="size-2 rounded-full bg-current" />
+        {status}
+      </span>
+    )
   },
+},
+
   {
   accessorKey: "createdAt",
   header: "Created At",
@@ -220,7 +233,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
     });
 
     return (
-      <span className="text-muted-foreground text-sm">
+      <span className="text-muted-foreground text-sm ">
         {formatted}
       </span>
     );
@@ -277,11 +290,10 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-32">
-          <DropdownMenuItem>Edit</DropdownMenuItem>
-          <DropdownMenuItem>Make a copy</DropdownMenuItem>
-          <DropdownMenuItem>Favorite</DropdownMenuItem>
+            
+          <DropdownMenuItem>Edit <Pencil /> </DropdownMenuItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+          <DropdownMenuItem variant="destructive">Delete <Trash2 className="text-red" /></DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
     ),
@@ -390,10 +402,15 @@ export function DataTable({
         <SearchForm />
         <div className="flex items-center gap-2">
           <DropdownMenu>
+            <Button variant="outline" size="sm">
+            <Calendar />
+            <span className="hidden lg:inline">12 Sep - 28 Oct</span>
+            <ChevronDown />
+          </Button>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm">
                 <IconLayoutColumns />
-                
+
                 <span className="hidden lg:inline">Amount Statut</span>
                 <span className="lg:hidden">Columns</span>
                 <IconChevronDown />
@@ -495,83 +512,74 @@ export function DataTable({
             </Table>
           </DndContext>
         </div>
-        <div className="flex items-center justify-between px-4">
-          <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
-            {table.getFilteredSelectedRowModel().rows.length} of{" "}
-            {table.getFilteredRowModel().rows.length} row(s) selected.
-          </div>
-          <div className="flex w-full items-center gap-8 lg:w-fit">
-            <div className="hidden items-center gap-2 lg:flex">
-              <Label htmlFor="rows-per-page" className="text-sm font-medium">
-                Rows per page
-              </Label>
-              <Select
-                value={`${table.getState().pagination.pageSize}`}
-                onValueChange={(value) => {
-                  table.setPageSize(Number(value))
-                }}
-              >
-                <SelectTrigger size="sm" className="w-20" id="rows-per-page">
-                  <SelectValue
-                    placeholder={table.getState().pagination.pageSize}
-                  />
-                </SelectTrigger>
-                <SelectContent side="top">
-                  {[10, 20, 30, 40, 50].map((pageSize) => (
-                    <SelectItem key={pageSize} value={`${pageSize}`}>
-                      {pageSize}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="flex w-fit items-center justify-center text-sm font-medium">
-              Page {table.getState().pagination.pageIndex + 1} of{" "}
-              {table.getPageCount()}
-            </div>
-            <div className="ml-auto flex items-center gap-2 lg:ml-0">
-              <Button
-                variant="outline"
-                className="hidden h-8 w-8 p-0 lg:flex"
-                onClick={() => table.setPageIndex(0)}
-                disabled={!table.getCanPreviousPage()}
-              >
-                <span className="sr-only">Go to first page</span>
-                <IconChevronsLeft />
-              </Button>
-              <Button
-                variant="outline"
-                className="size-8"
-                size="icon"
-                onClick={() => table.previousPage()}
-                disabled={!table.getCanPreviousPage()}
-              >
-                <span className="sr-only">Go to previous page</span>
-                <IconChevronLeft />
-              </Button>
-              <Button
-                variant="outline"
-                className="size-8"
-                size="icon"
-                onClick={() => table.nextPage()}
-                disabled={!table.getCanNextPage()}
-              >
-                <span className="sr-only">Go to next page</span>
-                <IconChevronRight />
-              </Button>
-              <Button
-                variant="outline"
-                className="hidden size-8 lg:flex"
-                size="icon"
-                onClick={() => table.setPageIndex(table.getPageCount() - 1)}
-                disabled={!table.getCanNextPage()}
-              >
-                <span className="sr-only">Go to last page</span>
-                <IconChevronsRight />
-              </Button>
-            </div>
-          </div>
-        </div>
+        <div className="flex items-center justify-between px-4 py-2">
+  {/* Texte Result */}
+  <div className="flex items-center gap-4">
+      <div className="text-sm font-semibold">
+    Result 1 - 10 of 45 
+  </div>
+        <Select
+      value={`${table.getState().pagination.pageSize}`}
+      onValueChange={(value) => {
+        table.setPageSize(Number(value))
+      }}
+    >
+      <SelectTrigger size="sm" className="w-16">
+        <SelectValue placeholder={table.getState().pagination.pageSize} />
+      </SelectTrigger>
+      <SelectContent side="top" className="ml-10">
+        {[10, 20, 30, 40, 50].map((pageSize) => (
+          <SelectItem key={pageSize} value={`${pageSize}`}>
+            {pageSize}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
+  </div>
+  <div className="flex items-center gap-4">
+<div className="flex justify-center items-center gap-2 w-full mr-80">
+  {/* Previous */}
+  <Button
+    variant="outline"
+    size="sm"
+    disabled={!table.getCanPreviousPage()}
+  >
+    ← Previous
+  </Button>
+
+  {/* Numéros de pages fixes : 1 2 3 … 12 */}
+  <div className="flex items-center gap-1">
+    {[0, 1, 2].map((p) => (
+      <button
+        key={p}
+        className={`h-8 w-8 rounded-md border text-sm flex items-center justify-center transition-colors
+          ${
+            table.getState().pagination.pageIndex === p
+              ? "border-purple-500 text-purple-600 bg-purple-50"
+              : "border-gray-300 text-gray-700 hover:bg-gray-100"
+          }`}
+      >
+        {p + 1}
+      </button>
+    ))}
+    <span className="px-2 text-gray-500">...</span>
+    <button
+      className="h-8 w-8 rounded-md border text-sm flex items-center justify-center transition-colors"  
+    >
+      12
+    </button>
+  </div>
+  {/* Next */}
+  <Button
+    variant="outline"
+    size="sm"
+    disabled={!table.getCanNextPage()}
+  >
+    Next →
+  </Button>
+</div>
+  </div>
+</div>
       </TabsContent>
       <TabsContent
         value="past-performance"
@@ -610,13 +618,13 @@ export function TableCellViewer({ item }: Props) {
         >
           {/* Avatar */}
           {item.imageUrl ? (
-            <div className="relative w-6 h-6">
+            <div className="relative w-10 h-9">
                 <Image
                     src={item.imageUrl || "/images/fallback.png"}
                     alt={item.name}
-                    width={25}
-                    height={25}
-                    className="rounded-full object-cover border border-muted"
+                    width={40}
+                    height={40}
+                    className="rounded-3xl object-cover border border-muted"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = "/images/fallback.png";
@@ -626,7 +634,7 @@ export function TableCellViewer({ item }: Props) {
           ) : (
             <div className="w-8 h-8 rounded-full bg-gray-200" />
           )}
-          <span className="font-medium">{item.product_name}</span>
+          <span className="font-medium">{item.name}</span>
         </Button>
       </DrawerTrigger>
 
