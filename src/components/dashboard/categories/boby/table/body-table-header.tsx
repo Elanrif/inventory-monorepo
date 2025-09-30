@@ -1,34 +1,18 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import { TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { ChevronDown, LucideIcon } from "lucide-react";
+import { TableHead } from "@/components/ui/table";
+import { LucideIcon } from "lucide-react";
 import React, { JSX } from "react";
 
-type Props = {
+type props = {
   title: string | JSX.Element;
   icon?: LucideIcon;
 };
 
-const TableHeadersData:Props[] = [
-  { title: <Checkbox className="border-2 border-gray-400 rounded-xs" /> },
-  { title: "Name" },
-  { title: "Description" },
-  { title: "Status", icon: ChevronDown },
-  { title: "Is_featured" },
-  { title: "Created_at" },
-  { title: "Action" },
-];
-
-export default function BodyTableHeader() {
+export default function BodyTableHeader({ title, icon }: props) {
   return (
-    <TableHeader className="bg-muted">
-      <TableRow>
-        {TableHeadersData.map((header, index) => (
-          <TableHead key={index}>
-            {header.title}
-            {header.icon && <header.icon size={15} className="ml-1 inline" />}
-          </TableHead>
-        ))}
-      </TableRow>
-    </TableHeader>
+    <TableHead>
+      {title}
+      {icon &&
+        React.createElement(icon, { size: 15, className: "ml-1 inline" })}
+    </TableHead>
   );
 }

@@ -1,46 +1,34 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { FileText, LucideIcon, Plus, Upload } from "lucide-react";
+import { LucideIcon, } from "lucide-react";
 import React from "react";
 
-type ButtonVariant = "outline" | "default";
+export type ButtonVariant = "outline" | "default";
 
-interface HeaderCategoryItem {
+interface HeaderButtonsType {
   icon: LucideIcon;
   label: string;
   className?: string;
   variant?: ButtonVariant;
 }
 
-const HeaderCategoryData: HeaderCategoryItem[] = [
-  {
-    icon: Upload,
-    label: "Import",
-  },
-  {
-    icon: FileText,
-    label: "Export",
-  },
-  {
-    icon: Plus,
-    label: "Add Category",
-    className: "bg-purple-600 text-white hover:bg-purple-700",
-    variant: "default",
-  },
-];
+interface HeaderButtonsProps {
+  title:string,
+  headerButtons: HeaderButtonsType[];
+}
 
-export default function HeaderCategory() {
+export default function HeaderCategory({title, headerButtons }: HeaderButtonsProps) {
   return (
     <div className="flex items-center justify-between mb-4 mt-3">
-      <h1 className="capitalize text-xl font-bold">categories</h1>
+      <h1 className="capitalize text-xl font-bold">{title}</h1>
       <div className="flex items-center gap-3">
-        {HeaderCategoryData.map((item, index) => (
+        {headerButtons.map((headerButton, index) => (
           <Button
             key={index}
-            className={cn("py-5", item.className)}
-            variant={item.variant ?? "outline"}
+            className={cn("py-5", headerButton.className)}
+            variant={headerButton.variant ?? "outline"}
           >
-            <item.icon /> {item.label}
+            <headerButton.icon /> {headerButton.label}
           </Button>
         ))}
       </div>
