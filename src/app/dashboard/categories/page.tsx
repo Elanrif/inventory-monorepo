@@ -12,7 +12,7 @@ export default function CategoriePage() {
       <div className="space-y-6 bg-gray-100 min-h-screen p-6 w-full">
         <CategoryButton />
         <div className="flex">
-          <SubHeader price={10.356788} description="Total Asset Value" />
+          <SubHeader/>
           <div className="border-l border-gray-200" />
           <Section/>
         </div>

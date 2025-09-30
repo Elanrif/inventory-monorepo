@@ -7,16 +7,22 @@ export type SubHeaderProps = {
   description: string;
 };
 
-export default function SubHeader({
-  price,
-  description,
-}: SubHeaderProps) {
-
+export default function SubHeader() {
+  const categories: SubHeaderProps[] = [
+    {  description: "Total Asset Value", 
+      price: 10.356788,
+     },
+  ];
   return (
-    <div className='flex flex-col px-4 py-2 bg-white rounded-l-lg flex-1'>
-      {}
-      <p className="text-gray-400 capitalize pb-2">{description}</p>
-      <p className="font-bold text-xl">${price}</p>
+    <div className='bg-white rounded-l-lg flex-1'>
+      {categories.map((item,index) => {
+        return (
+       <div key={index} className='flex flex-col px-4 py-2'>
+        <p className="text-gray-400 capitalize pb-2">{item.description}</p>
+      <p className="font-bold text-xl">${item.price}</p>
+       </div>
+        )
+      })}
     </div>
   );
 };

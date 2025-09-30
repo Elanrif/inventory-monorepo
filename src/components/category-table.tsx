@@ -29,7 +29,7 @@ export function CategoryTable() {
             <TableBody>
                 {categoryMocks.map((category, Index) => (
                     <TableRow key={Index}>
-                        <TableCell className="font-medium">{category.id}</TableCell>
+                    <TableCell className="font-medium">{Index +1}</TableCell>
                         <TableCell>
                             <div className="flex items-center gap-2">
                                 <Image
