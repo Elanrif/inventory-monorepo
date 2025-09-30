@@ -9,11 +9,12 @@ import {
 } from "@/components/ui/table"
 
 import { categoryMocks } from "@/mocks/categoryMocks"
+import { ActionCell } from "./action";
 
 
 export function CategoryTable() {
     return (
-        <Table>
+        <Table className="bg-white">
             <TableHeader>
                 <TableRow>
                     <TableHead className="w-[100px]">id</TableHead>
@@ -46,8 +47,8 @@ export function CategoryTable() {
                             <div className="flex items-center gap-2">
                                 <span
                                     className={`flex items-center gap-2 px-2 py-1 rounded-full text-sm ${category.status === "active"
-                                            ? "bg-green-100 text-green-700"
-                                            : "bg-red-100 text-red-700"
+                                        ? "bg-green-100 text-green-700"
+                                        : "bg-red-100 text-red-700"
                                         }`}
                                 >
                                     <span
@@ -58,9 +59,11 @@ export function CategoryTable() {
                                 </span>
                             </div>
                         </TableCell>
-
                         <TableCell className="text-right">{category.is_featured}</TableCell>
                         <TableCell>{new Date().toLocaleDateString()}</TableCell>
+                        <TableCell className="text-right">
+                            <ActionCell />
+                        </TableCell>
                     </TableRow>
                 ))}
             </TableBody>
