@@ -11,12 +11,22 @@ import {
 import { categoryMocks } from "@/mocks/categoryMocks"
 import { ActionCell } from "./action";
 
+export type CategoryTableProps = {
+  name: string;
+  description: string;
+  status: "active" | "inactive";
+  isfeatured: "Yes" | "No";
+  imageUrl: string;
+}
 
 export function CategoryTable() {
+    const categoryMocks: CategoryTableProps[] = [
+        
+    ]
     return (
-        <Table className="bg-white">
+        <Table>
             <TableHeader>
-                <TableRow>
+                <TableRow className="bg-gray-100 rounded-lg h-[50px]">
                     <TableHead className="w-[100px]">id</TableHead>
                     <TableHead>Name</TableHead>
                     <TableHead>Description</TableHead>
@@ -30,7 +40,7 @@ export function CategoryTable() {
                 {categoryMocks.map((category, Index) => (
                     <TableRow key={Index}>
                     <TableCell className="font-medium">{Index +1}</TableCell>
-                        <TableCell>
+                        <TableCell >
                             <div className="flex items-center gap-2">
                                 <Image
                                     src={category.imageUrl}
@@ -39,12 +49,12 @@ export function CategoryTable() {
                                     height={30}
                                     className="w-[30px] h-[30px] object-cover"
                                 />
-                                {category.Name}
+                                {category.name}
                             </div>
                         </TableCell>
                         <TableCell>{category.description}</TableCell>
                         <TableCell>
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-2 ">
                                 <span
                                     className={`flex items-center gap-2 px-2 py-1 rounded-full text-sm ${category.status === "active"
                                         ? "bg-green-100 text-green-700"
@@ -59,7 +69,7 @@ export function CategoryTable() {
                                 </span>
                             </div>
                         </TableCell>
-                        <TableCell className="text-right">{category.is_featured}</TableCell>
+                        <TableCell className="text-center text-md pr-6">{category.isfeatured}</TableCell>
                         <TableCell>{new Date().toLocaleDateString()}</TableCell>
                         <TableCell className="text-right">
                             <ActionCell />

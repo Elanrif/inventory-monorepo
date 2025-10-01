@@ -9,7 +9,7 @@ export type SubHeaderProps = {
 
 export default function SubHeader() {
   const categories: SubHeaderProps[] = [
-    {  description: "Total Asset Value", 
+    { description: "Total Asset Value", 
       price: 10.356788,
      },
   ];
@@ -45,7 +45,7 @@ export function Section() {
       <div>
         <p className='font-bold'>2379<span className='font-normal px-2'>Categories</span></p>
       </div>
-      <div className='flex'>
+      <div className='flex gap-0.5'>
         <p className='bg-green-600 w-[180px] h-2 rounded-full' />
         <p className='bg-yellow-400 w-[80px] h-2 rounded-full' />
         <p className='bg-orange-600 w-[120px] h-2 rounded-full' />
@@ -53,8 +53,8 @@ export function Section() {
       <div className='flex items-center gap-2'>
         {categories.map((data, Index) => {
           return (
-            <div key={Index} className='flex items-center'>
-              <p className={`${data.color} w-2 h-4 rounded-full`}></p>
+            <div key={Index} className='flex items-center text-sm'>
+              <p className={`${data.color} w-[6px] h-[12px] rounded-full`}></p>
               <span className='text-gray-600 px-1'>{data.statut}:</span>
               <span className='font-medium'>{data.total}</span>
             </div>

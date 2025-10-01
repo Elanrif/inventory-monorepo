@@ -7,7 +7,6 @@ import {
   Computer,
   GalleryVerticalEnd,
   HelpCircleIcon,
-  Home,
   HomeIcon,
   LucideLayoutDashboard,
   Settings2,
