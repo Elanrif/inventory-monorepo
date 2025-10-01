@@ -20,7 +20,6 @@ export default function SubHeader({ categories }: { categories: SubHeaderProps[]
   );
 }
 
-
 export type SectionProps = {
   total: number;
   statut: string;
