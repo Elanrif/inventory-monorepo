@@ -20,9 +20,6 @@ export type CategoryTableProps = {
 }
 
 export function CategoryTable() {
-    const categoryMocks: CategoryTableProps[] = [
-        
-    ]
     return (
         <Table>
             <TableHeader>

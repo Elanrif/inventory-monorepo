@@ -6,7 +6,11 @@ import SidebarBreadcrumb from "@/components/sidebar-breadcrumb";
 import SubHeader, { Section } from "@/components/sub-header";
 
 const data = {
-
+  subHeaderData: [
+    {
+    
+    }
+  ]
 }
 
 export default function CategoriePage() {
