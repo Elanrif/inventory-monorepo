@@ -31,7 +31,7 @@ export function TableCategory({
   totalResults
 }: TableCategoryProps) {
   return (
-    <Table className="mt-4 mx-5 w-[940px]">
+    <Table className="mt-4 w-full">
       <TableHeader className="bg-muted">
         <TableRow>
           {tableTitle.map((h, i) => (
