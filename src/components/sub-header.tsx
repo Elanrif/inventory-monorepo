@@ -7,25 +7,19 @@ export type SubHeaderProps = {
   description: string;
 };
 
-export default function SubHeader() {
-  const categories: SubHeaderProps[] = [
-    { description: "Total Asset Value", 
-      price: 10.356788,
-     },
-  ];
+export default function SubHeader({ categories }: { categories: SubHeaderProps[] }) {
   return (
-    <div className='bg-white rounded-l-lg flex-1'>
-      {categories.map((item,index) => {
-        return (
-       <div key={index} className='flex flex-col px-4 py-2'>
-        <p className="text-gray-400 capitalize pb-2">{item.description}</p>
-      <p className="font-bold text-xl">${item.price}</p>
-       </div>
-        )
-      })}
+    <div className="bg-white rounded-l-lg flex-1">
+      {categories.map((item, index) => (
+        <div key={index} className="flex flex-col px-4 py-2">
+          <p className="text-gray-400 capitalize pb-2">{item.description}</p>
+          <p className="font-bold text-xl">${item.price}</p>
+        </div>
+      ))}
     </div>
   );
-};
+}
+
 
 export type SectionProps = {
   total: number;
@@ -33,12 +27,8 @@ export type SectionProps = {
   color: string;
 };
 
-export function Section() {
-  const categories: SectionProps[] = [
-    { color: "bg-green-600", statut: "In stock", total: 1452 },
-    { color: "bg-yellow-400", statut: "Low stock", total: 355 },
-    { color: "bg-orange-600", statut: "Out of stock", total: 186 },
-  ];
+export function Section({ categories }: { categories: SectionProps[] }) {
+  
 
   return (
     <div className='px-8 space-y-2 bg-white rounded-r-lg flex-4 py-2'>
@@ -61,7 +51,6 @@ export function Section() {
           );
         }
         )}
-
       </div>
     </div>
 
