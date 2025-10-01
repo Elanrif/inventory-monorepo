@@ -1,27 +1,27 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { Button } from "@/components/ui/button";
-import {
-  LucideIcon,
-} from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import { TableCell, TableFooter, TableRow } from "@/components/ui/table";
 
-interface ButtonProps {
+export interface FooterButtonProps {
   label?: string;
   size?: any;
   className?: string;
   icon?: LucideIcon;
 }
 
-interface BodyTableFooterProps {
-  buttonData: ButtonProps[];
-  totalResults: string; 
+
+
+export interface FooterTableProps {
+  buttonData: FooterButtonProps[];
+  totalResults: string;
 }
 
 export default function BodyTableFooter({
   buttonData,
   totalResults,
-}: BodyTableFooterProps) {
+}: FooterTableProps) {
   return (
     <TableFooter className="bg-white">
       <TableRow>
@@ -48,9 +48,7 @@ export default function BodyTableFooter({
                   )}
                   {button.label}
                   {button.icon && !button.label && <button.icon />}
-                  {button.icon && button.label === "Next" && (
-                    <button.icon />
-                  )}
+                  {button.icon && button.label === "Next" && <button.icon />}
                 </Button>
               ))}
             </div>

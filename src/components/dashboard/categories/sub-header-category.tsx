@@ -9,17 +9,17 @@ type subType = {
 };
 
 interface subHeaderProps {
-  totalDescription: string;
-  totalValueDesc: string;
+  totalTitle: string;
+  totalValue: string;
   titleCategories: string;
-  totalValueCat: string;
+  ValueCategories: string;
   subHeader: subType[];
 }
 
 export default function SubHeaderCategory({
-  totalDescription,
-  totalValueDesc,
-  totalValueCat,
+  totalTitle,
+  totalValue,
+  ValueCategories,
   titleCategories,
   subHeader,
 }: subHeaderProps) {
@@ -27,15 +27,14 @@ export default function SubHeaderCategory({
     <div className="flex justify-center items-center mt-4 gap-0.5 h-[100px]">
       <Card className="ps-6 w-1/4">
         <CardDescription className="capitalize">
-          {/* total asset value */}
-          {totalDescription}
+          {totalTitle}
         </CardDescription>
-        <p className="text-2xl font-bold">${totalValueDesc}</p>
+        <p className="text-2xl font-bold">${totalValue}</p>
       </Card>
       <Card className="w-3/4 space-y-2 ps-7">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <h1 className="text-lg font-bold">{totalValueCat}</h1>
+            <h1 className="text-lg font-bold">{ValueCategories}</h1>
             <CardDescription className="capitalize">
               {titleCategories}
             </CardDescription>
