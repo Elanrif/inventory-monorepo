@@ -9,6 +9,7 @@ export const categoryMocks: CategoryType[] = [
     "type": "Cover page",
     "status": "Low Stock",
     "description": "Cover page description",
+    "createdAt" : "2025-06-08T10:00:00.000Z",
     "imageUrl": "/images/categories/airpod1.jpeg"
   },
   {
@@ -18,6 +19,7 @@ export const categoryMocks: CategoryType[] = [
     "type": "Table of contents",
     "status":"Out Stock",
     "description": "Table of contents description",
+    "createdAt" : "2025-06-08T10:00:00.000Z",
     "imageUrl": "/images/categories/casque1.jpeg"
   },
   {
@@ -27,6 +29,7 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"In Stock",
     "description": "Executive summary description",
+    "createdAt" : "2025-06-08T10:00:00.000Z",
     "imageUrl": "/images/categories/mac.jpeg"
   },
   {
@@ -36,6 +39,7 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"Out Stock",
     "description": "Technical approach description",
+    "createdAt" : "2025-06-08T10:00:00.000Z",
     "imageUrl": "/images/categories/mac2.jpeg"
   },
   {
@@ -45,6 +49,7 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"In Stock",
     "description": "Design description",
+    "createdAt" : "2025-06-08T10:00:00.000Z",
     "imageUrl": "/images/products/iphone-2.jpg"
   },
   {
@@ -54,7 +59,8 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"Out Stock",
     "description": "Design description",
-    "imageUrl": "/images/products/iphone-1.jpg"
+    "imageUrl": "/images/products/iphone-1.jpg",
+    "createdAt" : "2025-06-08T10:00:00.000Z"
   },
     {
     "id": 7,
@@ -63,7 +69,8 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"In Stock",
     "description": "Design description",
-    "imageUrl": "/images/categories/tablette.jpeg"
+    "imageUrl": "/images/categories/tablette.jpeg",
+    "createdAt" : "2025-06-08T10:00:00.000Z"
   },
     {
     "id": 8,
@@ -72,7 +79,8 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"Out Stock",
     "description": "Design description",
-    "imageUrl": "/images/categories/PC_portable.jpeg"
+    "imageUrl": "/images/categories/PC_portable.jpeg",
+    "createdAt" : "2025-06-08T10:00:00.000Z"
   },
     {
     "id": 9,
@@ -81,7 +89,8 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"In Stock",
     "description": "Iphone description",
-    "imageUrl": "/images/categories/smart_lunette.jpeg"
+    "imageUrl": "/images/categories/smart_lunette.jpeg",
+    "createdAt" : "2025-06-08T10:00:00.000Z"
   },
     {
     "id": 10,
@@ -90,6 +99,7 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"Low Stock",
     "description": "PC description",
+    "createdAt" : "2025-06-08T10:00:00.000Z",
     "imageUrl": "/images/categories/PC_bureau.jpeg"
   },
     {
@@ -99,7 +109,8 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"In Stock",
     "description": "Lunettes description",
-    "imageUrl": "/images/categories/airpod1.jpg"
+    "createdAt" : "2025-06-08T10:00:00.000Z",
+    "imageUrl": "/images/categories/airpod1.jpeg"
   },
     {
     "id": 12,
@@ -108,7 +119,8 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"In Stock",
     "description": "Apple description",
-    "imageUrl": "/images/categories/airpod1.jpg"
+    "createdAt" : "2025-06-08T10:00:00.000Z",
+    "imageUrl": "/images/categories/tablette.jpeg"
   },
     {
     "id": 13,
@@ -117,6 +129,7 @@ export const categoryMocks: CategoryType[] = [
     "type": "Narrative",
     "status":"Low Stock",
     "description": "Airpods Original",
-    "imageUrl": "/images/categories/airpod1.jpg"
+    "createdAt" : "2025-06-08T10:00:00.000Z",
+    "imageUrl": "/images/categories/airpod1.jpeg"
   }
 ]
