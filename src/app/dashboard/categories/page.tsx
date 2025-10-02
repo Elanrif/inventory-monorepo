@@ -71,7 +71,7 @@ export default function CategoriePage() {
     <>
       <SidebarBreadcrumb label="Catégories" />
       <div className="space-y-6 bg-gray-100 min-h-screen p-6 w-full">
-        <CategoryButton {...data.buttonCatData} label="Inventory" />
+        <CategoryButton {...data.buttonCatData}/>
         <div className="flex">
           <SubHeader categories={data.subHeaderData} />
           <div className="border-l border-gray-200" />

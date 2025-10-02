@@ -8,7 +8,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
-import { categoryMocks, CatTableProps } from "@/mocks/categoryMocks"
+import {CatTableProps } from "@/mocks/categoryMocks"
 import { ActionCell } from "./action";
 
 export type CateTableProps = {
@@ -31,6 +31,7 @@ export type CatHeaderProps = {
 };
 
 export function CategoryTable({ 
+    categoryTableData,
     categoryHeader,
     }: { 
     categoryHeader: CatHeaderProps;
@@ -52,7 +53,7 @@ export function CategoryTable({
                 </TableHeader>
             
             <TableBody>
-                {categoryMocks.map((category, Index) => (
+                {categoryTableData.map((category, Index) => (
                     <TableRow key={Index}>
                         <TableCell className="font-medium">{Index + 1}</TableCell>
                         <TableCell >
