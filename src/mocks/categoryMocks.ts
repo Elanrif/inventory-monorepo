@@ -1,5 +1,5 @@
 
-export type CategoryType = {
+export type CatTableProps = {
   id: string
   name: string
   status: "active" | "inactive"
@@ -8,7 +8,7 @@ export type CategoryType = {
   imageUrl: string
 }
 
-export const categoryMocks: CategoryType[] = [
+export const categoryMocks: CatTableProps[] = [
   {
     id: "m5gr84i9",
     name: "Electronics",

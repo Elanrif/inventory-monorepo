@@ -5,7 +5,14 @@ import { Input } from "@/components/ui/input"
 import { Calendar, ChevronDown, ListFilter, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export default function ContentFilter() {
+export type ContentFilterProps = {
+    dateLabel: string;
+    amountStatusLabel: string;
+    statusLabel: string;
+    filterLabel: string
+}
+
+export default function ContentFilter({ categories }: { categories: ContentFilterProps[] }) {
     return (
         <div className="flex justify-between items-center bg-white h-18 px-2 rounded-lg">
             {/* Search */}
@@ -20,41 +27,45 @@ export default function ContentFilter() {
                     className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
                 />
             </div>
+
             {/* Filters */}
-            <div className="flex space-x-2">
-                <Button
-                    variant="outline"
-                    className="font-medium px-4 py-1 rounded-lg flex items-center gap-2 text-xs"
-                    onClick={() => { }}
-                >
-                    <Calendar size={20} className="text-gray-500" />
-                    12 Sept - 18 Oct 2024
-                </Button>
-                <Button
-                    variant="outline"
-                    className="font-medium px-4 py-1 rounded-lg flex items-center gap-2 text-xs"
-                    onClick={() => { }}
-                >
-                    <ChevronDown size={20} />
-                    Amount Status
-                </Button>
-                <Button
-                    variant="outline"
-                    className="font-medium px-4 py-1 rounded-lg flex items-center gap-2 text-xs"
-                    onClick={() => { }}
-                >
-                    <ChevronDown size={20} />
-                    Status
-                </Button>
-                <Button
-                    variant="outline"
-                    className="font-medium px-4 py-1 rounded-lg flex items-center gap-2 text-xs"
-                    onClick={() => { }}
-                >
-                    <ListFilter size={16} className="text-gray-500" />
-                    Filter
-                </Button>
-            </div>
+
+            {categories.map((filter, index) => (
+                <div key={index} className="flex space-x-2">
+                    <Button
+                        variant="outline"
+                        className="font-medium px-4 py-1 rounded-lg flex items-center gap-2 text-xs"
+                        onClick={() => { }}
+                    >
+                        <Calendar size={20} className="text-gray-500" />
+                          {filter.dateLabel}
+                    </Button>
+                    <Button
+                        variant="outline"
+                        className="font-medium px-4 py-1 rounded-lg flex items-center gap-2 text-xs"
+                        onClick={() => { }}
+                    >
+                        <ChevronDown size={20} />
+                        {filter.amountStatusLabel}
+                    </Button>
+                    <Button
+                        variant="outline"
+                        className="font-medium px-4 py-1 rounded-lg flex items-center gap-2 text-xs"
+                        onClick={() => { }}
+                    >
+                        <ChevronDown size={20} />
+                         {filter.statusLabel}
+                    </Button>
+                    <Button
+                        variant="outline"
+                        className="font-medium px-4 py-1 rounded-lg flex items-center gap-2 text-xs"
+                        onClick={() => { }}
+                    >
+                        <ListFilter size={16} className="text-gray-500" />
+                        {filter.filterLabel}
+                    </Button>
+                </div>
+            ))}
         </div>
     )
 }

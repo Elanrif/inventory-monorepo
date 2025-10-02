@@ -20,14 +20,13 @@ export default function SubHeader({ categories }: { categories: SubHeaderProps[]
   );
 }
 
+
 export type SectionProps = {
   total: number;
   statut: string;
   color: string;
 };
-
 export function Section({ categories }: { categories: SectionProps[] }) {
-  
 
   return (
     <div className='px-8 space-y-2 bg-white rounded-r-lg flex-4 py-2'>

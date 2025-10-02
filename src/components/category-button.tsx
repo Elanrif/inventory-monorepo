@@ -1,4 +1,4 @@
-import { FileText, LucideIcon, Plus, Upload } from "lucide-react"
+import {LucideIcon} from "lucide-react"
 import React from "react"
 
 export type CategoryButtonProps = {
@@ -7,28 +7,14 @@ export type CategoryButtonProps = {
   variant?: "default" | "primary"
 }
 
-export function CategoryButton() {
-  const categories: CategoryButtonProps[] = [
-    {
-      action: "Import",
-      icon: Upload,
-      variant: "default",
-    },
-    {
-      action: "Export",
-      icon: FileText,
-      variant: "default",
-    },
-    {
-      action: "Add Category",
-      icon: Plus,
-      variant: "primary",
-    },
-  ]
-
+export function CategoryButton({label,
+  categories,
+}: {
+  label: string
+  categories: CategoryButtonProps[]}) {
   return (
     <div className="flex justify-between items-center">
-      <p className="font-medium text-2xl">Inventory</p>
+      <p className="font-medium text-2xl">{label}</p>
       <div className="flex flex-wrap items-center gap-2 md:flex-row text-sm">
         {categories.map((item, index) => (
           <button

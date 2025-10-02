@@ -8,35 +8,53 @@ import {
     TableRow,
 } from "@/components/ui/table"
 
-import { categoryMocks } from "@/mocks/categoryMocks"
+import { categoryMocks, CatTableProps } from "@/mocks/categoryMocks"
 import { ActionCell } from "./action";
 
-export type CategoryTableProps = {
-  name: string;
-  description: string;
-  status: "active" | "inactive";
-  isfeatured: "Yes" | "No";
-  imageUrl: string;
-}
+export type CateTableProps = {
+    id: number;
+    name: string;
+    description: string;
+    status: "active" | "inactive";
+    isfeatured: "Yes" | "No";
+    imageUrl: string;
+};
 
-export function CategoryTable() {
+export type CatHeaderProps = {
+    id: string;
+    name: string;
+    desc: string;
+    status: string;
+    isfeatured: string;
+    createdat: string;
+    action: string
+};
+
+export function CategoryTable({ 
+    categoryHeader,
+    }: { 
+    categoryHeader: CatHeaderProps;
+    categoryTableData: CatTableProps[];
+}) {
     return (
         <Table>
-            <TableHeader>
-                <TableRow className="bg-gray-100 rounded-lg h-[50px]">
-                    <TableHead className="w-[100px]">id</TableHead>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Description</TableHead>
-                    <TableHead className="bg-">Status</TableHead>
-                    <TableHead>Is_Featured</TableHead>
-                    <TableHead>Created at</TableHead>
-                    <TableHead className="text-right">Action</TableHead>
-                </TableRow>
-            </TableHeader>
+            
+                <TableHeader>
+                    <TableRow className="bg-gray-100 rounded-lg h-[50px]">
+                        <TableHead className="w-[100px]">{categoryHeader.id}</TableHead>
+                        <TableHead>{categoryHeader.name}</TableHead>
+                        <TableHead>{categoryHeader.desc} </TableHead>
+                        <TableHead>{categoryHeader.status}</TableHead>
+                        <TableHead>{categoryHeader.isfeatured}</TableHead>
+                        <TableHead>{categoryHeader.createdat}</TableHead>
+                        <TableHead className="text-right">{categoryHeader.action}</TableHead>
+                    </TableRow>
+                </TableHeader>
+            
             <TableBody>
                 {categoryMocks.map((category, Index) => (
                     <TableRow key={Index}>
-                    <TableCell className="font-medium">{Index +1}</TableCell>
+                        <TableCell className="font-medium">{Index + 1}</TableCell>
                         <TableCell >
                             <div className="flex items-center gap-2">
                                 <Image

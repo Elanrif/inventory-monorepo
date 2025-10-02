@@ -52,16 +52,19 @@ export function FooterCategory() {
 }
 
 {/* selection dans footer */ }
+export type NumberSelectorProps = {
+  labelresult: string
+}
+export function NumberSelector({ categories }: { categories: NumberSelectorProps[] }) {
 
-export function NumberSelector() {
   // valeur par défaut 
   const [value, setValue] = React.useState("10")
 
   return (
-    <div className="flex items-center gap-2 mt-9 px-4">
-      <div className="font-medium text-sm">
-        Result 1-10 of 45
-      </div>
+    <div className="mt-9 px-4">
+       {categories.map((item, index) => (
+        <div key={index} className="flex items-center gap-2 font-medium text-sm">
+        {item.labelresult}
       <Select value={value} onValueChange={(val) => setValue(val)}>
         <SelectTrigger
           className="w-[60px] text-xs !h-7 !py-0 !px-2 opacity-80 font-medium"
@@ -77,6 +80,8 @@ export function NumberSelector() {
           ))}
         </SelectContent>
       </Select>
+      </div>
+      ))}
     </div>
   )
 }
