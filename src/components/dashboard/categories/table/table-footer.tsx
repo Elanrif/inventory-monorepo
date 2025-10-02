@@ -4,24 +4,22 @@ import { Button } from "@/components/ui/button";
 import { LucideIcon } from "lucide-react";
 import { TableCell, TableFooter, TableRow } from "@/components/ui/table";
 
-export interface FooterButtonProps {
-  label?: string;
-  size?: any;
-  className?: string;
-  icon?: LucideIcon;
-}
-
-
 
 export interface FooterTableProps {
-  buttonData: FooterButtonProps[];
+  buttonData: {
+    label?: string;
+    size?: any;
+    className?: string;
+    icon?: LucideIcon;
+  }[];
   totalResults: string;
 }
+export interface FooterTable {
+  footerTable: FooterTableProps;
+}
 
-export default function BodyTableFooter({
-  buttonData,
-  totalResults,
-}: FooterTableProps) {
+export default function BodyTableFooter({ footerTable }: FooterTable) {
+  const { buttonData, totalResults } = footerTable;
   return (
     <TableFooter className="bg-white">
       <TableRow>

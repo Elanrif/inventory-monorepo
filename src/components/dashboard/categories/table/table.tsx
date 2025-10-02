@@ -1,14 +1,11 @@
 import { Table, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import BodyTableFooter, { FooterButtonProps } from "./table-footer";
-import {
-  LucideIcon,
-} from "lucide-react";
+import BodyTableFooter, { FooterTableProps } from "./table-footer";
+import { LucideIcon } from "lucide-react";
 import BodyTableCategory, {
   ButtonActionProps,
   TableDataProps,
 } from "./table-body";
 import React, { JSX } from "react";
-
 
 export type TableHeaderprops = {
   title: string | JSX.Element;
@@ -19,17 +16,17 @@ export type TableCategoryProps = {
   tableTitle: TableHeaderprops[];
   tableData: TableDataProps[];
   buttonAction: ButtonActionProps[];
-  footerButtonTable: FooterButtonProps[],
-  totalResults: string; 
+  footerTable: FooterTableProps;
 };
 
+export interface TableCategory {
+  table: TableCategoryProps;
+}
+
 export function TableCategory({
-  tableTitle,
-  tableData,
-  buttonAction,
-  footerButtonTable,
-  totalResults
-}: TableCategoryProps) {
+table
+}: TableCategory) {
+  const { tableTitle, tableData, buttonAction, footerTable } = table;
   return (
     <Table className="mt-4 w-full">
       <TableHeader className="bg-muted">
@@ -47,10 +44,7 @@ export function TableCategory({
         </TableRow>
       </TableHeader>
       <BodyTableCategory tableData={tableData} action={buttonAction} />
-      <BodyTableFooter
-        buttonData={footerButtonTable}
-        totalResults={totalResults}
-      />
+      <BodyTableFooter footerTable={footerTable} />
     </Table>
   );
 }
