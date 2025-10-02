@@ -44,24 +44,26 @@ const data = {
     }
   ],
 
-  buttonCatData: [
-    {
-      action: "Import",
-      icon: Upload,
-      variant: "default" as const,
-    },
-    {
-      action: "Export",
-      icon: FileText,
-      variant: "default" as const,
-    },
-    {
-      action: "Add Category",
-      icon: Plus,
-      variant: "primary" as const,
-    },
-  ],
-  label: "Inventory",
+   buttonCatData: {
+    label: "Inventory",
+    categories: [
+      {
+        action: "Import",
+        icon: Upload,
+        variant: "default" as const,
+      },
+      {
+        action: "Export",
+        icon: FileText,
+        variant: "default" as const,
+      },
+      {
+        action: "Add Category",
+        icon: Plus,
+        variant: "primary" as const,
+      },
+    ]
+  }
 };
 
 export default function CategoriePage() {
@@ -69,7 +71,7 @@ export default function CategoriePage() {
     <>
       <SidebarBreadcrumb label="Catégories" />
       <div className="space-y-6 bg-gray-100 min-h-screen p-6 w-full">
-        <CategoryButton categories={data.buttonCatData} label="Inventory" />
+        <CategoryButton {...data.buttonCatData} label="Inventory" />
         <div className="flex">
           <SubHeader categories={data.subHeaderData} />
           <div className="border-l border-gray-200" />

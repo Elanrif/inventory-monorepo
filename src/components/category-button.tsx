@@ -10,7 +10,7 @@ export type CategoryButtonProps = {
 export function CategoryButton({label,
   categories,
 }: {
-  label: string
+  label: string;
   categories: CategoryButtonProps[]}) {
   return (
     <div className="flex justify-between items-center">
