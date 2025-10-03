@@ -13,7 +13,7 @@ export type TableHeaderprops = {
 };
 
 export type TableCategoryProps = {
-  tableTitle: TableHeaderprops[];
+  tableTitles: TableHeaderprops[];
   tableData: TableDataProps[];
   buttonAction: ButtonActionProps[];
   footerTable: FooterTableProps;
@@ -26,19 +26,15 @@ export interface TableCategory {
 export function TableCategory({
 table
 }: TableCategory) {
-  const { tableTitle, tableData, buttonAction, footerTable } = table;
+  const { tableTitles, tableData, buttonAction, footerTable } = table;
   return (
     <Table className="mt-4 w-full">
       <TableHeader className="bg-muted">
         <TableRow>
-          {tableTitle.map((h, i) => (
-            <TableHead key={i}>
-              {h.title}
-              {h.icon &&
-                React.createElement(h.icon, {
-                  size: 15,
-                  className: "ml-1 inline",
-                })}
+          {tableTitles.map((tableTitle, index) => (
+            <TableHead key={index}>
+              {tableTitle.title}
+              {tableTitle.icon && <tableTitle.icon size={15} className="ml-1 inline" />}
             </TableHead>
           ))}
         </TableRow>

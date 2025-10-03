@@ -42,11 +42,11 @@ const data = {
   subHeaderCategoryData: {
     subHeader: {
       totalTitle: "total categories:",
-      totalValue: "12",
+      totalValue: "10,356788",
       titleCategories: "categories:",
-      ValueCategories: "12",
+      ValueCategories: "2379",
     },
-    subHeaderData: [
+    subHeaderColors: [
       {
         className: "bg-green-600 w-[150px]",
       },
@@ -56,6 +56,8 @@ const data = {
       {
         className: "bg-red-600 w-[120px]",
       },
+    ],
+    subHeaderData: [
       {
         className: "bg-green-600 py-1.5 w-[5px]",
         text: "in stock: ",
@@ -94,7 +96,7 @@ const data = {
       },
     ],
     table: {
-      tableTitle: [
+      tableTitles: [
         { title: <Checkbox className="border-2 border-gray-400 rounded-xs" /> },
         { title: "Name" },
         { title: "Description" },
@@ -117,13 +119,13 @@ const data = {
         },
       ],
       footerTable: {
-        totalResults: "Result 1-10 of 45",
-        buttonData: [
-          {
-            label: "10",
-            icon: ChevronDown,
-            size: "sm",
-          },
+        buttonResults: {
+          totalResults: "Result 1-10 of 45",
+          label: "10",
+          icon: ChevronDown,
+          size: "sm",
+        },
+        buttonPagination: [
           {
             label: "Previous",
             icon: ArrowLeft,
@@ -168,7 +170,6 @@ export default function CategoriePage() {
         cardCatHeader={data.category.cardCatHeader}
         table={data.category.table}
       />
-      {/* CardCategory {...data.category} {...data.category.table} /> */}
     </>
   );
 }

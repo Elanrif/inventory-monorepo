@@ -2,24 +2,27 @@ import React from "react";
 import { Card, CardDescription } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-
 interface subHeaderProps {
-  subHeader:{
-      totalTitle: string;
-  totalValue: string;
-  titleCategories: string;
-  ValueCategories: string;
+  subHeader: {
+    totalTitle: string;
+    totalValue: string;
+    titleCategories: string;
+    ValueCategories: string;
   };
+  subHeaderColors: {
+    className: string;
+  }[];
   subHeaderData: {
-      className: string;
-  text?: string;
-  number?: string;
+    className: string;
+    text: string;
+    number: string;
   }[];
 }
 
 export default function SubHeaderCategory({
   subHeader,
-  subHeaderData
+  subHeaderData,
+  subHeaderColors
 }: subHeaderProps) {
   return (
     <div className="flex justify-center items-center mt-4 gap-0.5 h-[100px]">
@@ -32,13 +35,13 @@ export default function SubHeaderCategory({
       <Card className="w-3/4 space-y-2 ps-7">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <h1 className="text-lg font-bold">{subHeader.titleCategories}</h1>
+            <h1 className="text-lg font-bold">{subHeader.ValueCategories}</h1>
             <CardDescription className="capitalize">
               {subHeader.titleCategories}
             </CardDescription>
           </div>
           <div className="flex items-center gap-1">
-            {subHeaderData.slice(0, 3).map((subheader, index) => (
+            {subHeaderColors.map((subheader, index) => (
               <span
                 key={index}
                 className={cn("py-1 border rounded-full", subheader.className)}
@@ -46,7 +49,7 @@ export default function SubHeaderCategory({
             ))}
           </div>
           <div className="flex items-center text-sm gap-2">
-            {subHeaderData.slice(3).map((subheader, index) => (
+            {subHeaderData.map((subheader, index) => (
               <div className="flex items-center gap-1" key={index}>
                 <p className={cn("border rounded-full", subheader.className)} />
                 <p className="text-stone-500 capitalize">{subheader.text}</p>

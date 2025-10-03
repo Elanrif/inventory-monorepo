@@ -28,14 +28,14 @@ export default function CardCategory({ cardCatHeader, table }: CategoryProps) {
           <Search className="absolute top-2 left-52 text-stone-400 size-5" />
         </div>
         <div className="flex gap-4">
-          {cardCatHeader.map((h, id) => (
+          {cardCatHeader.map((header, id) => (
             <Card
               className="flex flex-row items-center gap-2 px-3 py-2 font-medium text-sm cursor-pointer"
               key={id}
             >
-              {h.icon1 && React.createElement(h.icon1, { size: 18 })}
-              <p className="capitalize">{h.title}</p>
-              {h.icon2 && React.createElement(h.icon2, { size: 18 })}
+              {header.icon1 && <header.icon1 size={18} />}
+              <p className="capitalize">{header.title}</p>
+              {header.icon2 && <header.icon2 size={18} />}
             </Card>
           ))}
         </div>
