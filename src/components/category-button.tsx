@@ -8,15 +8,15 @@ export type CategoryButtonProps = {
 }
 
 export function CategoryButton({label,
-  categories,
+  buttons,
 }: {
   label: string;
-  categories: CategoryButtonProps[]}) {
+  buttons: CategoryButtonProps[]}) {
   return (
     <div className="flex justify-between items-center">
       <p className="font-medium text-2xl">{label}</p>
       <div className="flex flex-wrap items-center gap-2 md:flex-row text-sm">
-        {categories.map((item, index) => (
+        {buttons.map((item, index) => (
           <button
             key={index}
             className={`flex items-center gap-2 py-1.5 px-3 rounded-md font-medium ${

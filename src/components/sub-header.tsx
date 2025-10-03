@@ -20,18 +20,21 @@ export default function SubHeader({ categories }: { categories: SubHeaderProps[]
   );
 }
 
-
 export type SectionProps = {
   total: number;
   statut: string;
   color: string;
 };
-export function Section({ categories }: { categories: SectionProps[] }) {
+export function Section({ categories, totalCategory, labelCategory,
+}: {
+  totalCategory?: string;
+  labelCategory?: string;
+   categories: SectionProps[] }) {
 
   return (
     <div className='px-8 space-y-2 bg-white rounded-r-lg flex-4 py-2'>
       <div>
-        <p className='font-bold'>2379<span className='font-normal px-2'>Categories</span></p>
+        <p className='font-bold'>{totalCategory} <span className='font-normal px-2'>{labelCategory}</span></p>
       </div>
       <div className='flex gap-0.5'>
         <p className='bg-green-600 w-[180px] h-2 rounded-full' />

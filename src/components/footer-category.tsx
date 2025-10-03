@@ -1,6 +1,5 @@
 "use client"
 
-
 import * as React from "react"
 
 import {
@@ -21,6 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+//Pagination Footer Component
 export function FooterCategory() {
   return (
     <Pagination className="mt-8">
@@ -32,7 +32,9 @@ export function FooterCategory() {
           <PaginationLink href="#">1</PaginationLink>
         </PaginationItem>
         <PaginationItem>
-          <PaginationLink href="#" isActive>2</PaginationLink>
+          <PaginationLink href="#" isActive>
+            2
+          </PaginationLink>
         </PaginationItem>
         <PaginationItem>
           <PaginationLink href="#">3</PaginationLink>
@@ -51,37 +53,37 @@ export function FooterCategory() {
   )
 }
 
-{/* selection dans footer */ }
+// Selecteur dans le footer de la table
 export type NumberSelectorProps = {
   labelresult: string
 }
-export function NumberSelector({ categories }: { categories: NumberSelectorProps[] }) {
 
-  // valeur par défaut 
+export function NumberSelector({ categories }: { categories: NumberSelectorProps[] }) {
   const [value, setValue] = React.useState("10")
 
   return (
-    <div className="mt-9 px-4">
-       {categories.map((item, index) => (
-        <div key={index} className="flex items-center gap-2 font-medium text-sm">
-        {item.labelresult}
-      <Select value={value} onValueChange={(val) => setValue(val)}>
-        <SelectTrigger
-          className="w-[60px] text-xs !h-7 !py-0 !px-2 opacity-80 font-medium"
-        >
-          <SelectValue>{value}</SelectValue>
-        </SelectTrigger>
+    <>
+      <div className="mt-9 px-4">
+        {categories.map((item, index) => (
+          <div key={index} className="flex items-center gap-2 font-medium text-sm">
+            {item.labelresult}
+            <Select value={value} onValueChange={(val) => setValue(val)}>
+              <SelectTrigger className="w-[60px] text-xs !h-7 !py-0 !px-2 opacity-80 font-medium">
+                <SelectValue>{value}</SelectValue>
+              </SelectTrigger>
 
-        <SelectContent>
-          {[...Array(10)].map((_, i) => (
-            <SelectItem key={i} value={(i + 1).toString()}>
-              {i + 1}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+              <SelectContent>
+                {[...Array(10)].map((_, i) => (
+                  <SelectItem key={i} value={(i + 1).toString()}>
+                    {i + 1}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        ))}
       </div>
-      ))}
-    </div>
+      <FooterCategory />
+    </>
   )
 }
