@@ -20,25 +20,25 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-//Pagination Footer Component
-export function FooterCategory() {
+
+export type LinkProps = {
+  href: string
+  number: number
+  isActive?: boolean
+}
+
+export function FooterCategory({ numbers }: { numbers: LinkProps[] }) {
   return (
     <Pagination className="mt-8">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious href="#" />
         </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">1</PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#" isActive>
-            2
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href="#">3</PaginationLink>
-        </PaginationItem>
+        {numbers.map((link, index) => (
+          <PaginationItem key={index}>
+            <PaginationLink href={link.href}>{link.number}</PaginationLink>
+          </PaginationItem>
+        ))}
         <PaginationItem>
           <PaginationEllipsis />
         </PaginationItem>
@@ -83,7 +83,6 @@ export function NumberSelector({ categories }: { categories: NumberSelectorProps
           </div>
         ))}
       </div>
-      <FooterCategory />
     </>
   )
 }
