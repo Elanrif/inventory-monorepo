@@ -25,7 +25,7 @@ export default function SubHeaderCategory({
   subHeaderColors
 }: subHeaderProps) {
   return (
-    <div className="flex justify-center items-center mt-4 gap-0.5 h-[100px]">
+    <div className="flex justify-center items-center mt-4 gap-2 h-[100px]">
       <Card className="ps-6 w-1/4">
         <CardDescription className="capitalize">
           {subHeader.totalTitle}
