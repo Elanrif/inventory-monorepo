@@ -23,7 +23,7 @@ export interface FooterTable {
   footerTable: FooterTableProps;
 }
 
-export default function BodyTableFooter({ footerTable }: FooterTable) {
+export default function TableFooterSection({ footerTable }: FooterTable) {
   const { buttonPagination, buttonResults } = footerTable;
   return (
     <TableFooter className="bg-white">

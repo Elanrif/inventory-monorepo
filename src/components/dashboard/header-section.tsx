@@ -17,7 +17,7 @@ interface HeaderButtonsProps {
   headerButtons: HeaderButtonsType[];
 }
 
-export default function HeaderCategory({
+export default function HeaderSection({
   title,
   headerButtons,
 }: HeaderButtonsProps) {

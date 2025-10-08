@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { Dot, MoreHorizontal } from "lucide-react";
 import Image from "next/image";
 
-export type TableDataProps = {
+export type CategoryDto = {
   name: string;
   image: string;
   description: string;
@@ -21,11 +21,11 @@ export type TableDataProps = {
 };
 
 type BodyTableCategoryProps = {
-  tableData: TableDataProps[];
+  tableData: CategoryDto[];
   action: ButtonActionProps[];
 };
 
-export default function BodyTableCategory({
+export default function TableBodySection({
   tableData,
   action,
 }: BodyTableCategoryProps) {

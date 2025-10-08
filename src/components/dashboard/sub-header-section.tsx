@@ -19,7 +19,7 @@ interface subHeaderProps {
   }[];
 }
 
-export default function SubHeaderCategory({
+export default function SubHeaderSection({
   subHeader,
   subHeaderData,
   subHeaderColors
