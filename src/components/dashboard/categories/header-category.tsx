@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { LucideIcon, } from "lucide-react";
+import { LucideIcon } from "lucide-react";
 import React from "react";
 
 export type ButtonVariant = "outline" | "default";
@@ -13,11 +13,14 @@ interface HeaderButtonsType {
 }
 
 interface HeaderButtonsProps {
-  title:string,
+  title: string;
   headerButtons: HeaderButtonsType[];
 }
 
-export default function HeaderCategory({title, headerButtons }: HeaderButtonsProps) {
+export default function HeaderCategory({
+  title,
+  headerButtons,
+}: HeaderButtonsProps) {
   return (
     <div className="flex items-center justify-between mb-4 mt-3">
       <h1 className="capitalize text-xl font-bold">{title}</h1>
@@ -25,10 +28,10 @@ export default function HeaderCategory({title, headerButtons }: HeaderButtonsPro
         {headerButtons.map((headerButton, index) => (
           <Button
             key={index}
-            className={cn("py-5", headerButton.className)}
+            className={cn("py-2", headerButton.className)}
             variant={headerButton.variant ?? "outline"}
           >
-            <headerButton.icon /> {headerButton.label}
+            <headerButton.icon /> <span className="text-xs">{headerButton.label}</span>
           </Button>
         ))}
       </div>

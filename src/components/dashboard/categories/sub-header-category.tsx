@@ -25,14 +25,14 @@ export default function SubHeaderCategory({
   subHeaderColors
 }: subHeaderProps) {
   return (
-    <div className="flex justify-center items-center mt-4 gap-2 h-[100px]">
-      <Card className="ps-6 w-1/4">
+    <div className="flex flex-col md:flex-row justify-center items-center mt-4 gap-2">
+      <Card className="ps-6 w-full md:w-1/4">
         <CardDescription className="capitalize">
           {subHeader.totalTitle}
         </CardDescription>
         <p className="text-2xl font-bold">${subHeader.totalValue}</p>
       </Card>
-      <Card className="w-3/4 space-y-2 ps-7">
+      <Card className="w-full md:w-3/4 space-y-2 ps-7">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <h1 className="text-lg font-bold">{subHeader.ValueCategories}</h1>
