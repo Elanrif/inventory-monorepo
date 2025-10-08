@@ -6,13 +6,13 @@ interface subHeaderProps {
   subHeader: {
     totalTitle: string;
     totalValue: string;
-    titleCategories: string;
-    ValueCategories: string;
+    title: string;
+    value: string;
   };
-  subHeaderColors: {
+  colors: {
     className: string;
   }[];
-  subHeaderData: {
+  data: {
     className: string;
     text: string;
     number: string;
@@ -21,8 +21,8 @@ interface subHeaderProps {
 
 export default function SubHeaderSection({
   subHeader,
-  subHeaderData,
-  subHeaderColors
+  data,
+  colors
 }: subHeaderProps) {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center mt-4 gap-2">
@@ -35,25 +35,25 @@ export default function SubHeaderSection({
       <Card className="w-full md:w-3/4 space-y-2 ps-7">
         <div className="space-y-2">
           <div className="flex items-center gap-2">
-            <h1 className="text-lg font-bold">{subHeader.ValueCategories}</h1>
+            <h1 className="text-lg font-bold">{subHeader.value}</h1>
             <CardDescription className="capitalize">
-              {subHeader.titleCategories}
+              {subHeader.title}
             </CardDescription>
           </div>
           <div className="flex items-center gap-1">
-            {subHeaderColors.map((subheader, index) => (
+            {colors.map((color, index) => (
               <span
                 key={index}
-                className={cn("py-1 border rounded-full", subheader.className)}
+                className={cn("py-1 border rounded-full", color.className)}
               />
             ))}
           </div>
           <div className="flex items-center text-sm gap-2">
-            {subHeaderData.map((subheader, index) => (
+            {data.map((data, index) => (
               <div className="flex items-center gap-1" key={index}>
-                <p className={cn("border rounded-full", subheader.className)} />
-                <p className="text-stone-500 capitalize">{subheader.text}</p>
-                <p className="font-medium">{subheader.number}</p>
+                <p className={cn("border rounded-full", data.className)} />
+                <p className="text-stone-500 capitalize">{data.text}</p>
+                <p className="font-medium">{data.number}</p>
               </div>
             ))}
           </div>

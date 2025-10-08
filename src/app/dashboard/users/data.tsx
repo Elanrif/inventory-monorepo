@@ -12,11 +12,12 @@ import {
   ArrowRight,
   MoreHorizontal,
   ArrowLeft,
+  Phone,
 } from "lucide-react";
 
 export const data = {
   headerData: {
-    title: "Categories",
+    title: "Users",
     headerButtons: [
       {
         icon: Upload,
@@ -94,10 +95,10 @@ export const data = {
       columns: [
         { label: <Checkbox className="border-2 border-gray-400 rounded-xs" /> },
         { label: "Name" },
-        { label: "Description" },
-        { label: "Status", icon: ChevronDown },
-        { label: "Is_featured" },
-        { label: "Created_at" },
+        { label: "Email" },
+        { label: "Phone" },
+        { label: "Address" },
+        { label: "Created" },
         { label: "Action" },
       ],
       actions: [

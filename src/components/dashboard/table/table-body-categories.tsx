@@ -21,17 +21,17 @@ export type CategoryDto = {
 };
 
 type BodyTableCategoryProps = {
-  tableData: CategoryDto[];
+  categories: CategoryDto[];
   action: ButtonActionProps[];
 };
 
-export default function TableBodySection({
-  tableData,
+export default function TableBodyCategories({
+  categories,
   action,
 }: BodyTableCategoryProps) {
   return (
     <TableBody className="text-md">
-      {tableData.map((data, id) => (
+      {categories.map((category, id) => (
         <TableRow key={id}>
           <TableCell>
             <Checkbox className="border-2 border-gray-400 rounded-xs" />
@@ -39,25 +39,25 @@ export default function TableBodySection({
 
           <TableCell className="flex items-center">
             <Image
-              src={data.image}
-              alt={data.name}
+              src={category.image}
+              alt={category.name}
               width={35}
               height={10}
               className="mr-2 rounded-md"
             />
-            {data.name}
+            {category.name}
           </TableCell>
-          <TableCell>{data.description}</TableCell>
+          <TableCell>{category.description}</TableCell>
           <TableCell
-            className={`flex w-fit border rounded-full px-1.5 py-0.5 ${data.statusColors}`}
+            className={`flex w-fit border rounded-full px-1.5 py-0.5 ${category.statusColors}`}
           >
             <Dot />
-            {data.status}
+            {category.status}
           </TableCell>
           <TableCell className="ps-8">
-            {data.isFeatured ? "Yes" : "No"}
+            {category.isFeatured ? "Yes" : "No"}
           </TableCell>
-          <TableCell>{data.created_at}</TableCell>
+          <TableCell>{category.created_at}</TableCell>
           <TableCell className="text-center">
             <ButtonAction action={action} />
           </TableCell>
