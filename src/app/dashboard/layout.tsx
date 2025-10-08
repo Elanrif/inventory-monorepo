@@ -8,7 +8,7 @@ export default function DashboardLayout({children}: {children: React.ReactNode})
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset>
+      <SidebarInset className="mx-6 mb-10">
         {children}
       </SidebarInset>
     </SidebarProvider>
