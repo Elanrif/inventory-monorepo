@@ -3,7 +3,8 @@ import { data } from "./data";
 import HeaderSection from "@/components/dashboard/header-section";
 import SubHeaderSection from "@/components/dashboard/sub-header-section";
 import { getAllUsers } from "@/lib/user/services/user.service";
-import { CardUsers } from "@/components/dashboard/card-entity";
+import { CardSection } from "@/components/dashboard/card-section";
+import TableBodyUsers from "@/components/dashboard/table/table-body-users";
 
 export default async function UserPage() {
   const users = await getAllUsers();
@@ -15,10 +16,13 @@ export default async function UserPage() {
         title={data.headerData.title}
       />
       <SubHeaderSection {...data.subHeaderData} />
-      <CardUsers
+      <CardSection
         actions={data.payload.headerBtn}
         table={data.payload.table}
-        users={users}
+        data={users}
+        render={(c) => (
+          <TableBodyUsers users={c} action={data.payload.table.actions} />
+        )}
       />
     </>
   );

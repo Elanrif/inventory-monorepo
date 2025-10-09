@@ -7,7 +7,6 @@ import {
   Computer,
   GalleryVerticalEnd,
   HelpCircleIcon,
-  Home,
   HomeIcon,
   LucideLayoutDashboard,
   Settings2,
@@ -27,7 +26,7 @@ import {
 import { NavSecondary } from "./nav-secondary";
 import { ROUTES } from "@/utils/route";
 
-const {DASHBOARD, DASHBOARD_CATEGORIES} = ROUTES;
+const {DASHBOARD, DASHBOARD_CATEGORIES, DASHBOARD_USERS} = ROUTES;
 const data = {
   user: {
     name: "john doe",
@@ -65,7 +64,7 @@ const data = {
     },
     {
       title: "Clients",
-      url: "#",
+      url: DASHBOARD_USERS,
       icon: Users,
     },
     {

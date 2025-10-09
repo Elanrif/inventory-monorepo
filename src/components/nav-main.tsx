@@ -18,6 +18,7 @@ import {
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import React from "react";
+import Link from "next/link";
 
 export function NavMain({
   items,
@@ -61,11 +62,11 @@ export function NavMain({
                       {item.items?.map((subItem) => (
                         <SidebarMenuSubItem key={subItem.title}>
                           <SidebarMenuSubButton asChild>
-                            <a href={subItem.url}>
+                            <Link href={subItem.url}>
                               <span className="font-medium text-muted-foreground">
                                 {subItem.title}
                               </span>
-                            </a>
+                            </Link>
                           </SidebarMenuSubButton>
                         </SidebarMenuSubItem>
                       ))}
@@ -77,9 +78,9 @@ export function NavMain({
               <SidebarMenuItem>
                 <SidebarMenuButton tooltip={item.title}>
                   {item.icon && <item.icon />}
-                  <a href={item.url}>
+                  <Link href={item.url}>
                     <span className="font-medium">{item.title}</span>
-                  </a> {/* Link */}
+                  </Link> {/* Link */}
                 </SidebarMenuButton>
               </SidebarMenuItem>
             )}
