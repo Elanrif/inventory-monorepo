@@ -1,5 +1,6 @@
 import { Register } from "@/components/auth/register";
 import { getAllUsers } from "@/lib/user/services/user.service";
+import { ROUTES } from "@/utils/route";
 import { Atom } from "lucide-react";
 import Image from "next/image";
 
@@ -39,7 +40,7 @@ export default function RegisterPage() {
             puissante bibliothèque de composants.
           </p>
         </div>
-        <Register />
+        <Register labelBtn="Créer un compte" isDisplay={true} navigateUrl={ROUTES.DASHBOARD} />
       </div>
     </div>
   );

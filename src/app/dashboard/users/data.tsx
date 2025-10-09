@@ -1,5 +1,6 @@
 import { ButtonVariant } from "@/components/dashboard/header-section";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ROUTES } from "@/utils/route";
 import {
   Upload,
   Plus,
@@ -12,9 +13,9 @@ import {
   ArrowRight,
   MoreHorizontal,
   ArrowLeft,
-  Phone,
 } from "lucide-react";
 
+const { DASHBOARD_ADD_USERS, DASHBOARD_UPDATE_USERS } = ROUTES;
 export const data = {
   headerData: {
     title: "Users",
@@ -29,7 +30,8 @@ export const data = {
       },
       {
         icon: Plus,
-        label: "Add Category",
+        label: "Add User",
+        href: DASHBOARD_ADD_USERS,
         className: "bg-purple-600 text-white hover:bg-purple-700",
         variant: "default" as ButtonVariant,
       },
@@ -105,6 +107,7 @@ export const data = {
         {
           icon: <Pen color="blue" />,
           label: "Edit",
+          url: DASHBOARD_UPDATE_USERS,
           className: "text-blue-700",
         },
         {

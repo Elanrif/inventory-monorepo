@@ -21,7 +21,7 @@ export default async function UserPage() {
         table={data.payload.table}
         data={users}
         render={(c) => (
-          <TableBodyUsers users={c} action={data.payload.table.actions} />
+          <TableBodyUsers users={c} />
         )}
       />
     </>

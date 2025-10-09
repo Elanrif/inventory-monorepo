@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { createUser } from "@/lib/user/services/user.service";
+import { updateUser } from "@/lib/user/services/user.service";
 import {
   Form,
   FormControl,
@@ -15,18 +15,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
-import { FcGoogle } from "react-icons/fc";
-import Link from "next/link";
 import { ROUTES } from "@/utils/route";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { UserReqDTO } from "@/lib/user/models/user.model";
 
 type ResgisterProps = {
   className?: string;
-  labelBtn: string;
-  navigateUrl: string;
-  isDisplay?: boolean;
+  editUser: UserReqDTO & { id: number };
 };
 
 const formSchema = z.object({
@@ -45,32 +42,27 @@ const formSchema = z.object({
   }),
 });
 
-export function Register({
-  className,
-  labelBtn,
-  isDisplay,
-  navigateUrl,
-}: ResgisterProps) {
+export function EditRegister({ className, editUser }: ResgisterProps) {
   const route = useRouter();
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      email: "",
+      username: editUser.username,
+      email: editUser.email,
       password: "",
-      phone: "",
-      address: "",
+      phone: editUser.phone,
+      address: editUser.address,
     },
   });
- 
+
   async function onSubmit(data: z.infer<typeof formSchema>) {
     setLoading(true);
     try {
-      const user = await createUser(data);
+      const user = await updateUser(editUser.id, data);
       // user = axios.then ->  User || axios.catch -> throw new Error
       if (user) {
-        toast.success("Inscription réussie !", {
+        toast.success("Modification réussie !", {
           position: "top-right",
           autoClose: 3000,
           hideProgressBar: false,
@@ -80,7 +72,7 @@ export function Register({
           progress: undefined,
         });
         setLoading(false);
-        route.push(navigateUrl);
+        route.push(ROUTES.DASHBOARD_USERS);
         form.reset();
       }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -110,7 +102,9 @@ export function Register({
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nom de l&apos;utilisateur</FormLabel>
+                <FormLabel>
+                  Nom de l&apos;utilisateur
+                </FormLabel>
                 <FormControl>
                   <Input placeholder="Entrez votre Nom" {...field} />
                 </FormControl>
@@ -175,32 +169,9 @@ export function Register({
           />
           <div className="flex flex-col items-center gap-4">
             <Button type="submit" className="bg-purple-700 rounded-full w-full">
-              <span>{labelBtn}</span>{" "}
+              <span>Modifier le compte</span>
               {loading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
             </Button>
-            {isDisplay && (
-              <>
-                <div className="w-[355px] flex items-center text-gray-700">
-                  <div className="flex-1 border-1 border-gray-300" />
-                  <span className="mx-2 text-gray-500">OU</span>
-                  <div className="flex-1 border-1 border-gray-300" />
-                </div>
-                <Button className="bg-gray-200 hover:bg-slate-200 rounded-full w-full text-black font-bold flex items-center px-4">
-                  <FcGoogle className="size-6" />
-                  <span className="flex-1 text-center">
-                    S&apos;inscrire avec Google
-                  </span>
-                </Button>
-                <div className="opacity-60">
-                  Vous avez un compte?{" "}
-                  <Link href={ROUTES.LOGIN}>
-                    <span className="text-purple-700 hover:underline cursor-pointer font-bold">
-                      Se connecter
-                    </span>
-                  </Link>
-                </div>
-              </>
-            )}
           </div>
         </form>
       </Form>

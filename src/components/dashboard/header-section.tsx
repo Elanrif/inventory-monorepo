@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 export type ButtonVariant = "outline" | "default";
@@ -8,6 +9,7 @@ export type ButtonVariant = "outline" | "default";
 interface HeaderButtonsType {
   icon: LucideIcon;
   label: string;
+  href?: string;
   className?: string;
   variant?: ButtonVariant;
 }
@@ -26,13 +28,15 @@ export default function HeaderSection({
       <h1 className="capitalize text-xl font-bold">{title}</h1>
       <div className="flex items-center gap-3">
         {headerButtons.map((headerButton, index) => (
-          <Button
-            key={index}
-            className={cn("py-2", headerButton.className)}
-            variant={headerButton.variant ?? "outline"}
-          >
-            <headerButton.icon /> <span className="text-xs">{headerButton.label}</span>
-          </Button>
+          <Link key={index} href={headerButton.href ?? "#"}>
+            <Button
+              className={cn("py-2", headerButton.className)}
+              variant={headerButton.variant ?? "outline"}
+            >
+              <headerButton.icon />{" "}
+              <span className="text-xs">{headerButton.label}</span>
+            </Button>
+          </Link>
         ))}
       </div>
     </div>
