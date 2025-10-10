@@ -1,5 +1,6 @@
 import { ButtonVariant } from "@/components/dashboard/header-section";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ROUTES } from "@/utils/route";
 import {
   Upload,
   Plus,
@@ -29,6 +30,7 @@ export const data = {
       {
         icon: Plus,
         label: "Add Category",
+        href: ROUTES.DASHBOARD_CREATE_CATEGORIES,
         className: "bg-purple-600 text-white hover:bg-purple-700",
         variant: "default" as ButtonVariant,
       },
@@ -36,9 +38,9 @@ export const data = {
   },
   subHeaderData: {
     subHeader: {
-      totalTitle: "total users:",
+      totalTitle: "total categories:",
       totalValue: "10,356788",
-      title: "users:",
+      title: "categories:",
       value: "2379",
     },
     colors: [

@@ -8,7 +8,7 @@ type NotFoundDataProps = {
 };
 
 export function NotFoundData({
-  title = "Donnée introuvable",
+  title,
   description = "La ressource demandée n'a pas été trouvée.",
   details = [
     "Vérifiez l'identifiant ou les paramètres.",

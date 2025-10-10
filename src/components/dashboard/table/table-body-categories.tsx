@@ -1,34 +1,38 @@
+"use client";
+import { ConfirmationDialog } from "@/components/confirmation-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { cn } from "@/lib/utils";
-import { Dot, MoreHorizontal } from "lucide-react";
-import Image from "next/image";
 
-export type CategoryDto = {
-  name: string;
-  image: string;
-  description: string;
-  status: "active" | "inactive";
-  statusColors: string;
-  isFeatured: boolean;
-  created_at: string;
-};
+import { TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { CategoryDto } from "@/lib/category/models/category.model";
+import { deleteCategory } from "@/lib/category/services/category.service";
+import { ROUTES } from "@/utils/route";
+import { Dot, ImageDown, Pen } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 type BodyTableCategoryProps = {
   categories: CategoryDto[];
-  action: ButtonActionProps[];
 };
 
 export default function TableBodyCategories({
   categories,
-  action,
 }: BodyTableCategoryProps) {
+  const router = useRouter();
+  const handleDeleteCategory = async (categoryId: number) => {
+    await deleteCategory(categoryId);
+    toast.success("Suppression réussie !", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    router.refresh();
+  };
   return (
     <TableBody className="text-md">
       {categories.map((category, id) => (
@@ -38,18 +42,25 @@ export default function TableBodyCategories({
           </TableCell>
 
           <TableCell className="flex items-center">
-            <Image
-              src={category.image}
-              alt={category.name}
-              width={35}
-              height={10}
-              className="mr-2 rounded-md"
-            />
-            {category.name}
+            {category.imageUrl ? (
+              <Image
+                src={category.imageUrl}
+                alt={category.name}
+                width={35}
+                height={35}
+              />
+            ) : (
+              <ImageDown />
+            )}
+            <span className="ps-2">{category.name}</span>
           </TableCell>
           <TableCell>{category.description}</TableCell>
           <TableCell
-            className={`flex w-fit border rounded-full px-1.5 py-0.5 ${category.statusColors}`}
+            className={`flex w-fit border rounded-full px-1.5 py-0.5 ${
+              category.status === "ACTIVE"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+            }`}
           >
             <Dot />
             {category.status}
@@ -57,9 +68,17 @@ export default function TableBodyCategories({
           <TableCell className="ps-8">
             {category.isFeatured ? "Yes" : "No"}
           </TableCell>
-          <TableCell>{category.created_at}</TableCell>
-          <TableCell className="text-center">
-            <ButtonAction action={action} />
+          <TableCell>{category.createdAt}</TableCell>
+          <TableCell className="text-center flex items-center gap-2">
+            <Link
+              href={`${ROUTES.DASHBOARD_UPDATE_CATEGORIES}/${category.id}`}
+              className="flex items-center gap-3"
+            >
+              <Pen size={16} color="blue" />
+            </Link>
+            <ConfirmationDialog
+              handleDelete={() => handleDeleteCategory(category.id)}
+            />
           </TableCell>
         </TableRow>
       ))}
@@ -72,24 +91,3 @@ export type ButtonActionProps = {
   label: string;
   className: string;
 };
-
-export type ActionsProps = {
-  action: ButtonActionProps[];
-};
-export function ButtonAction({ action }: ActionsProps) {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <MoreHorizontal className="cursor-pointer" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {action.map((button, id) => (
-          <DropdownMenuItem className={cn("ps-5", button.className)} key={id}>
-            {button.icon && button.icon}
-            {button.label}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
