@@ -13,7 +13,9 @@ import {
   MoreHorizontal,
   ArrowLeft,
 } from "lucide-react";
+import { ROUTES } from "@/utils/route";
 
+const { DASHBOARD_ADD_CATEGORIES, DASHBOARD_UPDATE_CATEGORIES } = ROUTES;
 export const data = {
   headerData: {
     title: "Categories",
@@ -29,6 +31,7 @@ export const data = {
       {
         icon: Plus,
         label: "Add Category",
+        href: DASHBOARD_ADD_CATEGORIES,
         className: "bg-purple-600 text-white hover:bg-purple-700",
         variant: "default" as ButtonVariant,
       },
@@ -104,6 +107,7 @@ export const data = {
         {
           icon: <Pen color="blue" />,
           label: "Edit",
+          url: DASHBOARD_UPDATE_CATEGORIES,
           className: "text-blue-700",
         },
         {

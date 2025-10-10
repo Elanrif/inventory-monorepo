@@ -1,3 +1,6 @@
+"use client";
+
+import { ConfirmationDialog } from "@/components/confirmation-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
@@ -6,28 +9,21 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { cn } from "@/lib/utils";
-import { Dot, MoreHorizontal } from "lucide-react";
-import Image from "next/image";
+import { CategoryDto } from "@/lib/category/models/category.model";
+import { deleteCategory } from "@/lib/category/services/category.service";
 
-export type CategoryDto = {
-  name: string;
-  image: string;
-  description: string;
-  status: "active" | "inactive";
-  statusColors: string;
-  isFeatured: boolean;
-  created_at: string;
-};
+import { cn } from "@/lib/utils";
+import { ROUTES } from "@/utils/route";
+import { Dot, MoreHorizontal, Pen } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 type BodyTableCategoryProps = {
   categories: CategoryDto[];
-  action: ButtonActionProps[];
 };
 
 export default function TableBodyCategories({
   categories,
-  action,
 }: BodyTableCategoryProps) {
   return (
     <TableBody className="text-md">
@@ -39,7 +35,7 @@ export default function TableBodyCategories({
 
           <TableCell className="flex items-center">
             <Image
-              src={category.image}
+              src={"/image"}
               alt={category.name}
               width={35}
               height={10}
@@ -58,8 +54,19 @@ export default function TableBodyCategories({
             {category.isFeatured ? "Yes" : "No"}
           </TableCell>
           <TableCell>{category.created_at}</TableCell>
-          <TableCell className="text-center">
-            <ButtonAction action={action} />
+          <TableCell className="text-center flex items-center gap-2">
+            <Link
+              href={`${ROUTES.DASHBOARD_UPDATE_CATEGORIES}/${category.id}`}
+              className="flex items-center gap-3"
+            >
+              <Pen size={16} color="blue" />
+            </Link>
+            <ConfirmationDialog<CategoryDto>
+              item={category}
+              onDelete={(category) => deleteCategory(category.id)}
+              title="Supprimer cette catégorie ?"
+              description="Cette action est irréversible."
+            />
           </TableCell>
         </TableRow>
       ))}
@@ -67,11 +74,7 @@ export default function TableBodyCategories({
   );
 }
 
-export type ButtonActionProps = {
-  icon: React.ReactNode;
-  label: string;
-  className: string;
-};
+
 
 export type ActionsProps = {
   action: ButtonActionProps[];
@@ -93,3 +96,11 @@ export function ButtonAction({ action }: ActionsProps) {
     </DropdownMenu>
   );
 }
+
+
+export type ButtonActionProps = {
+  icon: React.ReactNode;
+  label: string;
+  url?: string;
+  className: string;
+};

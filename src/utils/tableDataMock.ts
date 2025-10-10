@@ -1,5 +1,4 @@
-import { TableDataProps } from "@/components/dashboard/categories/table/table-body";
-
+import { TableDataProps } from "@/components/dashboard/table/table-body-categories";
 export const TableDataMock: TableDataProps[] = [
         {
           name: "iPhone 15",
