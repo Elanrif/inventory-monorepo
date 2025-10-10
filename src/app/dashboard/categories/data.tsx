@@ -100,7 +100,7 @@ export const data = {
         { label: "Description" },
         { label: "Status", icon: ChevronDown },
         { label: "Is_featured" },
-        { label: "Created_at" },
+        { label: "created" },
         { label: "Action" },
       ],
       actions: [

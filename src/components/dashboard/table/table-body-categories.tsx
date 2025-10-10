@@ -25,6 +25,7 @@ type BodyTableCategoryProps = {
 export default function TableBodyCategories({
   categories,
 }: BodyTableCategoryProps) {
+  console.log("Categories côté client :", categories);
   return (
     <TableBody className="text-md">
       {categories.map((category, id) => (
@@ -53,7 +54,8 @@ export default function TableBodyCategories({
           <TableCell className="ps-8">
             {category.isFeatured ? "Yes" : "No"}
           </TableCell>
-          <TableCell>{category.created_at}</TableCell>
+          <TableCell>{category.createdAt}</TableCell>
+
           <TableCell className="text-center flex items-center gap-2">
             <Link
               href={`${ROUTES.DASHBOARD_UPDATE_CATEGORIES}/${category.id}`}

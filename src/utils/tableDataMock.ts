@@ -1,4 +1,14 @@
-import { TableDataProps } from "@/components/dashboard/table/table-body-categories";
+
+interface TableDataProps {
+  name: string;
+  image: string;
+  description: string;
+  status: string;
+  statusColors: string;
+  isFeatured: boolean;
+  createdAt: string;
+}
+
 export const TableDataMock: TableDataProps[] = [
         {
           name: "iPhone 15",
@@ -7,7 +17,7 @@ export const TableDataMock: TableDataProps[] = [
           status: "active",
           statusColors: "bg-green-100 text-green-500",
           isFeatured: true,
-          created_at: "2025-09-12",
+          createdAt: "2025-09-12",
         },
         {
           name: "Samsung S24",
@@ -16,7 +26,7 @@ export const TableDataMock: TableDataProps[] = [
           status: "inactive",
           statusColors: "bg-red-100 text-red-500",
           isFeatured: false,
-          created_at: "2025-10-01",
+          createdAt: "2025-10-01",
         },
         {
           name: "MacBook Pro",
@@ -25,7 +35,7 @@ export const TableDataMock: TableDataProps[] = [
           status: "active",
           statusColors: "bg-green-100 text-green-500",
           isFeatured: true,
-          created_at: "2025-08-22",
+          createdAt: "2025-08-22",
         },
         {
           name: "AirPods Pro",
@@ -34,7 +44,7 @@ export const TableDataMock: TableDataProps[] = [
           status: "inactive",
           statusColors: "bg-red-100 text-red-500",
           isFeatured: false,
-          created_at: "2025-07-10",
+          createdAt: "2025-07-10",
         },
         {
           name: "Apple Watch",
@@ -43,7 +53,7 @@ export const TableDataMock: TableDataProps[] = [
           status: "active",
           statusColors: "bg-green-100 text-green-500",
           isFeatured: true,
-          created_at: "2025-09-20",
+          createdAt: "2025-09-20",
         },
         {
           name: "iPad Pro",
@@ -52,6 +62,6 @@ export const TableDataMock: TableDataProps[] = [
           status: "inactive",
           statusColors: "bg-red-100 text-red-500",
           isFeatured: false,
-          created_at: "2025-06-15",
+          createdAt: "2025-06-15",
         },
       ] satisfies TableDataProps[]

@@ -8,6 +8,8 @@ import { getAllCategories } from "@/lib/category/services/category.service";
 
 export default async function CategoriePage() {
   const categories = await getAllCategories();
+  
+console.log("Categories reçues :", categories);
   return (
     <>
       <SidebarBreadcrumb label="Categories" />
@@ -21,7 +23,7 @@ export default async function CategoriePage() {
         table={data.payload.table}
         data={categories}
         render={(c) => (
-          <TableBodyCategories categories={c} />
+          <TableBodyCategories categories={c} /> 
         )}
       />
     </>

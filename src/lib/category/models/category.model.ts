@@ -7,7 +7,7 @@ export type CategoryDto = {
   status: "active" | "inactive";
   statusColors: string;
   isFeatured: boolean;
-  created_at: string;
+  createdAt: string;
 };
 
 // DTO pour la modification
