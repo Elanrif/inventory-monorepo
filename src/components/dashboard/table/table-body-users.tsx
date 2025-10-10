@@ -1,17 +1,36 @@
+"use client";
 import { ConfirmationDialog } from "@/components/confirmation-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { UserDto } from "@/lib/user/models/user.model";
+import { deleteUser } from "@/lib/user/services/user.service";
 import { ROUTES } from "@/utils/route";
-import { Pen, Trash2 } from "lucide-react";
+import { Pen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 type BodyTableCategoryProps = {
   users: UserDto[];
 };
 
 export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
+  const router = useRouter()
+  const handleDeleteUser = async (userId: number) => {
+    await deleteUser(userId);
+    toast.success("Suppression réussie !", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    router.refresh()
+  };
+
   return (
     <TableBody className="text-md">
       {users.map((user, id) => (
@@ -41,7 +60,9 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
             >
               <Pen size={16} color="blue" />
             </Link>
-            <ConfirmationDialog user={user}/>
+            <ConfirmationDialog
+              handleDelete={() => handleDeleteUser(user.id)}
+            />
           </TableCell>
         </TableRow>
       ))}

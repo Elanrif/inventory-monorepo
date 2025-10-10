@@ -30,7 +30,7 @@ export default function HeaderSection({
         {headerButtons.map((headerButton, index) => (
           <Link key={index} href={headerButton.href ?? "#"}>
             <Button
-              className={cn("py-2", headerButton.className)}
+              className={cn("py-2 cursor-pointer", headerButton.className)}
               variant={headerButton.variant ?? "outline"}
             >
               <headerButton.icon />{" "}
