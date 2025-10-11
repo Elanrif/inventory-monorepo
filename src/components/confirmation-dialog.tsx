@@ -12,38 +12,47 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { Category } from "@/lib/categorry/models/category.model";
+import { deleteCategory } from "@/lib/categorry/services/category.service";
 import { UserDto } from "@/lib/user/models/user.model";
 import { deleteUser } from "@/lib/user/services/user.service";
 import { Trash } from "lucide-react";
 import { toast } from "react-toastify";
 
 type DialogConfirmationProps = {
-  user: UserDto;
+  user?: UserDto;
+  category?: Category;
   triggerLabel?: string;
   title?: string;
   description?: string;
   cancelLabel?: string;
   actionLabel?: string;
+  onDeleted?: () => void; 
 };
 
 export function ConfirmationDialog({
   user,
+  category,
   title = "Êtes-vous absolument sûr ?",
-  description = "Cette action est irréversible. Cela supprimera définitivement votre compte et effacera vos données de nos serveurs.",
+  description = "Cette action est irréversible. Cela supprimera définitivement cet élément.",
   cancelLabel = "Annuler",
   actionLabel = "Confirmer",
 }: DialogConfirmationProps) {
   const handleDelete = async () => {
-    await deleteUser(user.id);
-    toast.success("Suppression réussie !", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    try {
+      if (user) {
+        await deleteUser(user.id);
+        toast.success("Utilisateur supprimé avec succès !");
+      } else if (category) {
+        await deleteCategory(category.id);
+        toast.success("Catégorie supprimée avec succès !");
+      } else {
+        return;
+      }
+    } catch (error) {
+      toast.error("Une erreur est survenue lors de la suppression !");
+      console.error(error);
+    }
   };
 
   return (
