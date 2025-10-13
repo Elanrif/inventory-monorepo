@@ -8,14 +8,12 @@ import {
   Calendar,
   ChevronDown,
   ListFilter,
-  Pen,
-  Trash,
   ArrowRight,
   MoreHorizontal,
   ArrowLeft,
 } from "lucide-react";
 
-const { DASHBOARD_ADD_USERS, DASHBOARD_UPDATE_USERS } = ROUTES;
+const { DASHBOARD_ADD_USERS } = ROUTES;
 export const data = {
   headerData: {
     title: "Users",
@@ -102,19 +100,6 @@ export const data = {
         { label: "Address" },
         { label: "Created" },
         { label: "Action" },
-      ],
-      actions: [
-        {
-          icon: <Pen color="blue" />,
-          label: "Edit",
-          url: DASHBOARD_UPDATE_USERS,
-          className: "text-blue-700",
-        },
-        {
-          icon: <Trash color="red" />,
-          label: "Delete",
-          className: "text-red-700",
-        },
       ],
       footer: {
         buttonResults: {

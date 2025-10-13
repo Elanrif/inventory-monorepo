@@ -69,10 +69,3 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
     </TableBody>
   );
 }
-
-export type ButtonActionProps = {
-  icon: React.ReactNode;
-  url?: string;
-  label: string;
-  className: string;
-};
