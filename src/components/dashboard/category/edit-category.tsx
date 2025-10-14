@@ -20,6 +20,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CategoryReq } from "@/lib/categorry/models/category.model";
 import { updateCategory } from "@/lib/categorry/services/category.service";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 type CategoryProps = {
   className?: string;
@@ -31,6 +32,9 @@ const formSchema = z.object({
     message: "Le nom du catégorie doit comporter au moins 2 caractères.",
   }),
   description: z.string(),
+  imageUrl: z.string(),
+  status: z.string(),
+  isFeatured: z.boolean(),
 });
 
 export function EditCategory({ className, editCategory }: CategoryProps) {
@@ -41,6 +45,9 @@ export function EditCategory({ className, editCategory }: CategoryProps) {
     defaultValues: {
       name: editCategory.name,
       description: editCategory.description,
+      imageUrl: editCategory.imageUrl,
+      status: editCategory.status,
+      isFeatured: editCategory.isFeatured,
     },
   });
 
@@ -113,6 +120,76 @@ export function EditCategory({ className, editCategory }: CategoryProps) {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="imageUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>URL de l&#39;image</FormLabel>
+                <FormControl>
+                  <Input placeholder="Entrez l'URL de l'image" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+              control={form.control}
+              name="status"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Status</FormLabel>
+                  <FormControl>
+                    <Select
+                    value={field.value}
+                    onValueChange={field.onChange} 
+                    >
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Choisir le status..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Status</SelectLabel>
+                          <SelectItem value="ACTIVE">Active</SelectItem>
+                          <SelectItem value="INACTIVE">Inactive</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="isFeatured"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Mise en avant</FormLabel>
+                  <FormControl>
+                    <Select
+                      value={field.value ? "true" : "false"}
+                      onValueChange={(value) =>
+                        field.onChange(value === "true")
+                      }
+                    >
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Choisir le status..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Mise en avant</SelectLabel>
+                          <SelectItem value="true">Vrai</SelectItem>
+                          <SelectItem value="false">Faux</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          <div className="flex justify-between items-center"></div>
           <div className="flex flex-col items-center gap-4">
             <Button type="submit" className="bg-purple-700 rounded-full w-full">
               <span>Modifier votre catégorie</span>

@@ -19,6 +19,7 @@ import { ROUTES } from "@/utils/route";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { createCategory } from "@/lib/categorry/services/category.service";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -28,6 +29,8 @@ const formSchema = z.object({
     message: "La description doit comporter au moins 2 caractères.",
   }),
   imageUrl: z.string(),
+  status: z.enum(["ACTIVE", "INACTIVE"]),
+  isFeatured: z.boolean(),
 });
 
 export function CreateCategory() {
@@ -39,6 +42,8 @@ export function CreateCategory() {
       name: "",
       description: "",
       imageUrl: "",
+      status: "ACTIVE",
+      isFeatured: true,
     },
   });
 
@@ -87,7 +92,7 @@ export function CreateCategory() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nom de votre catégorie</FormLabel>
+                <FormLabel>Nom de la catégorie</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="Entrez le nom de la catégorie"
@@ -111,6 +116,66 @@ export function CreateCategory() {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="imageUrl"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Image URL</FormLabel>
+                <FormControl>
+                  <Input placeholder="Entrez l'URL de l'image" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="status"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Status</FormLabel>
+                <FormControl>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Choisissez un status" />
+                  </SelectTrigger>
+                  <SelectContent>
+                      <SelectItem value="ACTIVE">ACTIVE</SelectItem>
+                      <SelectItem value="INACTIVE">INACTIVE</SelectItem>
+                  </SelectContent>
+                  </Select>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+        )}
+      />
+              <FormField
+              control={form.control}
+              name="isFeatured"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Mettre en avant ?</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={(value) => field.onChange(value === "true")}
+                      defaultValue={field.value ? "true" : "false"}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Choisissez une option" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="true">Oui</SelectItem>
+                        <SelectItem value="false">Non</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+              />
+
+
           <div className="flex flex-col items-center gap-4">
             <Button
               type="submit"

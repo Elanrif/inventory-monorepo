@@ -17,6 +17,7 @@ import { deleteCategory } from "@/lib/categorry/services/category.service";
 import { UserDto } from "@/lib/user/models/user.model";
 import { deleteUser } from "@/lib/user/services/user.service";
 import { Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
 type DialogConfirmationProps = {
@@ -28,6 +29,7 @@ type DialogConfirmationProps = {
   cancelLabel?: string;
   actionLabel?: string;
   onDeleted?: () => void; 
+  handleDeleteCategory?: () => Promise<void>;
 };
 
 export function ConfirmationDialog({
@@ -38,6 +40,9 @@ export function ConfirmationDialog({
   cancelLabel = "Annuler",
   actionLabel = "Confirmer",
 }: DialogConfirmationProps) {
+
+  const router = useRouter();
+
   const handleDelete = async () => {
     try {
       if (user) {
@@ -46,6 +51,7 @@ export function ConfirmationDialog({
       } else if (category) {
         await deleteCategory(category.id);
         toast.success("Catégorie supprimée avec succès !");
+        router.refresh();
       } else {
         return;
       }
@@ -54,6 +60,22 @@ export function ConfirmationDialog({
       console.error(error);
     }
   };
+
+/* 
+   const handleDeleteCategory = async (categoryId: number) => {
+    await deleteCategory(categoryId);
+
+    toast.success("Suppression réussie !", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    router.refresh();
+  }; */
 
   return (
     <AlertDialog>

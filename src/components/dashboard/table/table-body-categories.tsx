@@ -2,14 +2,13 @@
 
 import { ConfirmationDialog } from "@/components/confirmation-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { Category } from "@/lib/categorry/models/category.model";
+import { daysLocale, truncateStr } from "@/shared/index-shared";
 import { ROUTES } from "@/utils/route";
 import { Dot, Pen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
 
 type BodyTableCategoryProps = {
   categories: Category[];
@@ -18,6 +17,8 @@ type BodyTableCategoryProps = {
 export default function TableBodyCategories({
   categories,
 }: BodyTableCategoryProps) {
+console.log(categories);
+
   return (
     <TableBody className="text-md">
       {categories.map((category, id) => (
@@ -36,21 +37,29 @@ export default function TableBodyCategories({
             />
             {category.name}
           </TableCell>
-          <TableCell>{category.description}</TableCell>
+          <TableCell>{truncateStr(category.description)}</TableCell>
           <TableCell
             className={`flex w-fit border rounded-full px-2 py-0.5 ${
               category.status === "INACTIVE"
-                ? " bg-red-400"
-                : " bg-green-500"
+                ? " bg-red-300"
+                : " bg-green-200"
             }`}
           >
             <Dot />
             {category.status}
           </TableCell>
-          <TableCell className="ps-8">
-            {category.isFeatured ? "Yes" : "No"}
+          <TableCell>
+            <span
+              className={`px-3 py-1 rounded-full font-semibold w-2 h-2 
+                ${category.isFeatured ? "bg-green-400" : "bg-red-300 "}`}
+            >
+              {category.isFeatured ? "Yes" : "No"}
+            </span>
           </TableCell>
-          <TableCell>{category.createdAt}</TableCell>
+
+          <TableCell>
+            {daysLocale(category.createdAt)}
+          </TableCell>
           <TableCell className="text-center flex items-center gap-2">
             <Link
               href={`${ROUTES.DASHBOARD_UPDATE_CATEGORIES}/${category.id}`}
@@ -63,7 +72,6 @@ export default function TableBodyCategories({
               title="Supprimer la catégorie ?"
               description={`Voulez-vous vraiment supprimer la catégorie "${category.name}" ?`}
             />
-
           </TableCell>
         </TableRow>
       ))}
