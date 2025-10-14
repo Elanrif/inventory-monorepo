@@ -1,3 +1,4 @@
+import { EditCategory } from "@/components/dashboard/edit-category";
 import { NotFoundData } from "@/components/not-found-data";
 import SidebarBreadcrumb from "@/components/sidebar-breadcrumb"
 import { getCategoryById } from "@/lib/category/services/category.service";
@@ -12,17 +13,17 @@ export default async function DashboardEditCategory({
   if (!category) {
     return <NotFoundData title="Aucun catégorie trouvé"/>;
   }
-
   return (
     <>
       <SidebarBreadcrumb label="Créer un catégorie" />
       <div className="min-h-[85vh] flex space-y-2 flex-col justify-center items-center bg-gray-50">
         <div className="flex flex-col space-y-2 items-center justify-start mb-5">
-          <h2 className="text-3xl font-bold">Modifier un catégorie</h2>
+          <h2 className="text-3xl font-bold">Modifier une catégorie</h2>
           <p className="text-slate-600 text-center">
-            Modifier un catégorie en remplissant le formulaire ci-dessous.
+            Modifier une catégorie en remplissant le formulaire ci-dessous.
           </p>
         </div>
+        <EditCategory editCategory={{...category}}/>
       </div>
     </>
   );

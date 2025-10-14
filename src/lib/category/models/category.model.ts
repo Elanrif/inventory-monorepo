@@ -1,5 +1,6 @@
 // DTO pour la récupération
 export type CategoryDto = {
+  imageUrl: string;
   id: number;
   name: string;
   description: string;

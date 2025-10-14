@@ -19,8 +19,8 @@ type BodyTableCategoryProps = {
 export default function TableBodyCategories({
   categories,
 }: BodyTableCategoryProps) {
-const truncateStr = (MessageChannel: string, length = 50): string => {
-  const result = MessageChannel.slice(0, 10) + (MessageChannel.length > 10 ? "..." : "");
+const truncateStr = (MessageChannel: string, length = 10): string => {
+  const result = MessageChannel.slice(0,  length) + (MessageChannel.length > 10 ? "..." : "");
   return result;
 };
 
