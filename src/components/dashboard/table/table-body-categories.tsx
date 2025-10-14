@@ -2,19 +2,13 @@
 
 import { ConfirmationDialog } from "@/components/confirmation-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { CategoryDto } from "@/lib/category/models/category.model";
 import { deleteCategory } from "@/lib/category/services/category.service";
-
-import { cn } from "@/lib/utils";
+import "dayjs/locale/fr";
+import { dayjsLocale} from "@/shared/index-shared";
 import { ROUTES } from "@/utils/route";
-import { Dot, MoreHorizontal, Pen } from "lucide-react";
+import { Dot, Pen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,7 +19,11 @@ type BodyTableCategoryProps = {
 export default function TableBodyCategories({
   categories,
 }: BodyTableCategoryProps) {
-  console.log("Categories côté client :", categories);
+const truncateStr = (MessageChannel: string, length = 50): string => {
+  const result = MessageChannel.slice(0, 10) + (MessageChannel.length > 10 ? "..." : "");
+  return result;
+};
+
   return (
     <TableBody className="text-md">
       {categories.map((category, id) => (
@@ -40,22 +38,28 @@ export default function TableBodyCategories({
               alt={category.name}
               width={35}
               height={10}
-              className="mr-2 rounded-md"
+              className="object-cover"
             />
             {category.name}
           </TableCell>
-          <TableCell>{category.description}</TableCell>
+          <TableCell>
+            {truncateStr(category.description)}
+          </TableCell>
           <TableCell
-            className={`flex w-fit border rounded-full px-1.5 py-0.5 ${category.statusColors}`}
+            className={`flex items-center w-fit border rounded-full px-1.5 py-0.5 ${category.status === "active"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800"
+              }`}
           >
             <Dot />
-            {category.status}
+            {category.status?.toLowerCase()}
           </TableCell>
           <TableCell className="ps-8">
             {category.isFeatured ? "Yes" : "No"}
           </TableCell>
-          <TableCell>{category.createdAt}</TableCell>
-
+          <TableCell>
+            {dayjsLocale(category.createdAt)}
+          </TableCell>
           <TableCell className="text-center flex items-center gap-2">
             <Link
               href={`${ROUTES.DASHBOARD_UPDATE_CATEGORIES}/${category.id}`}
@@ -78,7 +82,7 @@ export default function TableBodyCategories({
 
 
 
-export type ActionsProps = {
+/*export type ActionsProps = {
   action: ButtonActionProps[];
 };
 export function ButtonAction({ action }: ActionsProps) {
@@ -105,4 +109,4 @@ export type ButtonActionProps = {
   label: string;
   url?: string;
   className: string;
-};
+};*/

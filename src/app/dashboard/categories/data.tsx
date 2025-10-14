@@ -7,8 +7,6 @@ import {
   Calendar,
   ChevronDown,
   ListFilter,
-  Pen,
-  Trash,
   ArrowRight,
   MoreHorizontal,
   ArrowLeft,
@@ -102,19 +100,6 @@ export const data = {
         { label: "Is_featured" },
         { label: "created" },
         { label: "Action" },
-      ],
-      actions: [
-        {
-          icon: <Pen color="blue" />,
-          label: "Edit",
-          url: DASHBOARD_UPDATE_CATEGORIES,
-          className: "text-blue-700",
-        },
-        {
-          icon: <Trash color="red" />,
-          label: "Delete",
-          className: "text-red-700",
-        },
       ],
       footer: {
         buttonResults: {

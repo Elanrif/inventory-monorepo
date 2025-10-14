@@ -22,7 +22,6 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
           <TableCell>
             <Checkbox className="border-2 border-gray-400 rounded-xs" />
           </TableCell>
-
           <TableCell className="flex items-center">
             <Image
               src={"/image"}
@@ -56,10 +55,3 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
     </TableBody>
   );
 }
-
-export type ButtonActionProps = {
-  icon: React.ReactNode;
-  url?: string;
-  label: string;
-  className: string;
-};
