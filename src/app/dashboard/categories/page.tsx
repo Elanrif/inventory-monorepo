@@ -6,10 +6,16 @@ import SubHeaderSection from "@/components/dashboard/sub-header-section";
 import { CardSection } from "@/components/dashboard/card-section";
 import TableBodyCategories from "@/components/dashboard/table/table-body-categories";
 
-export default function CategoriePage() {
+export default async function CategoriePage() {
+  const categories = await getAllCategories();
+
+  const breadCrumbUrl = {
+    label: "Categories",
+  };
+
   return (
     <>
-      <SidebarBreadcrumb label="Categories" />
+      <SidebarBreadcrumb {...breadCrumbUrl}/>
       <HeaderSection
         headerButtons={data.headerData.headerButtons}
         title={data.headerData.title}
@@ -18,10 +24,8 @@ export default function CategoriePage() {
       <CardSection
         actions={data.payload.headerBtn}
         table={data.payload.table}
-        data={TableDataMock}
-        render={(c) => (
-          <TableBodyCategories categories={c} action={data.payload.table.actions} />
-        )}
+        data={categories}
+        render={(c) => <TableBodyCategories categories={c} />}
       />
     </>
   );
