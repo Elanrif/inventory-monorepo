@@ -1,3 +1,4 @@
+import { CreateCategory } from "@/components/dashboard/create-category";
 import SidebarBreadcrumb from "@/components/sidebar-breadcrumb";
 import { ROUTES } from "@/utils/route";
 
@@ -12,6 +13,11 @@ export default function DashboardAddCategory() {
             Créez un nouvel categorie en remplissant le formulaire ci-dessous.
           </p>
         </div>
+        <CreateCategory
+                  className="w-[600px]"
+                  labelBtn="Ajouter un utilisateur"
+                  navigateUrl={ROUTES.DASHBOARD_CATEGORIES}
+                />
       </div>
     </>
   );

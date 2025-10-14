@@ -6,7 +6,7 @@ import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { CategoryDto } from "@/lib/category/models/category.model";
 import { deleteCategory } from "@/lib/category/services/category.service";
 import "dayjs/locale/fr";
-import { dayjsLocale} from "@/shared/index-shared";
+import { dayjsLocale } from "@/shared/index-shared";
 import { ROUTES } from "@/utils/route";
 import { Dot, Pen } from "lucide-react";
 import Image from "next/image";
@@ -19,10 +19,10 @@ type BodyTableCategoryProps = {
 export default function TableBodyCategories({
   categories,
 }: BodyTableCategoryProps) {
-const truncateStr = (MessageChannel: string, length = 10): string => {
-  const result = MessageChannel.slice(0,  length) + (MessageChannel.length > 10 ? "..." : "");
-  return result;
-};
+  const truncateStr = (MessageChannel: string, length = 10): string => {
+    const result = MessageChannel.slice(0, length) + (MessageChannel.length > 10 ? "..." : "");
+    return result;
+  };
 
   return (
     <TableBody className="text-md">
@@ -46,17 +46,23 @@ const truncateStr = (MessageChannel: string, length = 10): string => {
             {truncateStr(category.description)}
           </TableCell>
           <TableCell
-            className={`flex items-center w-fit border rounded-full px-1.5 py-0.5 ${category.status === "active"
-                ? "bg-green-100 text-green-800"
-                : "bg-red-100 text-red-800"
+            className={`flex items-center w-fit border rounded-full px-1.5 py-0.5 ${category.status === "active" ?
+              "bg-green-100 text-green-800"
+              : "bg-red-100 text-red-800"
+
               }`}
           >
             <Dot />
             {category.status?.toLowerCase()}
           </TableCell>
-          <TableCell className="ps-8">
-            {category.isFeatured ? "Yes" : "No"}
+          <TableCell
+            className={`w-fit border rounded-full items-center  ${category.isFeatured ? 
+              "bg-blue-100 text-blue-800" 
+              : "bg-gray-100 text-gray-600"
+              }`}
+          >{category.isFeatured ? "Yes" : "No"}
           </TableCell>
+
           <TableCell>
             {dayjsLocale(category.createdAt)}
           </TableCell>

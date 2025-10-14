@@ -30,7 +30,7 @@ const formSchema = z.object({
   imageUrl: z.string(),
 });
 
-export function CreateCategory() {
+export function CreateCategory({ className, labelBtn}: { className?: string; labelBtn?: string; navigateUrl?: string }) {
   const route = useRouter();
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
