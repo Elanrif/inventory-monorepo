@@ -9,7 +9,6 @@ import React, { JSX } from "react";
 import { LucideIcon, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import TableFooterSection, { FooterTableProps } from "./table/table-footer-section";
-import { ButtonActionProps } from "./table/table-body-categories";
 
 export type TableColumnProps = {
   label: string | JSX.Element;
@@ -18,7 +17,6 @@ export type TableColumnProps = {
 
 export type TableSectionProps = {
   columns: TableColumnProps[];
-  actions: ButtonActionProps[];
   footer: FooterTableProps;
 };
 

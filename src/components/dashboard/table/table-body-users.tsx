@@ -1,9 +1,12 @@
+"use client";
+
 import { ConfirmationDialog } from "@/components/confirmation-dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { UserDto } from "@/lib/user/models/user.model";
+import { deleteUser } from "@/lib/user/services/user.service";
 import { ROUTES } from "@/utils/route";
-import { Pen, Trash2 } from "lucide-react";
+import { Pen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -19,7 +22,6 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
           <TableCell>
             <Checkbox className="border-2 border-gray-400 rounded-xs" />
           </TableCell>
-
           <TableCell className="flex items-center">
             <Image
               src={"/image"}
@@ -41,17 +43,15 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
             >
               <Pen size={16} color="blue" />
             </Link>
-            <ConfirmationDialog user={user}/>
+            <ConfirmationDialog<UserDto>
+              item={user}
+              onDelete={(user) => deleteUser(user.id)}
+              title="Supprimer cet utilisateur ?"
+              description="Cette action est irréversible."
+            />
           </TableCell>
         </TableRow>
       ))}
     </TableBody>
   );
 }
-
-export type ButtonActionProps = {
-  icon: React.ReactNode;
-  url?: string;
-  label: string;
-  className: string;
-};

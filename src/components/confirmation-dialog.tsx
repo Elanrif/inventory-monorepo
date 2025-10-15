@@ -12,13 +12,12 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { UserDto } from "@/lib/user/models/user.model";
-import { deleteUser } from "@/lib/user/services/user.service";
 import { Trash } from "lucide-react";
 import { toast } from "react-toastify";
 
-type DialogConfirmationProps = {
-  user: UserDto;
+ type ConfirmationDialogProps<T> = {
+  item: T;
+  onDelete: (item: T) => Promise<void>;
   triggerLabel?: string;
   title?: string;
   description?: string;
@@ -26,31 +25,31 @@ type DialogConfirmationProps = {
   actionLabel?: string;
 };
 
-export function ConfirmationDialog({
-  user,
+export function ConfirmationDialog<T>({
+  item,
+  onDelete,
   title = "Êtes-vous absolument sûr ?",
-  description = "Cette action est irréversible. Cela supprimera définitivement votre compte et effacera vos données de nos serveurs.",
+  description = "Cette action est irréversible. Cela supprimera définitivement cet élément.",
   cancelLabel = "Annuler",
   actionLabel = "Confirmer",
-}: DialogConfirmationProps) {
+  triggerLabel,
+}: ConfirmationDialogProps<T>) {
   const handleDelete = async () => {
-    await deleteUser(user.id);
-    toast.success("Suppression réussie !", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-  };
+     try {
+      await onDelete(item);
+      toast.success("Suppression réussie !", { position: "top-right", autoClose: 3000 });
+    } catch (error) {
+      toast.error("Erreur lors de la suppression !", { position: "top-right", autoClose: 3000 });
+      console.error(error);
+    }
+  }
 
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button variant="outline">
           <Trash color="red" />
+          {triggerLabel && <span className="ml-2">{triggerLabel}</span>}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
