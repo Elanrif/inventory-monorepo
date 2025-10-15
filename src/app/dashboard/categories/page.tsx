@@ -1,15 +1,21 @@
 import SidebarBreadcrumb from "@/components/sidebar-breadcrumb";
 import { data } from "./data";
-import { TableDataMock } from "@/utils/tableDataMock";
 import HeaderSection from "@/components/dashboard/header-section";
 import SubHeaderSection from "@/components/dashboard/sub-header-section";
 import { CardSection } from "@/components/dashboard/card-section";
 import TableBodyCategories from "@/components/dashboard/table/table-body-categories";
+import { getAllCategories } from "@/lib/category/services/category.service";
 
-export default function CategoriePage() {
+export default async function CategoriePage() {
+  const categories = await getAllCategories();
+
+  const breadcrumbPaths={
+    label:"Categories"
+  }
+
   return (
     <>
-      <SidebarBreadcrumb label="Categories" />
+      <SidebarBreadcrumb {...breadcrumbPaths} />
       <HeaderSection
         headerButtons={data.headerData.headerButtons}
         title={data.headerData.title}
@@ -18,9 +24,9 @@ export default function CategoriePage() {
       <CardSection
         actions={data.payload.headerBtn}
         table={data.payload.table}
-        data={TableDataMock}
+        data={categories}
         render={(c) => (
-          <TableBodyCategories categories={c} action={data.payload.table.actions} />
+          <TableBodyCategories categories={c} />
         )}
       />
     </>
