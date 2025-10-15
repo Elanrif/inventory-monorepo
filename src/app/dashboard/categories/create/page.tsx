@@ -26,7 +26,7 @@ export default function DashboardAddCategory() {
         </div>
         <CreateCategory
           className="w-[600px]"
-          labelBtn="Ajouter un utilisateur"
+          labelBtn="Ajouter une catégorie"
           navigateUrl={ROUTES.DASHBOARD_CATEGORIES}
         />
       </div>

@@ -59,14 +59,24 @@ export function EditCategory({ editCategory }: EditCategoryProps) {
         setLoading(true);
         try {
             await updateCategory(editCategory.id, data);
-            toast.success("Modification réussie !", { position: "top-right", autoClose: 3000 });
+            toast.success("Modification réussie !", {
+                position: "top-right",
+                autoClose: 1000,
+            });
             setLoading(false);
             route.push(ROUTES.DASHBOARD_CATEGORIES);
+            route.refresh();
         } catch (error: unknown) {
             if (error instanceof Error) {
-                toast.error(`Erreur : ${error.message}`, { position: "top-right", autoClose: 3000 });
+                toast.error(`Erreur : ${error.message}`, {
+                    position: "top-right",
+                    autoClose: 1000,
+                });
             } else {
-                toast.error("Une erreur inconnue est survenue", { position: "top-right", autoClose: 3000 });
+                toast.error("Une erreur inconnue est survenue", {
+                    position: "top-right",
+                    autoClose: 1000,
+                });
             }
             setLoading(false);
         }

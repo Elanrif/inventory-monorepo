@@ -11,6 +11,7 @@ import { ROUTES } from "@/utils/route";
 import { Dot, Pen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 type BodyTableCategoryProps = {
   categories: CategoryDto[];
@@ -19,6 +20,7 @@ type BodyTableCategoryProps = {
 export default function TableBodyCategories({
   categories,
 }: BodyTableCategoryProps) {
+  const router = useRouter();
   const truncateStr = (MessageChannel: string, length = 10): string => {
     const result = MessageChannel.slice(0, length) + (MessageChannel.length > 10 ? "..." : "");
     return result;
@@ -31,10 +33,10 @@ export default function TableBodyCategories({
           <TableCell>
             <Checkbox className="border-2 border-gray-400 rounded-xs" />
           </TableCell>
-          <TableCell className="flex items-center">
+          <TableCell className="flex items-center gap-2">
             <Image
-              src={"/image"}
-              alt={category.name}
+              src={"/images/image2register.jpg"}
+              alt=""
               width={35}
               height={10}
               className="object-cover"
@@ -45,22 +47,25 @@ export default function TableBodyCategories({
             {truncateStr(category.description)}
           </TableCell>
           <TableCell
-            className={`flex items-center w-fit border rounded-full px-1.5 py-0.5 ${category.status === "active" ?
-              "bg-green-100 text-green-800"
+            className={`inline-flex items-center w-fit border rounded-full px-1.5 py-0.5 ${category.status?.toLowerCase() === "active"
+              ? "bg-green-100 text-green-800"
               : "bg-red-100 text-red-800"
               }`}
           >
             <Dot />
             {category.status?.toLowerCase()}
           </TableCell>
-          <TableCell
-            className={`w-fit border rounded-full items-center ${category.isFeatured ?
-              "bg-blue-100 text-blue-800"
-              : "bg-gray-100 text-gray-600"
-              }`}
-          >{category.isFeatured ? "Yes" : "No"}
-          </TableCell>
 
+          <TableCell className="text-center">
+            <span
+              className={`inline-flex items-center justify-center border rounded-full px-3 py-1 ${category.isFeatured
+                ? "bg-blue-100 text-blue-800"
+                : "bg-gray-100 text-gray-600"
+                }`}
+            >
+              {category.isFeatured ? "Yes" : "No"}
+            </span>
+          </TableCell>
           <TableCell>
             {dayjsLocale(category.createdAt)}
           </TableCell>
@@ -73,7 +78,10 @@ export default function TableBodyCategories({
             </Link>
             <ConfirmationDialog<CategoryDto>
               item={category}
-              onDelete={(category) => deleteCategory(category.id)}
+              onDelete={async (category) => {
+                await deleteCategory(category.id);      
+                router.refresh();                       
+              }}
               title="Supprimer cette catégorie ?"
               description="Cette action est irréversible."
             />
