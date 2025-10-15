@@ -1,34 +1,24 @@
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { cn } from "@/lib/utils";
-import { Dot, MoreHorizontal } from "lucide-react";
-import Image from "next/image";
+"use client";
 
-export type CategoryDto = {
-  name: string;
-  image: string;
-  description: string;
-  status: "active" | "inactive";
-  statusColors: string;
-  isFeatured: boolean;
-  created_at: string;
-};
+import { ConfirmationDialog } from "@/components/confirmation-dialog";
+import { Checkbox } from "@/components/ui/checkbox";
+import { TableBody, TableCell, TableRow } from "@/components/ui/table";
+import { Category } from "@/lib/categorry/models/category.model";
+import { daysLocale, truncateStr } from "@/shared/index-shared";
+import { ROUTES } from "@/utils/route";
+import { Dot, Pen } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 type BodyTableCategoryProps = {
-  categories: CategoryDto[];
-  action: ButtonActionProps[];
+  categories: Category[];
 };
 
 export default function TableBodyCategories({
   categories,
-  action,
 }: BodyTableCategoryProps) {
+console.log(categories);
+
   return (
     <TableBody className="text-md">
       {categories.map((category, id) => (
@@ -39,27 +29,49 @@ export default function TableBodyCategories({
 
           <TableCell className="flex items-center">
             <Image
-              src={category.image}
+              src={category.imageUrl}
               alt={category.name}
               width={35}
-              height={10}
+              height={35}
               className="mr-2 rounded-md"
             />
             {category.name}
           </TableCell>
-          <TableCell>{category.description}</TableCell>
+          <TableCell>{truncateStr(category.description)}</TableCell>
           <TableCell
-            className={`flex w-fit border rounded-full px-1.5 py-0.5 ${category.statusColors}`}
+            className={`flex w-fit border rounded-full px-2 py-0.5 lowercase ${
+              category.status === "INACTIVE"
+                ? " bg-red-400"
+                : " bg-green-300"
+            }`}
           >
             <Dot />
             {category.status}
           </TableCell>
-          <TableCell className="ps-8">
-            {category.isFeatured ? "Yes" : "No"}
+          <TableCell>
+            <span
+              className={`px-3 py-1 rounded-full font-semibold w-2 h-2 text-white 
+                ${category.isFeatured ? "bg-green-300" : "bg-red-400 "}`}
+            >
+              {category.isFeatured ? "Yes" : "No"}
+            </span>
           </TableCell>
-          <TableCell>{category.created_at}</TableCell>
-          <TableCell className="text-center">
-            <ButtonAction action={action} />
+
+          <TableCell>
+            {daysLocale(category.createdAt)}
+          </TableCell>
+          <TableCell className="text-center flex items-center gap-2">
+            <Link
+              href={`${ROUTES.DASHBOARD_UPDATE_CATEGORIES}/${category.id}`}
+              className="flex items-center gap-3"
+            >
+              <Pen size={17} color="blue" />
+            </Link>
+            <ConfirmationDialog
+              category={category}
+              title="Supprimer la catégorie ?"
+              description={`Voulez-vous vraiment supprimer la catégorie "${category.name}" ?`}
+            />
           </TableCell>
         </TableRow>
       ))}
@@ -67,29 +79,5 @@ export default function TableBodyCategories({
   );
 }
 
-export type ButtonActionProps = {
-  icon: React.ReactNode;
-  label: string;
-  className: string;
-};
 
-export type ActionsProps = {
-  action: ButtonActionProps[];
-};
-export function ButtonAction({ action }: ActionsProps) {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <MoreHorizontal className="cursor-pointer" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {action.map((button, id) => (
-          <DropdownMenuItem className={cn("ps-5", button.className)} key={id}>
-            {button.icon && button.icon}
-            {button.label}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
+
