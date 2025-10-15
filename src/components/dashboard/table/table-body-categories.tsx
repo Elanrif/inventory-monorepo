@@ -35,7 +35,7 @@ export default function TableBodyCategories({
           </TableCell>
           <TableCell className="flex items-center gap-2">
             <Image
-              src={"/images/image2register.jpg"}
+              src={"/image"}
               alt=""
               width={35}
               height={10}

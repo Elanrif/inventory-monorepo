@@ -19,6 +19,8 @@ import { useRouter } from "next/navigation";
 import { ROUTES } from "@/utils/route";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { Textarea } from "../ui/textarea";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -27,10 +29,12 @@ const formSchema = z.object({
   description: z.string().min(2, {
     message: "La description doit comporter au moins 2 caractères.",
   }),
+  status: z.enum(["ACTIVE", "INACTIVE"]),
+  isFeatured: z.boolean().optional(),
   imageUrl: z.string(),
 });
 
-export function CreateCategory({ className, labelBtn}: { className?: string; labelBtn?: string; navigateUrl?: string }) {
+export function CreateCategory() {
   const route = useRouter();
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -39,6 +43,8 @@ export function CreateCategory({ className, labelBtn}: { className?: string; lab
       name: "",
       description: "",
       imageUrl: "",
+      status: "INACTIVE",
+      isFeatured: false,
     },
   });
 
@@ -105,7 +111,11 @@ export function CreateCategory({ className, labelBtn}: { className?: string; lab
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Input placeholder="Saisissez la description" {...field} />
+                  <Textarea
+                    placeholder="Saisissez la description"
+                    rows={6}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -125,6 +135,59 @@ export function CreateCategory({ className, labelBtn}: { className?: string; lab
             )}
           />
           <div className="flex flex-col items-center gap-4">
+            <div className="flex justify-between items-center w-full gap-4">
+              <FormField
+                control={form.control}
+                name="status"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Status</FormLabel>
+                    <FormControl>
+                      <Select value={field.value} onValueChange={field.onChange}>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Choisir le status..." />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Status</SelectLabel>
+                            <SelectItem value="ACTIVE">Active</SelectItem>
+                            <SelectItem value="INACTIVE">Inactive</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="isFeatured"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Mise en avant</FormLabel>
+                    <FormControl>
+                      <Select
+                        value={field.value ? "true" : "false"}
+                        onValueChange={(v) => field.onChange(v === "true")}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Choisir la mise en avant" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Mise en avant</SelectLabel>
+                            <SelectItem value="true">Yes</SelectItem>
+                            <SelectItem value="false">No</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <Button
               type="submit"
               className="bg-purple-700 hover:bg-purple-800 rounded-full w-full"
