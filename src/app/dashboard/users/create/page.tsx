@@ -3,9 +3,20 @@ import SidebarBreadcrumb from "@/components/sidebar-breadcrumb";
 import { ROUTES } from "@/utils/route";
 
 export default function DashboardAddUser() {
+  const { DASHBOARD_USERS } = ROUTES;
+
+  const breadCrumbUrl = {
+    label: "Créer un utilisateur",
+    paths: [
+      {
+        label: "Utilisateurs",
+        url: DASHBOARD_USERS,
+      },
+    ],
+  };
   return (
     <>
-      <SidebarBreadcrumb label="Créer un utilisateur" />
+      <SidebarBreadcrumb {...breadCrumbUrl} />
       <div className="min-h-[85vh] flex space-y-2 flex-col justify-center items-center bg-gray-50">
         <div className="flex flex-col space-y-2 items-center justify-start mb-5">
           <h2 className="text-3xl font-bold">Ajouter un utilisateur</h2>

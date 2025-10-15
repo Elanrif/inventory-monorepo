@@ -2,6 +2,7 @@ import { EditRegister } from "@/components/dashboard/edit-register";
 import { NotFoundData } from "@/components/not-found-data";
 import SidebarBreadcrumb from "@/components/sidebar-breadcrumb";
 import { getUserById } from "@/lib/user/services/user.service";
+import { ROUTES } from "@/utils/route";
 
 export default async function DashboardEditUser({
   params,
@@ -13,10 +14,21 @@ export default async function DashboardEditUser({
   if (!user) {
     return <NotFoundData title="Aucun utilisateur trouvé"/>;
   }
+  const { DASHBOARD_USERS } = ROUTES;
+  
+    const breadCrumbUrl = {
+      label: "Modifier un utilisateur",
+      paths: [
+        {
+          label: "Utilisateurs",
+          url: DASHBOARD_USERS,
+        },
+      ],
+    };
 
   return (
     <>
-      <SidebarBreadcrumb label="Créer un utilisateur" />
+      <SidebarBreadcrumb {...breadCrumbUrl} />
       <div className="min-h-[85vh] flex space-y-2 flex-col justify-center items-center bg-gray-50">
         <div className="flex flex-col space-y-2 items-center justify-start mb-5">
           <h2 className="text-3xl font-bold">Modifier un utilisateur</h2>

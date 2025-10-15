@@ -2,6 +2,7 @@ import { EditCategory } from "@/components/dashboard/edit-category";
 import { NotFoundData } from "@/components/not-found-data";
 import SidebarBreadcrumb from "@/components/sidebar-breadcrumb"
 import { getCategoryById } from "@/lib/category/services/category.service";
+import { ROUTES } from "@/utils/route";
 
 export default async function DashboardEditCategory({
   params,
@@ -12,10 +13,21 @@ export default async function DashboardEditCategory({
   const category = await getCategoryById(id);
   if (!category) {
     return <NotFoundData title="Aucune catégorie trouvé" />;
-  }
+  }const { DASHBOARD_CATEGORIES } = ROUTES;
+  
+    const breadCrumbUrl = {
+      label: "Créer une categorie",
+      paths: [
+        {
+          label: "Categories",
+          url: DASHBOARD_CATEGORIES,
+        },
+      ],
+    };
+
   return (
     <>
-      <SidebarBreadcrumb label="Créer une catégorie" />
+      <SidebarBreadcrumb {...breadCrumbUrl} />
       <div className="min-h-[85vh] flex space-y-2 flex-col justify-center items-center bg-gray-50">
         <div className="flex flex-col space-y-2 items-center justify-start mb-5">
           <h2 className="text-3xl font-bold">Modifier une catégorie</h2>

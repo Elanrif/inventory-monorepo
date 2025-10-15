@@ -34,7 +34,7 @@ const formSchema = z.object({
   imageUrl: z.string(),
 });
 
-export function CreateCategory() {
+export function CreateCategory({className}: {className?: string; labelBtn?: string; navigateUrl?: string}) {
   const route = useRouter();
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -86,7 +86,7 @@ export function CreateCategory() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className={`space-y-4 w-[450px]`}
+          className={`space-y-4 w-[450px] ${className}}`}
         >
           <FormField
             control={form.control}
