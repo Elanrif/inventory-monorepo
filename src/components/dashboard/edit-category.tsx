@@ -29,6 +29,7 @@ import {
 } from "../ui/select";
 import { updateCategory } from "@/lib/category/services/category.service";
 import { CategoryDto } from "@/lib/category/models/category.model";
+import { Textarea } from "../ui/textarea";
 
 type EditCategoryProps = {
   editCategory: CategoryDto;
@@ -124,8 +125,9 @@ export function EditCategory({ editCategory }: EditCategoryProps) {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Input
+                  <Textarea
                     placeholder="Saisissez la description de la catégorie"
+                    rows={4}
                     {...field}
                   />
                 </FormControl>
@@ -154,10 +156,7 @@ export function EditCategory({ editCategory }: EditCategoryProps) {
                 <FormItem>
                   <FormLabel>Status</FormLabel>
                   <FormControl>
-                    <Select
-                    value={field.value}
-                    onValueChange={field.onChange} 
-                    >
+                    <Select value={field.value} onValueChange={field.onChange}>
                       <SelectTrigger className="w-[180px]">
                         <SelectValue placeholder="Choisir le status..." />
                       </SelectTrigger>
@@ -205,7 +204,10 @@ export function EditCategory({ editCategory }: EditCategoryProps) {
             />
           </div>
           <div className="flex flex-col items-center gap-4">
-            <Button type="submit" className="bg-purple-700 hover:bg-purple-800 rounded-full w-full">
+            <Button
+              type="submit"
+              className="bg-purple-700 hover:bg-purple-800 rounded-full w-full cursor-pointer"
+            >
               <span>Modifier la catégorie</span>
               {loading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
             </Button>

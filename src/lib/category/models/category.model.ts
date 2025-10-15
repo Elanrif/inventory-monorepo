@@ -9,8 +9,4 @@ export type CategoryDto = {
   updatedAt: string;
 };
 
-export interface CategoryReqDto {
-  name: string;
-  imageUrl: string;
-  description: string;
-}
+

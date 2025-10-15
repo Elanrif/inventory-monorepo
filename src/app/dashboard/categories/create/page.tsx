@@ -16,11 +16,11 @@ export default function DashboardAddCategory() {
   return (
     <>
       <SidebarBreadcrumb {...breadcrumbPaths} />
-      <div className="min-h-[85vh] flex space-y-2 flex-col justify-center items-center bg-gray-50">
+      <div className="min-h-[85vh] w-fit border-1 rounded-xl py-8 px-12 mx-auto flex space-y-2 flex-col justify-center items-center bg-gray-50">
         <div className="flex flex-col space-y-2 items-center justify-start mb-5">
-          <h2 className="text-3xl font-bold">Ajouter un catégorie</h2>
+          <h2 className="text-3xl font-bold">Ajouter une catégorie</h2>
           <p className="text-slate-600 text-center">
-            Créez un nouvel catégorie en remplissant le formulaire ci-dessous.
+            Créez une nouvelle catégorie en remplissant le formulaire ci-dessous.
           </p>
         </div>
         <CreateCategory />

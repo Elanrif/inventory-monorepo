@@ -19,6 +19,16 @@ import { useRouter } from "next/navigation";
 import { ROUTES } from "@/utils/route";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
+import { Textarea } from "../ui/textarea";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -28,6 +38,8 @@ const formSchema = z.object({
     message: "La description doit comporter au moins 2 caractères.",
   }),
   imageUrl: z.string(),
+  status: z.enum(["ACTIVE", "INACTIVE"]),
+  isFeatured: z.boolean(),
 });
 
 export function CreateCategory() {
@@ -39,6 +51,8 @@ export function CreateCategory() {
       name: "",
       description: "",
       imageUrl: "",
+      status: "ACTIVE",
+      isFeatured: false,
     },
   });
 
@@ -105,7 +119,11 @@ export function CreateCategory() {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Input placeholder="Saisissez la description" {...field} />
+                  <Textarea
+                    placeholder="Saisissez la description..."
+                    rows={4}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -124,10 +142,65 @@ export function CreateCategory() {
               </FormItem>
             )}
           />
+          <div className="flex justify-between items-center">
+            <FormField
+              control={form.control}
+              name="status"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Status</FormLabel>
+                  <FormControl>
+                    <Select value={field.value} onValueChange={field.onChange}>
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Choisir le status..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Status</SelectLabel>
+                          <SelectItem value="ACTIVE">Active</SelectItem>
+                          <SelectItem value="INACTIVE">Inactive</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="isFeatured"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Mise en avant</FormLabel>
+                  <FormControl>
+                    <Select
+                      value={field.value ? "true" : "false"}
+                      onValueChange={(value) =>
+                        field.onChange(value === "true")
+                      }
+                    >
+                      <SelectTrigger className="w-[180px]">
+                        <SelectValue placeholder="Choisir le status..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Mise en avant</SelectLabel>
+                          <SelectItem value="true">Vrai</SelectItem>
+                          <SelectItem value="false">Faux</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
           <div className="flex flex-col items-center gap-4">
             <Button
               type="submit"
-              className="bg-purple-700 hover:bg-purple-800 rounded-full w-full"
+              className="bg-purple-700 hover:bg-purple-800 rounded-full w-full cursor-pointer"
             >
               <span>Ajouter une catégorie</span>
               {loading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}

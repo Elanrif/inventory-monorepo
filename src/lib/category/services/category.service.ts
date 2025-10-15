@@ -1,7 +1,7 @@
 import environment from "@config/environment.config";
 //import apiClient from "@config/api.config";
 import axios from "axios";
-import { CategoryDto, CategoryReqDto } from "../models/category.model";
+import { CategoryDto } from "../models/category.model";
 
 const {
   api: {
@@ -36,7 +36,7 @@ export async function getAllCategories(): Promise<CategoryDto[]> {
 }
 
 export const createCategory = async (
-  categoryData: Partial<CategoryReqDto>
+  categoryData: Partial<CategoryDto>
 ): Promise<CategoryDto> =>
   axios
     .post<CategoryDto>(`${categoryUrl}`, categoryData)
