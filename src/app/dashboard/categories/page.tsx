@@ -8,9 +8,14 @@ import { getAllCategories } from "@/lib/category/services/category.service";
 
 export default async function CategoriePage() {
   const categories = await getAllCategories();
+
+  const breadcrumbPaths={
+    label:"Categories"
+  }
+
   return (
     <>
-      <SidebarBreadcrumb label="Categories" />
+      <SidebarBreadcrumb {...breadcrumbPaths} />
       <HeaderSection
         headerButtons={data.headerData.headerButtons}
         title={data.headerData.title}
