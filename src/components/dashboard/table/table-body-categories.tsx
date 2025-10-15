@@ -31,7 +31,6 @@ export default function TableBodyCategories({
           <TableCell>
             <Checkbox className="border-2 border-gray-400 rounded-xs" />
           </TableCell>
-
           <TableCell className="flex items-center">
             <Image
               src={"/image"}
@@ -49,15 +48,14 @@ export default function TableBodyCategories({
             className={`flex items-center w-fit border rounded-full px-1.5 py-0.5 ${category.status === "active" ?
               "bg-green-100 text-green-800"
               : "bg-red-100 text-red-800"
-
               }`}
           >
             <Dot />
             {category.status?.toLowerCase()}
           </TableCell>
           <TableCell
-            className={`w-fit border rounded-full items-center  ${category.isFeatured ? 
-              "bg-blue-100 text-blue-800" 
+            className={`w-fit border rounded-full items-center ${category.isFeatured ?
+              "bg-blue-100 text-blue-800"
               : "bg-gray-100 text-gray-600"
               }`}
           >{category.isFeatured ? "Yes" : "No"}

@@ -8,7 +8,6 @@ import {
     Card,
     CardContent,
     CardHeader,
-    CardTitle,
 } from "@/components/ui/card";
 import {
     Form,
@@ -27,6 +26,7 @@ import { ROUTES } from "@/utils/route";
 import { updateCategory } from "@/lib/category/services/category.service";
 import { useRouter } from "next/navigation";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
+import { Textarea } from "../ui/textarea";
 
 type EditCategoryProps = {
     editCategory: CategoryDto;
@@ -44,7 +44,7 @@ export function EditCategory({ editCategory }: EditCategoryProps) {
     const [loading, setLoading] = useState(false);
     const route = useRouter();
 
-    const form = useForm<z.infer<typeof formSchema>, any , z.infer<typeof formSchema>>({
+    const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: editCategory.name,
@@ -62,8 +62,12 @@ export function EditCategory({ editCategory }: EditCategoryProps) {
             toast.success("Modification réussie !", { position: "top-right", autoClose: 3000 });
             setLoading(false);
             route.push(ROUTES.DASHBOARD_CATEGORIES);
-        } catch (error: any) {
-            toast.error(`Erreur: ${error.message}`, { position: "top-right", autoClose: 3000 });
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                toast.error(`Erreur : ${error.message}`, { position: "top-right", autoClose: 3000 });
+            } else {
+                toast.error("Une erreur inconnue est survenue", { position: "top-right", autoClose: 3000 });
+            }
             setLoading(false);
         }
     }
@@ -95,25 +99,29 @@ export function EditCategory({ editCategory }: EditCategoryProps) {
                                     <FormItem>
                                         <FormLabel>Description</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="Saisissez la description" {...field} />
+                                            <Textarea
+                                                placeholder="Saisissez la description"
+                                                rows={6}
+                                                {...field}
+                                            />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
                                 )}
                             />
                             <FormField
-                                    control={form.control}
-                                    name="imageUrl"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>URL de l&apos;image</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="Entrez l'URL de l'image" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
+                                control={form.control}
+                                name="imageUrl"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>URL de l&apos;image</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Entrez l'URL de l'image" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="flex justify-between items-center gap-5">
                                     <FormField

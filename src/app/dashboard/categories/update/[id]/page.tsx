@@ -11,11 +11,11 @@ export default async function DashboardEditCategory({
   const { id } = await params;
   const category = await getCategoryById(id);
   if (!category) {
-    return <NotFoundData title="Aucun catégorie trouvé"/>;
+    return <NotFoundData title="Aucune catégorie trouvé" />;
   }
   return (
     <>
-      <SidebarBreadcrumb label="Créer un catégorie" />
+      <SidebarBreadcrumb label="Créer une catégorie" />
       <div className="min-h-[85vh] flex space-y-2 flex-col justify-center items-center bg-gray-50">
         <div className="flex flex-col space-y-2 items-center justify-start mb-5">
           <h2 className="text-3xl font-bold">Modifier une catégorie</h2>
@@ -23,7 +23,7 @@ export default async function DashboardEditCategory({
             Modifier une catégorie en remplissant le formulaire ci-dessous.
           </p>
         </div>
-        <EditCategory editCategory={{...category}}/>
+        <EditCategory editCategory={{ ...category }} />
       </div>
     </>
   );
