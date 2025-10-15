@@ -39,10 +39,10 @@ console.log(categories);
           </TableCell>
           <TableCell>{truncateStr(category.description)}</TableCell>
           <TableCell
-            className={`flex w-fit border rounded-full px-2 py-0.5 ${
+            className={`flex w-fit border rounded-full px-2 py-0.5 lowercase ${
               category.status === "INACTIVE"
-                ? " bg-red-300"
-                : " bg-green-200"
+                ? " bg-red-400"
+                : " bg-green-300"
             }`}
           >
             <Dot />
@@ -50,8 +50,8 @@ console.log(categories);
           </TableCell>
           <TableCell>
             <span
-              className={`px-3 py-1 rounded-full font-semibold w-2 h-2 
-                ${category.isFeatured ? "bg-green-400" : "bg-red-300 "}`}
+              className={`px-3 py-1 rounded-full font-semibold w-2 h-2 text-white 
+                ${category.isFeatured ? "bg-green-300" : "bg-red-400 "}`}
             >
               {category.isFeatured ? "Yes" : "No"}
             </span>

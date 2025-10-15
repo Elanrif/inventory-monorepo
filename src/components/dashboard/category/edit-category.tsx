@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { CategoryReq } from "@/lib/categorry/models/category.model";
 import { updateCategory } from "@/lib/categorry/services/category.service";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 type CategoryProps = {
   className?: string;
@@ -112,7 +113,11 @@ export function EditCategory({ className, editCategory }: CategoryProps) {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Description</FormLabel>
+               <Textarea
+                    placeholder="Saisissez la description"
+                    rows={6}
+                    {...field}
+                  />
                 <FormControl>
                   <Input placeholder="Entrer une description du catégorie" {...field} />
                 </FormControl>

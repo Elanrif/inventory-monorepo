@@ -20,6 +20,7 @@ import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { createCategory } from "@/lib/categorry/services/category.service";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -42,8 +43,8 @@ export function CreateCategory() {
       name: "",
       description: "",
       imageUrl: "",
-      status: "ACTIVE",
-      isFeatured: true,
+      status: "INACTIVE",
+      isFeatured: false,
     },
   });
 
@@ -110,7 +111,11 @@ export function CreateCategory() {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Input placeholder="Saisissez la description" {...field} />
+                  <Textarea
+                    placeholder="Saisissez la description"
+                    rows={6}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -148,8 +153,8 @@ export function CreateCategory() {
                 </FormControl>
                 <FormMessage />
               </FormItem>
-        )}
-      />
+           )}
+          />
               <FormField
               control={form.control}
               name="isFeatured"
@@ -174,8 +179,6 @@ export function CreateCategory() {
                 </FormItem>
               )}
               />
-
-
           <div className="flex flex-col items-center gap-4">
             <Button
               type="submit"
