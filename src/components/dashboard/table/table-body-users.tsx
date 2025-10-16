@@ -14,7 +14,9 @@ type BodyTableCategoryProps = {
   users: UserDto[];
 };
 
-export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
+export default function TableBodyUsers({
+   users,
+   }: BodyTableCategoryProps) {
   return (
     <TableBody className="text-md">
       {users.map((user, id) => (
@@ -43,7 +45,7 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
             >
               <Pen size={16} color="blue" />
             </Link>
-            <ConfirmationDialog<UserDto>
+            <ConfirmationDialog
               item={user}
               onDelete={(user) => deleteUser(user.id)}
               title="Supprimer cet utilisateur ?"

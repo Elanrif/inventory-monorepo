@@ -21,6 +21,22 @@ import { useState } from "react";
 import { Loader2 } from "lucide-react";
 import { Textarea } from "../ui/textarea";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
+import { Card, CardContent, CardHeader } from "../ui/card";
+
+const statusOptions = [
+  {
+    value: "ACTIVE",
+    label: "Active"
+  },
+  {
+    value: "INACTIVE",
+    label: "Inactive"
+  },
+];
+const featuredOptions = [
+  { value: "true", label: "Yes" },
+  { value: "false", label: "No" },
+];
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -34,7 +50,7 @@ const formSchema = z.object({
   imageUrl: z.string(),
 });
 
-export function CreateCategory({className}: {className?: string; labelBtn?: string; navigateUrl?: string}) {
+export function CreateCategory({ className }: { className?: string }) {
   const route = useRouter();
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
@@ -82,122 +98,135 @@ export function CreateCategory({className}: {className?: string; labelBtn?: stri
   }
 
   return (
-    <>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className={`space-y-4 w-[450px] ${className}}`}
-        >
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Nom de la catégorie</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Entrez le nom de la catégorie"
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="description"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                  <Textarea
-                    placeholder="Saisissez la description"
-                    rows={6}
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="imageUrl"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Image URL</FormLabel>
-                <FormControl>
-                  <Input placeholder="Entrez l'URL de l'image" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <div className="flex flex-col items-center gap-4">
-            <div className="flex justify-between items-center w-full gap-4">
-              <FormField
-                control={form.control}
-                name="status"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Status</FormLabel>
-                    <FormControl>
-                      <Select value={field.value} onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Choisir le status..." />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Status</SelectLabel>
-                            <SelectItem value="ACTIVE">Active</SelectItem>
-                            <SelectItem value="INACTIVE">Inactive</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="isFeatured"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Mise en avant</FormLabel>
-                    <FormControl>
-                      <Select
-                        value={field.value ? "true" : "false"}
-                        onValueChange={(v) => field.onChange(v === "true")}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Choisir la mise en avant" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectGroup>
-                            <SelectLabel>Mise en avant</SelectLabel>
-                            <SelectItem value="true">Yes</SelectItem>
-                            <SelectItem value="false">No</SelectItem>
-                          </SelectGroup>
-                        </SelectContent>
-                      </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <Button
-              type="submit"
-              className="bg-purple-700 hover:bg-purple-800 rounded-full w-full"
+    <div className="flex justify-center items-center w-full px-2">
+      <Card className="w-full max-w-lg shadow-md">
+        <CardHeader>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className={`space-y-6 w-[450px] ${className}}`}
             >
-              <span>Ajouter une catégorie</span>
-              {loading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
-            </Button>
-          </div>
-        </form>
-      </Form>
-    </>
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Nom de la catégorie</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Entrez le nom de la catégorie"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="description"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Description</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        placeholder="Saisissez la description"
+                        rows={6}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="imageUrl"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Image URL</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Entrez l'URL de l'image" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="flex flex-col items-center gap-4">
+                <div className="flex justify-between items-center w-full gap-4">
+                  <FormField
+                    control={form.control}
+                    name="status"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Status</FormLabel>
+                        <FormControl>
+                          <Select value={field.value} onValueChange={field.onChange}>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Choisir le status..." />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectGroup>
+                                <SelectLabel>Status</SelectLabel>
+                                {statusOptions.map((status, index) => (
+                                  <SelectItem key={index} value={status.value}>
+                                    {status.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="isFeatured"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Mise en avant</FormLabel>
+                        <FormControl>
+                          <Select
+                            value={field.value ? "true" : "false"}
+                            onValueChange={(v) => field.onChange(v === "true")}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder="Choisir la mise en avant" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectGroup>
+                                <SelectLabel>Mise en avant</SelectLabel>
+                                {featuredOptions.map((option, item) => (
+                                  <SelectItem key={item}
+                                    value={option.value}>
+                                    {option.label}
+                                  </SelectItem>
+                                ))}
+                              </SelectGroup>
+                            </SelectContent>
+                          </Select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <Button
+                  type="submit"
+                  className="bg-purple-700 hover:bg-purple-800 rounded-full w-full"
+                >
+                  <span>Ajouter une catégorie</span>
+                  {loading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }

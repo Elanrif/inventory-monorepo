@@ -9,7 +9,6 @@ import { getAllCategories } from "@/lib/category/services/category.service";
 export default async function CategoriePage() {
   const categories = await getAllCategories();
   
-console.log("Categories reçues :", categories);
   return (
     <>
       <SidebarBreadcrumb label="Categories" />

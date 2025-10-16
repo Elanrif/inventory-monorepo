@@ -35,7 +35,7 @@ export default async function DashboardEditCategory({
             Modifier une catégorie en remplissant le formulaire ci-dessous.
           </p>
         </div>
-        <EditCategory editCategory={{ ...category }} />
+        <EditCategory category={category} />
       </div>
     </>
   );

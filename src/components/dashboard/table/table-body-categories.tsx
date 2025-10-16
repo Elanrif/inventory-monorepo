@@ -76,7 +76,7 @@ export default function TableBodyCategories({
             >
               <Pen size={16} color="blue" />
             </Link>
-            <ConfirmationDialog<CategoryDto>
+            <ConfirmationDialog
               item={category}
               onDelete={async (category) => {
                 await deleteCategory(category.id);      
@@ -91,34 +91,3 @@ export default function TableBodyCategories({
     </TableBody>
   );
 }
-
-
-
-/*export type ActionsProps = {
-  action: ButtonActionProps[];
-};
-export function ButtonAction({ action }: ActionsProps) {
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger>
-        <MoreHorizontal className="cursor-pointer" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {action.map((button, id) => (
-          <DropdownMenuItem className={cn("ps-5", button.className)} key={id}>
-            {button.icon && button.icon}
-            {button.label}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
-}
-
-
-export type ButtonActionProps = {
-  icon: React.ReactNode;
-  label: string;
-  url?: string;
-  className: string;
-};*/

@@ -28,10 +28,6 @@ import { useRouter } from "next/navigation";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "../ui/select";
 import { Textarea } from "../ui/textarea";
 
-type EditCategoryProps = {
-    editCategory: CategoryDto;
-};
-
 const formSchema = z.object({
     name: z.string().min(2, "Le nom de la catégorie doit comporter au moins 2 caractères."),
     description: z.string().min(2, "La description doit comporter au moins 2 caractères."),
@@ -40,25 +36,25 @@ const formSchema = z.object({
     isFeatured: z.boolean(),
 });
 
-export function EditCategory({ editCategory }: EditCategoryProps) {
+export function EditCategory({ category }: { category: CategoryDto }) {
     const [loading, setLoading] = useState(false);
     const route = useRouter();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: editCategory.name,
-            description: editCategory.description,
-            imageUrl: editCategory.imageUrl || "",
-            status: editCategory.status === "active" ? "ACTIVE" : "INACTIVE",
-            isFeatured: editCategory.isFeatured,
+            name: category.name,
+            description: category.description,
+            imageUrl: category.imageUrl || "",
+            status: category.status === "active" ? "ACTIVE" : "INACTIVE",
+            isFeatured: category.isFeatured,
         },
     });
 
     async function onSubmit(data: z.infer<typeof formSchema>) {
         setLoading(true);
         try {
-            await updateCategory(editCategory.id, data);
+            await updateCategory(category.id, data);
             toast.success("Modification réussie !", {
                 position: "top-right",
                 autoClose: 1000,
