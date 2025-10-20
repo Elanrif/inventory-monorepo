@@ -28,10 +28,6 @@ jobs:
         with:
           node-version: ${{matrix.node-version}}
           cache: "npm"
-      - name: Unset NODE_OPTIONS to avoid invalid flags during build
-        run: |
-          echo "Unsetting NODE_OPTIONS"
-          unset NODE_OPTIONS || true
       - name: Install dependencies
         run: npm ci
       - name: Build project
