@@ -1,12 +1,12 @@
-"use client";
+'use client';
 
-import { ChevronRight, type LucideIcon } from "lucide-react";
+import { ChevronRight, type LucideIcon } from 'lucide-react';
 
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from '@/components/ui/collapsible';
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -16,9 +16,9 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/components/ui/sidebar";
-import React from "react";
-import Link from "next/link";
+} from '@/components/ui/sidebar';
+import React from 'react';
+import Link from 'next/link';
 
 export function NavMain({
   items,
@@ -63,7 +63,7 @@ export function NavMain({
                         <SidebarMenuSubItem key={subItem.title}>
                           <SidebarMenuSubButton asChild>
                             <Link href={subItem.url}>
-                              <span className="font-medium text-muted-foreground">
+                              <span className="text-muted-foreground font-medium">
                                 {subItem.title}
                               </span>
                             </Link>
@@ -80,7 +80,8 @@ export function NavMain({
                   {item.icon && <item.icon />}
                   <Link href={item.url}>
                     <span className="font-medium">{item.title}</span>
-                  </Link> {/* Link */}
+                  </Link>{' '}
+                  {/* Link */}
                 </SidebarMenuButton>
               </SidebarMenuItem>
             )}

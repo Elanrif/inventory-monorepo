@@ -1,36 +1,40 @@
 name: Review code
 run-name: Review code on push and pull request
 on:
-    push:
-        branches:
-            - main
-    pull_request:
-        types:
-          - opened
-          - synchronize
-          - reopened
-          - labeled
-          - unlabeled
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - labeled
+      - unlabeled
 
 jobs:
-    review:
-        runs-on: ubuntu-latest
+  review:
+    runs-on: ubuntu-latest
 
-        strategy:
-            matrix:
-                node-version: [20]
+    strategy:
+      matrix:
+        node-version: [20]
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
-            - name: Use Node.js ${{matrix.node-version}}
-              uses: actions/setup-node@v3
-              with:
-                  node-version: ${{matrix.node-version}}
-                  cache: 'npm'
-            - name: Install dependencies
-              run: npm ci
-            - name: Build project
-              run: npm run build --if-present
-            - name: Remove .next folder
-              run: rm -rf .next
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Use Node.js ${{matrix.node-version}}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{matrix.node-version}}
+          cache: "npm"
+      - name: Unset NODE_OPTIONS to avoid invalid flags during build
+        run: |
+          echo "Unsetting NODE_OPTIONS"
+          unset NODE_OPTIONS || true
+      - name: Install dependencies
+        run: npm ci
+      - name: Build project
+        run: npm run build --if-present
+      - name: Remove .next folder
+        run: rm -rf .next

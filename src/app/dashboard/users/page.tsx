@@ -1,10 +1,10 @@
-import SidebarBreadcrumb from "@/components/sidebar-breadcrumb";
-import { data } from "./data";
-import HeaderSection from "@/components/dashboard/header-section";
-import SubHeaderSection from "@/components/dashboard/sub-header-section";
-import { getAllUsers } from "@/lib/user/services/user.service";
-import { CardSection } from "@/components/dashboard/card-section";
-import TableBodyUsers from "@/components/dashboard/table/table-body-users";
+import SidebarBreadcrumb from '@/components/sidebar-breadcrumb';
+import { data } from './data';
+import HeaderSection from '@/components/dashboard/header-section';
+import SubHeaderSection from '@/components/dashboard/sub-header-section';
+import { getAllUsers } from '@/lib/user/services/user.service';
+import { CardSection } from '@/components/dashboard/card-section';
+import TableBodyUsers from '@/components/dashboard/table/table-body-users';
 
 export default async function UserPage() {
   const users = await getAllUsers();
@@ -20,9 +20,7 @@ export default async function UserPage() {
         actions={data.payload.headerBtn}
         table={data.payload.table}
         data={users}
-        render={(c) => (
-          <TableBodyUsers users={c} />
-        )}
+        render={(c) => <TableBodyUsers users={c} />}
       />
     </>
   );

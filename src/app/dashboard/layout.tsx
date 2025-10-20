@@ -1,16 +1,15 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import {
-  SidebarInset,
-  SidebarProvider,
-} from "@/components/ui/sidebar";
+import { AppSidebar } from '@/components/app-sidebar';
+import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
-export default function DashboardLayout({children}: {children: React.ReactNode}) {
+export default function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset className="px-6 mb-10">
-        {children}
-      </SidebarInset>
+      <SidebarInset className="mb-10 px-6">{children}</SidebarInset>
     </SidebarProvider>
   );
 }

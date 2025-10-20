@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   AlertDialog,
@@ -10,12 +10,12 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
-import { UserDto } from "@/lib/user/models/user.model";
-import { deleteUser } from "@/lib/user/services/user.service";
-import { Trash } from "lucide-react";
-import { toast } from "react-toastify";
+} from '@/components/ui/alert-dialog';
+import { Button } from '@/components/ui/button';
+import { UserDto } from '@/lib/user/models/user.model';
+import { deleteUser } from '@/lib/user/services/user.service';
+import { Trash } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 type DialogConfirmationProps = {
   user: UserDto;
@@ -28,15 +28,15 @@ type DialogConfirmationProps = {
 
 export function ConfirmationDialog({
   user,
-  title = "Êtes-vous absolument sûr ?",
-  description = "Cette action est irréversible. Cela supprimera définitivement votre compte et effacera vos données de nos serveurs.",
-  cancelLabel = "Annuler",
-  actionLabel = "Confirmer",
+  title = 'Êtes-vous absolument sûr ?',
+  description = 'Cette action est irréversible. Cela supprimera définitivement votre compte et effacera vos données de nos serveurs.',
+  cancelLabel = 'Annuler',
+  actionLabel = 'Confirmer',
 }: DialogConfirmationProps) {
   const handleDelete = async () => {
     await deleteUser(user.id);
-    toast.success("Suppression réussie !", {
-      position: "top-right",
+    toast.success('Suppression réussie !', {
+      position: 'top-right',
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,

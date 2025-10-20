@@ -1,10 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 export default function SubHeader() {
   return (
-    <div className='text-center py-12'>
-        <h1 className='text-5xl font-bold pb-3 capitalize'>Our New Collections</h1>
-        <p className='text-stone-500 text-lg'>These products are crafted using wood sourced <br /> from responsibly certified forests.</p>
+    <div className="py-12 text-center">
+      <h1 className="pb-3 text-5xl font-bold capitalize">
+        Our New Collections
+      </h1>
+      <p className="text-lg text-stone-500">
+        These products are crafted using wood sourced <br /> from responsibly
+        certified forests.
+      </p>
     </div>
-  )
+  );
 }

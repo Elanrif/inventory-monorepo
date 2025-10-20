@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 import {
   BellDot,
   Bot,
@@ -11,98 +11,98 @@ import {
   LucideLayoutDashboard,
   Settings2,
   Users,
-} from "lucide-react";
+} from 'lucide-react';
 
-import { NavMain } from "@/components/nav-main";
-import { NavUser } from "@/components/nav-user";
-import { TeamSwitcher } from "@/components/team-switcher";
+import { NavMain } from '@/components/nav-main';
+import { NavUser } from '@/components/nav-user';
+import { TeamSwitcher } from '@/components/team-switcher';
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar";
-import { NavSecondary } from "./nav-secondary";
-import { ROUTES } from "@/utils/route";
+} from '@/components/ui/sidebar';
+import { NavSecondary } from './nav-secondary';
+import { ROUTES } from '@/utils/route';
 
-const {DASHBOARD, DASHBOARD_CATEGORIES, DASHBOARD_USERS} = ROUTES;
+const { DASHBOARD, DASHBOARD_CATEGORIES, DASHBOARD_USERS } = ROUTES;
 const data = {
   user: {
-    name: "john doe",
-    email: "jhondoe@google.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: 'john doe',
+    email: 'jhondoe@google.com',
+    avatar: '/avatars/shadcn.jpg',
   },
   teams: [
     {
-      name: "Gestion des stocks",
+      name: 'Gestion des stocks',
       logo: GalleryVerticalEnd,
-      plan: "Vente en ligne",
+      plan: 'Vente en ligne',
     },
   ],
   store: [
     {
-      title: "Dashboard",
+      title: 'Dashboard',
       url: DASHBOARD,
       icon: LucideLayoutDashboard,
       isActive: true,
     },
     {
-      title: "Boutique",
-      url: "#",
+      title: 'Boutique',
+      url: '#',
       icon: Bot,
       items: [
         {
-          title: "Categories",
+          title: 'Categories',
           url: DASHBOARD_CATEGORIES,
         },
         {
-          title: "Produits",
-          url: "#",
+          title: 'Produits',
+          url: '#',
         },
       ],
     },
     {
-      title: "Clients",
+      title: 'Clients',
       url: DASHBOARD_USERS,
       icon: Users,
     },
     {
-      title: "Transactions",
-      url: "#",
+      title: 'Transactions',
+      url: '#',
       icon: Computer,
     },
   ],
   settings: [
     {
-      title: "Settings",
-      url: "#",
+      title: 'Settings',
+      url: '#',
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: 'General',
+          url: '#',
         },
         {
-          title: "Team",
-          url: "#",
+          title: 'Team',
+          url: '#',
         },
       ],
     },
     {
-      title: "Notifications",
-      url: "#",
+      title: 'Notifications',
+      url: '#',
       icon: BellDot,
     },
   ],
   navSecondary: [
     {
       title: "Centre d'aide",
-      url: "#",
+      url: '#',
       icon: HelpCircleIcon,
     },
     {
-      title: "Accueil",
+      title: 'Accueil',
       url: ROUTES.HOME,
       icon: HomeIcon,
     },
@@ -116,7 +116,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.store} label="Menu Principal"/>
+        <NavMain items={data.store} label="Menu Principal" />
         <NavMain items={data.settings} label="Paramètre" />
         {/* Nav secondary */}
         <NavSecondary items={data.navSecondary} className="mt-auto" />
