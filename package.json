@@ -56,8 +56,7 @@
   "lint-staged": {
     "*.+(js|jsx|ts|tsx|json|css|scss|md)": [
       "npx prettier --write",
-      "npx eslint --fix --ext .js,.jsx,.ts,.tsx",
-      "git add"
+      "npx eslint --fix --ext .js,.jsx,.ts,.tsx"
     ]
   }
 }
