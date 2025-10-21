@@ -1,7 +1,7 @@
-import { Card } from "@/components/ui/card";
-import { Handbag } from "lucide-react";
-import Image from "next/image";
-import React from "react";
+import { Card } from '@/components/ui/card';
+import { Handbag } from 'lucide-react';
+import Image from 'next/image';
+import React from 'react';
 
 export type CardSofaProps = {
   imageUrl: string;
@@ -25,29 +25,33 @@ export default function CardSofa({
   circle4,
 }: CardSofaProps) {
   return (
-    <Card className="relative bg-stone-200 w-[370px] h-[400px] ms-5 mb-10">
+    <Card className="relative ms-5 mb-10 h-[400px] w-[370px] bg-stone-200">
       <Image
         src={imageUrl}
         alt="sofa"
         width={300}
         height={30}
-        className="absolute rounded-3xl object-cover mix-blend-multiply top-10 left-10"
+        className="absolute top-10 left-10 rounded-3xl object-cover mix-blend-multiply"
       />
-      <p className="absolute top-4 left-4 bg-white font-bold capitalize px-3 py-1 rounded-full">
+      <p className="absolute top-4 left-4 rounded-full bg-white px-3 py-1 font-bold capitalize">
         {title}
       </p>
-      <div className="flex absolute left-60">
-        <p className={`absolute left-2 border rounded-full p-4 ${circle1}`}></p>
-        <p className={`absolute left-7 border rounded-full p-4 ${circle2}`}></p>
-        <p className={`absolute left-14 border rounded-full p-4 ${circle3}`}></p>
-        <p className={`absolute left-20 border rounded-full p-4 ${circle4}`}></p>
+      <div className="absolute left-60 flex">
+        <p className={`absolute left-2 rounded-full border p-4 ${circle1}`}></p>
+        <p className={`absolute left-7 rounded-full border p-4 ${circle2}`}></p>
+        <p
+          className={`absolute left-14 rounded-full border p-4 ${circle3}`}
+        ></p>
+        <p
+          className={`absolute left-20 rounded-full border p-4 ${circle4}`}
+        ></p>
       </div>
-      <div className="absolute bottom-5 left-5 flex justify-between items-center w-[90%]">
+      <div className="absolute bottom-5 left-5 flex w-[90%] items-center justify-between">
         <div>
-          <p className="text-lg capitalize pb-2">{description}</p>
-          <p className="font-bold text-xl">${price}.00</p>
+          <p className="pb-2 text-lg capitalize">{description}</p>
+          <p className="text-xl font-bold">${price}.00</p>
         </div>
-        <div className="p-3 border rounded-full bg-white">
+        <div className="rounded-full border bg-white p-3">
           <Handbag size={30} />
         </div>
       </div>

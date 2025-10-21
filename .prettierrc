@@ -1,0 +1,10 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "semi": true,
+  "insert_final_newline": true,
+  "tabWidth": 2,
+  "endOfLine": "lf",
+  "max_line_length": 80,
+  "plugins": ["prettier-plugin-tailwindcss"]
+}

@@ -1,7 +1,7 @@
-import environment from "@config/environment.config";
-import { LoginReqDTO, UserDto, UserReqDTO } from "../models/user.model";
+import environment from '@config/environment.config';
+import { LoginReqDTO, UserDto, UserReqDTO } from '../models/user.model';
 //import apiClient from "@config/api.config";
-import axios from "axios";
+import axios from 'axios';
 
 const {
   api: {
@@ -16,7 +16,7 @@ export const getAllUsers = async (): Promise<UserDto[]> => {
     .get<UserDto[]>(`${userUrl}`)
     .then((res) => res.data)
     .catch((error) => {
-      console.error("Erreur getAllUsers:", error);
+      console.error('Erreur getAllUsers:', error);
       return [];
     });
 };
@@ -28,16 +28,18 @@ export const getUserById = async (id: number): Promise<UserDto | null> =>
       return res.data;
     })
     .catch((error) => {
-      console.error("Erreur getUserById:", error);
+      console.error('Erreur getUserById:', error);
       return null;
     });
 
 export const createUser = async (
-  userData: Partial<UserReqDTO>
+  userData: Partial<UserReqDTO>,
 ): Promise<UserDto> =>
   axios
     .post<UserDto>(`${userUrl}/register`, userData)
-    .then((response) => {return response.data;})
+    .then((response) => {
+      return response.data;
+    })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .catch((error: any) => {
       const err = error?.response?.data?.message;
@@ -47,11 +49,13 @@ export const createUser = async (
 
 //LOGIN
 export const loginUser = async (
-  loginData: Partial<LoginReqDTO>
+  loginData: Partial<LoginReqDTO>,
 ): Promise<UserDto> =>
   axios
     .post<UserDto>(`${userUrl}/login`, loginData)
-    .then((response) => {return response.data;})
+    .then((response) => {
+      return response.data;
+    })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .catch((error: any) => {
       const err = error?.response?.data?.message || error.message;
@@ -61,7 +65,7 @@ export const loginUser = async (
 
 export async function updateUser(
   id: number,
-  userData: Partial<UserReqDTO>
+  userData: Partial<UserReqDTO>,
 ): Promise<UserDto> {
   return axios
     .put<UserDto>(`${userUrl}/${id}`, userData)

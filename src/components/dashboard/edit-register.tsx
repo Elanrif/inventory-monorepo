@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { updateUser } from "@/lib/user/services/user.service";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
+import { updateUser } from '@/lib/user/services/user.service';
 import {
   Form,
   FormControl,
@@ -12,14 +12,14 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { toast } from "react-toastify";
-import { ROUTES } from "@/utils/route";
-import { Loader2 } from "lucide-react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { UserReqDTO } from "@/lib/user/models/user.model";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { toast } from 'react-toastify';
+import { ROUTES } from '@/utils/route';
+import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { UserReqDTO } from '@/lib/user/models/user.model';
 
 type ResgisterProps = {
   className?: string;
@@ -35,10 +35,10 @@ const formSchema = z.object({
     message: "L'adresse mail doit comporter au moins 2 caractères.",
   }),
   password: z.string().min(8, {
-    message: "Le mot de passe doit comporter au moins 8 caractères.",
+    message: 'Le mot de passe doit comporter au moins 8 caractères.',
   }),
   address: z.string().min(2, {
-    message: "Le adresse doit comporter au moins 2 caractères.",
+    message: 'Le adresse doit comporter au moins 2 caractères.',
   }),
 });
 
@@ -50,7 +50,7 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
     defaultValues: {
       username: editUser.username,
       email: editUser.email,
-      password: "",
+      password: '',
       phone: editUser.phone,
       address: editUser.address,
     },
@@ -62,8 +62,8 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
       const user = await updateUser(editUser.id, data);
       // user = axios.then ->  User || axios.catch -> throw new Error
       if (user) {
-        toast.success("Modification réussie !", {
-          position: "top-right",
+        toast.success('Modification réussie !', {
+          position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -78,7 +78,7 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(`Erreur: ${error.message}`, {
-        position: "top-right",
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -95,16 +95,14 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className={`space-y-4 w-[450px] ${className}`}
+          className={`w-[450px] space-y-4 ${className}`}
         >
           <FormField
             control={form.control}
             name="username"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>
-                  Nom de l&apos;utilisateur
-                </FormLabel>
+                <FormLabel>Nom de l&apos;utilisateur</FormLabel>
                 <FormControl>
                   <Input placeholder="Entrez votre Nom" {...field} />
                 </FormControl>
@@ -168,7 +166,7 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
             )}
           />
           <div className="flex flex-col items-center gap-4">
-            <Button type="submit" className="bg-purple-700 rounded-full w-full">
+            <Button type="submit" className="w-full rounded-full bg-purple-700">
               <span>Modifier le compte</span>
               {loading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
             </Button>
@@ -178,5 +176,3 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
     </>
   );
 }
-
-

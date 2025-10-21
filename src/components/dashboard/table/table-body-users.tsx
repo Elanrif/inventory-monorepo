@@ -1,32 +1,30 @@
-"use client";
+'use client';
 
-import { ConfirmationDialog } from "@/components/confirmation-dialog";
-import { Checkbox } from "@/components/ui/checkbox";
-import { TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { UserDto } from "@/lib/user/models/user.model";
-import { deleteUser } from "@/lib/user/services/user.service";
-import { ROUTES } from "@/utils/route";
-import { Pen } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { ConfirmationDialog } from '@/components/confirmation-dialog';
+import { Checkbox } from '@/components/ui/checkbox';
+import { TableBody, TableCell, TableRow } from '@/components/ui/table';
+import { UserDto } from '@/lib/user/models/user.model';
+import { deleteUser } from '@/lib/user/services/user.service';
+import { ROUTES } from '@/utils/route';
+import { Pen } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 type BodyTableCategoryProps = {
   users: UserDto[];
 };
 
-export default function TableBodyUsers({
-   users,
-   }: BodyTableCategoryProps) {
+export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
   return (
     <TableBody className="text-md">
       {users.map((user, id) => (
         <TableRow key={id}>
           <TableCell>
-            <Checkbox className="border-2 border-gray-400 rounded-xs" />
+            <Checkbox className="rounded-xs border-2 border-gray-400" />
           </TableCell>
           <TableCell className="flex items-center">
             <Image
-              src={"/image"}
+              src={'/image'}
               alt={user.username}
               width={35}
               height={10}
@@ -38,7 +36,7 @@ export default function TableBodyUsers({
           <TableCell>{user.phone}</TableCell>
           <TableCell>{user.address}</TableCell>
           <TableCell>{user.createdAt}</TableCell>
-          <TableCell className="text-center flex items-center gap-2">
+          <TableCell className="flex items-center gap-2 text-center">
             <Link
               href={`${ROUTES.DASHBOARD_UPDATE_USERS}/${user.id}`}
               className="flex items-center gap-3"

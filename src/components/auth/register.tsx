@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { createUser } from "@/lib/user/services/user.service";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
+import { createUser } from '@/lib/user/services/user.service';
 import {
   Form,
   FormControl,
@@ -12,15 +12,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { toast } from "react-toastify";
-import { FcGoogle } from "react-icons/fc";
-import Link from "next/link";
-import { ROUTES } from "@/utils/route";
-import { Loader2 } from "lucide-react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { toast } from 'react-toastify';
+import { FcGoogle } from 'react-icons/fc';
+import Link from 'next/link';
+import { ROUTES } from '@/utils/route';
+import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 type ResgisterProps = {
   className?: string;
@@ -38,10 +38,10 @@ const formSchema = z.object({
     message: "L'adresse mail doit comporter au moins 2 caractères.",
   }),
   password: z.string().min(8, {
-    message: "Le mot de passe doit comporter au moins 8 caractères.",
+    message: 'Le mot de passe doit comporter au moins 8 caractères.',
   }),
   address: z.string().min(2, {
-    message: "Le adresse doit comporter au moins 2 caractères.",
+    message: 'Le adresse doit comporter au moins 2 caractères.',
   }),
 });
 
@@ -56,22 +56,22 @@ export function Register({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      email: "",
-      password: "",
-      phone: "",
-      address: "",
+      username: '',
+      email: '',
+      password: '',
+      phone: '',
+      address: '',
     },
   });
- 
+
   async function onSubmit(data: z.infer<typeof formSchema>) {
     setLoading(true);
     try {
       const user = await createUser(data);
       // user = axios.then ->  User || axios.catch -> throw new Error
       if (user) {
-        toast.success("Inscription réussie !", {
-          position: "top-right",
+        toast.success('Inscription réussie !', {
+          position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -86,7 +86,7 @@ export function Register({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(`Erreur: ${error.message}`, {
-        position: "top-right",
+        position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -103,7 +103,7 @@ export function Register({
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className={`space-y-4 w-[450px] ${className}`}
+          className={`w-[450px] space-y-4 ${className}`}
         >
           <FormField
             control={form.control}
@@ -174,27 +174,27 @@ export function Register({
             )}
           />
           <div className="flex flex-col items-center gap-4">
-            <Button type="submit" className="bg-purple-700 rounded-full w-full">
-              <span>{labelBtn}</span>{" "}
+            <Button type="submit" className="w-full rounded-full bg-purple-700">
+              <span>{labelBtn}</span>{' '}
               {loading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
             </Button>
             {isDisplay && (
               <>
-                <div className="w-[355px] flex items-center text-gray-700">
+                <div className="flex w-[355px] items-center text-gray-700">
                   <div className="flex-1 border-1 border-gray-300" />
                   <span className="mx-2 text-gray-500">OU</span>
                   <div className="flex-1 border-1 border-gray-300" />
                 </div>
-                <Button className="bg-gray-200 hover:bg-slate-200 rounded-full w-full text-black font-bold flex items-center px-4">
+                <Button className="flex w-full items-center rounded-full bg-gray-200 px-4 font-bold text-black hover:bg-slate-200">
                   <FcGoogle className="size-6" />
                   <span className="flex-1 text-center">
                     S&apos;inscrire avec Google
                   </span>
                 </Button>
                 <div className="opacity-60">
-                  Vous avez un compte?{" "}
+                  Vous avez un compte?{' '}
                   <Link href={ROUTES.LOGIN}>
-                    <span className="text-purple-700 hover:underline cursor-pointer font-bold">
+                    <span className="cursor-pointer font-bold text-purple-700 hover:underline">
                       Se connecter
                     </span>
                   </Link>

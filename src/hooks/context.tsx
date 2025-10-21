@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 export type User = {
-    id: string;
-    email: string;
-    name: string;
-    phone: string;
-    address: string;
-  } | null;
+  id: string;
+  email: string;
+  name: string;
+  phone: string;
+  address: string;
+} | null;
 
 interface AppContextType {
   user: User;
@@ -45,7 +45,7 @@ export const useAppContext = (): AppContextType => {
   const context = useContext(AppContext);
 
   if (context === undefined) {
-    throw new Error("useAppContext must be used within an AppProvider");
+    throw new Error('useAppContext must be used within an AppProvider');
   }
 
   return context;

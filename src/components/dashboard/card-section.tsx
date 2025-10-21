@@ -3,12 +3,14 @@ import {
   CardAction,
   CardContent,
   CardHeader,
-} from "@/components/ui/card";
-import { Table, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import React, { JSX } from "react";
-import { LucideIcon, Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import TableFooterSection, { FooterTableProps } from "./table/table-footer-section";
+} from '@/components/ui/card';
+import { Table, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import React, { JSX } from 'react';
+import { LucideIcon, Search } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import TableFooterSection, {
+  FooterTableProps,
+} from './table/table-footer-section';
 
 export type TableColumnProps = {
   label: string | JSX.Element;
@@ -45,12 +47,12 @@ export function CardSection<R>({
       <CardHeader className="flex justify-between p-4">
         <div className="relative ms-2">
           <Input placeholder="Search" className="w-[240px]" />
-          <Search className="absolute top-2 left-52 text-stone-400 size-5" />
+          <Search className="absolute top-2 left-52 size-5 text-stone-400" />
         </div>
-        <div className="hidden xl:flex gap-4">
+        <div className="hidden gap-4 xl:flex">
           {actions.map((action, id) => (
             <CardAction
-              className="flex flex-row items-center gap-2 px-3 py-2 text-sm cursor-pointer"
+              className="flex cursor-pointer flex-row items-center gap-2 px-3 py-2 text-sm"
               key={id}
             >
               {action.icon1 && <action.icon1 size={18} />}

@@ -1,13 +1,13 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import Link from "next/link";
-import { LucideIcon } from "lucide-react";
+} from '@/components/ui/sidebar';
+import Link from 'next/link';
+import { LucideIcon } from 'lucide-react';
 
 export function NavSecondary({
   items,
@@ -28,7 +28,7 @@ export function NavSecondary({
               <SidebarMenuButton asChild size="sm">
                 <Link href={item.url}>
                   <item.icon />
-                  <span className="font-medium text-sm">{item.title}</span>
+                  <span className="text-sm font-medium">{item.title}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

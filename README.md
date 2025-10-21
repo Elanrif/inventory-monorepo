@@ -14,23 +14,92 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Husky, pre-commit and commit-msg
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project uses Husky + lint-staged + Commitlint to automate formatting and commit message validation.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Install development dependencies
 
-## Learn More
+```bash
+npm install --save-dev husky lint-staged prettier eslint @commitlint/cli @commitlint/config-conventional
+```
 
-To learn more about Next.js, take a look at the following resources:
+2. Initialize Husky (run once)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npx husky install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Add the `pre-commit` hook (runs lint-staged)
 
-## Deploy on Vercel
+```bash
+npx husky add .husky/pre-commit "npx --no-install lint-staged"
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Expected `.husky/pre-commit` content
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```sh
+#!/bin/sh
+. "$(dirname \"$0\")/_/husky.sh"
+
+npx --no-install lint-staged
+```
+
+4. Add the `commit-msg` hook (validates commit messages with Commitlint)
+
+```bash
+npx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"
+```
+
+Expected `.husky/commit-msg` content
+
+```sh
+#!/usr/bin/env sh
+. "$(dirname -- \"$0\")/_/husky.sh"
+
+npx --no-install commitlint --edit $1
+```
+
+5. `lint-staged` configuration (example in `package.json`)
+
+```json
+"lint-staged": {
+	"*.+(js|jsx|ts|tsx|json|css|scss|md)": [
+		"npx prettier --write",
+		"npx eslint --fix --ext .js,.jsx,.ts,.tsx"
+	]
+}
+```
+
+Note: Do not include `git add` in lint-staged tasks — modern versions add fixed files automatically.
+
+6. Commitlint configuration (create `commitlint.config.js` at repo root)
+
+```js
+module.exports = {
+  extends: ['@commitlint/config-conventional'],
+};
+```
+
+Useful commands
+
+```bash
+# Format all files locally
+npm run format
+
+# Run Prettier check (CI)
+npm run prettier
+
+# Temporarily bypass hooks
+git commit -m "message" --no-verify
+```
+
+Notes
+
+- Hooks are shell scripts: on Windows use Git Bash or WSL if you run into execution issues.
+- Avoid running long tasks (full test suites) in `pre-commit`; prefer `pre-push` or CI for heavy checks.
+
+## Resources
+
+- Commitlint GitHub: https://github.com/conventional-changelog/commitlint
+- Article (French) about Git hooks and Commitlint: https://comprendre-git.com/fr/automatisation/git-hooks-et-commitlint/
