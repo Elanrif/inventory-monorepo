@@ -38,7 +38,10 @@ export default async function DashboardEditUser({
         </div>
         <EditRegister
           className='w-[600px]'
-          editUser={{ ...user, password: '' }}
+          editUser={{
+            ...user,
+            password: '',
+          }}
         />
       </div>
     </>

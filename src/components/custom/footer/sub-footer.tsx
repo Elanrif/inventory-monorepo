@@ -4,13 +4,22 @@ import { Twitter, Facebook, Instagram, Linkedin } from 'lucide-react';
 
 export default function SubFooter() {
   const socialCards = [
-    { name: 'Twitter', icon: <Twitter className='fill-white' /> },
-    { name: 'Facebook', icon: <Facebook className='fill-white' /> },
+    {
+      name: 'Twitter',
+      icon: <Twitter className='fill-white' />,
+    },
+    {
+      name: 'Facebook',
+      icon: <Facebook className='fill-white' />,
+    },
     {
       name: 'Instagram',
       icon: <Instagram className='fill-white text-black' />,
     },
-    { name: 'LinkedIn', icon: <Linkedin className='fill-white' /> },
+    {
+      name: 'LinkedIn',
+      icon: <Linkedin className='fill-white' />,
+    },
   ];
 
   return (

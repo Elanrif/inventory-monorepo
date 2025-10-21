@@ -397,7 +397,9 @@ function SidebarGroupLabel({
   className,
   asChild = false,
   ...props
-}: React.ComponentProps<'div'> & { asChild?: boolean }) {
+}: React.ComponentProps<'div'> & {
+  asChild?: boolean;
+}) {
   const Comp = asChild ? Slot : 'div';
 
   return (
@@ -418,7 +420,9 @@ function SidebarGroupAction({
   className,
   asChild = false,
   ...props
-}: React.ComponentProps<'button'> & { asChild?: boolean }) {
+}: React.ComponentProps<'button'> & {
+  asChild?: boolean;
+}) {
   const Comp = asChild ? Slot : 'button';
 
   return (
@@ -517,7 +521,13 @@ function SidebarMenuButton({
       data-sidebar='menu-button'
       data-size={size}
       data-active={isActive}
-      className={cn(sidebarMenuButtonVariants({ variant, size }), className)}
+      className={cn(
+        sidebarMenuButtonVariants({
+          variant,
+          size,
+        }),
+        className,
+      )}
       {...props}
     />
   );

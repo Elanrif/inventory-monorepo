@@ -2,7 +2,9 @@ import axios from 'axios';
 import { baseRequestConfig } from './axios/base-request.config';
 
 export default function httpClient() {
-  const instance = axios.create({ ...baseRequestConfig });
+  const instance = axios.create({
+    ...baseRequestConfig,
+  });
   // Intercepteur de réponse -- SERVER Response
   instance.interceptors.response.use(
     (response) => {
