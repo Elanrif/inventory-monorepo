@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "format": "npx prettier --write .",
     "prettier": "npx prettier --check .",
     "prettier:write": "npx prettier --write .",
     "dev": "next dev --turbopack",
