@@ -9,7 +9,7 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset className="mb-10 px-6">{children}</SidebarInset>
+      <SidebarInset className='mb-10 px-6'>{children}</SidebarInset>
     </SidebarProvider>
   );
 }

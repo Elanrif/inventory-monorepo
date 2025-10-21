@@ -25,22 +25,22 @@ export default function SubHeaderSection({
   colors,
 }: subHeaderProps) {
   return (
-    <div className="mt-4 flex flex-col items-center justify-center gap-2 md:flex-row">
-      <Card className="w-full ps-6 md:w-1/4">
-        <CardDescription className="capitalize">
+    <div className='mt-4 flex flex-col items-center justify-center gap-2 md:flex-row'>
+      <Card className='w-full ps-6 md:w-1/4'>
+        <CardDescription className='capitalize'>
           {subHeader.totalTitle}
         </CardDescription>
-        <p className="text-2xl font-bold">${subHeader.totalValue}</p>
+        <p className='text-2xl font-bold'>${subHeader.totalValue}</p>
       </Card>
-      <Card className="w-full space-y-2 ps-7 md:w-3/4">
-        <div className="space-y-2">
-          <div className="flex items-center gap-2">
-            <h1 className="text-lg font-bold">{subHeader.value}</h1>
-            <CardDescription className="capitalize">
+      <Card className='w-full space-y-2 ps-7 md:w-3/4'>
+        <div className='space-y-2'>
+          <div className='flex items-center gap-2'>
+            <h1 className='text-lg font-bold'>{subHeader.value}</h1>
+            <CardDescription className='capitalize'>
               {subHeader.title}
             </CardDescription>
           </div>
-          <div className="flex items-center gap-1">
+          <div className='flex items-center gap-1'>
             {colors.map((color, index) => (
               <span
                 key={index}
@@ -48,12 +48,12 @@ export default function SubHeaderSection({
               />
             ))}
           </div>
-          <div className="flex items-center gap-2 text-sm">
+          <div className='flex items-center gap-2 text-sm'>
             {data.map((data, index) => (
-              <div className="flex items-center gap-1" key={index}>
+              <div className='flex items-center gap-1' key={index}>
                 <p className={cn('rounded-full border', data.className)} />
-                <p className="text-stone-500 capitalize">{data.text}</p>
-                <p className="font-medium">{data.number}</p>
+                <p className='text-stone-500 capitalize'>{data.text}</p>
+                <p className='font-medium'>{data.number}</p>
               </div>
             ))}
           </div>

@@ -93,7 +93,7 @@ export const data = {
     ],
     table: {
       columns: [
-        { label: <Checkbox className="rounded-xs border-2 border-gray-400" /> },
+        { label: <Checkbox className='rounded-xs border-2 border-gray-400' /> },
         { label: 'Name' },
         { label: 'Description' },
         { label: 'Status', icon: ChevronDown },

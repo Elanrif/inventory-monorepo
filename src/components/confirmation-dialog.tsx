@@ -53,9 +53,9 @@ export function ConfirmationDialog<T>({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="outline">
-          <Trash color="red" />
-          {triggerLabel && <span className="ml-2">{triggerLabel}</span>}
+        <Button variant='outline'>
+          <Trash color='red' />
+          {triggerLabel && <span className='ml-2'>{triggerLabel}</span>}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
@@ -66,7 +66,7 @@ export function ConfirmationDialog<T>({
         <AlertDialogFooter>
           <AlertDialogCancel>{cancelLabel}</AlertDialogCancel>
           <AlertDialogAction
-            className="bg-red-500 text-white hover:bg-red-600"
+            className='bg-red-500 text-white hover:bg-red-600'
             onClick={handleDelete}
           >
             {actionLabel}

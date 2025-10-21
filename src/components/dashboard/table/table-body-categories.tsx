@@ -29,19 +29,19 @@ export default function TableBodyCategories({
   };
 
   return (
-    <TableBody className="text-md">
+    <TableBody className='text-md'>
       {categories.map((category, id) => (
         <TableRow key={id}>
           <TableCell>
-            <Checkbox className="rounded-xs border-2 border-gray-400" />
+            <Checkbox className='rounded-xs border-2 border-gray-400' />
           </TableCell>
-          <TableCell className="flex items-center gap-2">
+          <TableCell className='flex items-center gap-2'>
             <Image
               src={'/image'}
-              alt=""
+              alt=''
               width={35}
               height={10}
-              className="object-cover"
+              className='object-cover'
             />
             {category.name}
           </TableCell>
@@ -56,7 +56,7 @@ export default function TableBodyCategories({
             <Dot />
             {category.status?.toLowerCase()}
           </TableCell>
-          <TableCell className="text-center">
+          <TableCell className='text-center'>
             <span
               className={`inline-flex items-center justify-center rounded-full border px-3 py-1 ${
                 category.isFeatured
@@ -68,12 +68,12 @@ export default function TableBodyCategories({
             </span>
           </TableCell>
           <TableCell>{dayjsLocale(category.createdAt)}</TableCell>
-          <TableCell className="flex items-center gap-2 text-center">
+          <TableCell className='flex items-center gap-2 text-center'>
             <Link
               href={`${ROUTES.DASHBOARD_UPDATE_CATEGORIES}/${category.id}`}
-              className="flex items-center gap-3"
+              className='flex items-center gap-3'
             >
-              <Pen size={16} color="blue" />
+              <Pen size={16} color='blue' />
             </Link>
             <ConfirmationDialog
               item={category}
@@ -81,8 +81,8 @@ export default function TableBodyCategories({
                 await deleteCategory(category.id);
                 router.refresh();
               }}
-              title="Supprimer cette catégorie ?"
-              description="Cette action est irréversible."
+              title='Supprimer cette catégorie ?'
+              description='Cette action est irréversible.'
             />
           </TableCell>
         </TableRow>

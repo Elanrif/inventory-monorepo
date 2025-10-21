@@ -17,13 +17,13 @@ export function NotFoundData({
   ],
 }: NotFoundDataProps) {
   return (
-    <div className="mx-auto flex min-h-[96vh] min-w-xl flex-col items-center justify-center gap-4 px-7 py-4">
-      <Alert variant="destructive" className="bg-yellow-50">
+    <div className='mx-auto flex min-h-[96vh] min-w-xl flex-col items-center justify-center gap-4 px-7 py-4'>
+      <Alert variant='destructive' className='bg-yellow-50'>
         <AlertCircleIcon />
         <AlertTitle>{title}</AlertTitle>
         <AlertDescription>
           <p>{description}</p>
-          <ul className="list-inside list-disc text-sm">
+          <ul className='list-inside list-disc text-sm'>
             {details.map((item, idx) => (
               <li key={idx}>{item}</li>
             ))}

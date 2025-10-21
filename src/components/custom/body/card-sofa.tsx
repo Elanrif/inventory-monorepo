@@ -25,18 +25,18 @@ export default function CardSofa({
   circle4,
 }: CardSofaProps) {
   return (
-    <Card className="relative ms-5 mb-10 h-[400px] w-[370px] bg-stone-200">
+    <Card className='relative ms-5 mb-10 h-[400px] w-[370px] bg-stone-200'>
       <Image
         src={imageUrl}
-        alt="sofa"
+        alt='sofa'
         width={300}
         height={30}
-        className="absolute top-10 left-10 rounded-3xl object-cover mix-blend-multiply"
+        className='absolute top-10 left-10 rounded-3xl object-cover mix-blend-multiply'
       />
-      <p className="absolute top-4 left-4 rounded-full bg-white px-3 py-1 font-bold capitalize">
+      <p className='absolute top-4 left-4 rounded-full bg-white px-3 py-1 font-bold capitalize'>
         {title}
       </p>
-      <div className="absolute left-60 flex">
+      <div className='absolute left-60 flex'>
         <p className={`absolute left-2 rounded-full border p-4 ${circle1}`}></p>
         <p className={`absolute left-7 rounded-full border p-4 ${circle2}`}></p>
         <p
@@ -46,12 +46,12 @@ export default function CardSofa({
           className={`absolute left-20 rounded-full border p-4 ${circle4}`}
         ></p>
       </div>
-      <div className="absolute bottom-5 left-5 flex w-[90%] items-center justify-between">
+      <div className='absolute bottom-5 left-5 flex w-[90%] items-center justify-between'>
         <div>
-          <p className="pb-2 text-lg capitalize">{description}</p>
-          <p className="text-xl font-bold">${price}.00</p>
+          <p className='pb-2 text-lg capitalize'>{description}</p>
+          <p className='text-xl font-bold'>${price}.00</p>
         </div>
-        <div className="rounded-full border bg-white p-3">
+        <div className='rounded-full border bg-white p-3'>
           <Handbag size={30} />
         </div>
       </div>

@@ -5,7 +5,7 @@ export type CategoryDto = {
   name: string;
   description: string;
   image: string;
-  status: "active" | "inactive";
+  status: 'active' | 'inactive';
   statusColors: string;
   isFeatured: boolean;
   createdAt: string;
@@ -13,8 +13,6 @@ export type CategoryDto = {
 
 // DTO pour la modification
 export interface CategoryReqDTO {
-  name: string
-  description: string
+  name: string;
+  description: string;
 }
-
-

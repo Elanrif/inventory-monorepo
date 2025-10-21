@@ -16,19 +16,19 @@ type BodyTableCategoryProps = {
 
 export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
   return (
-    <TableBody className="text-md">
+    <TableBody className='text-md'>
       {users.map((user, id) => (
         <TableRow key={id}>
           <TableCell>
-            <Checkbox className="rounded-xs border-2 border-gray-400" />
+            <Checkbox className='rounded-xs border-2 border-gray-400' />
           </TableCell>
-          <TableCell className="flex items-center">
+          <TableCell className='flex items-center'>
             <Image
               src={'/image'}
               alt={user.username}
               width={35}
               height={10}
-              className="mr-2 rounded-md"
+              className='mr-2 rounded-md'
             />
             {user.username}
           </TableCell>
@@ -36,18 +36,18 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
           <TableCell>{user.phone}</TableCell>
           <TableCell>{user.address}</TableCell>
           <TableCell>{user.createdAt}</TableCell>
-          <TableCell className="flex items-center gap-2 text-center">
+          <TableCell className='flex items-center gap-2 text-center'>
             <Link
               href={`${ROUTES.DASHBOARD_UPDATE_USERS}/${user.id}`}
-              className="flex items-center gap-3"
+              className='flex items-center gap-3'
             >
-              <Pen size={16} color="blue" />
+              <Pen size={16} color='blue' />
             </Link>
             <ConfirmationDialog
               item={user}
               onDelete={(user) => deleteUser(user.id)}
-              title="Supprimer cet utilisateur ?"
-              description="Cette action est irréversible."
+              title='Supprimer cet utilisateur ?'
+              description='Cette action est irréversible.'
             />
           </TableCell>
         </TableRow>

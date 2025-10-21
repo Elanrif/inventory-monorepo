@@ -25,23 +25,23 @@ export interface FooterTable {
 export default function TableFooterSection({ footerTable }: FooterTable) {
   const { buttonPagination, buttonResults } = footerTable;
   return (
-    <TableFooter className="bg-white">
+    <TableFooter className='bg-white'>
       <TableRow>
         <TableCell colSpan={8}>
-          <div className="flex items-center justify-between py-2">
-            <div className="flex items-center gap-3">
-              <p className="font-medium">{buttonResults.totalResults}</p>
+          <div className='flex items-center justify-between py-2'>
+            <div className='flex items-center gap-3'>
+              <p className='font-medium'>{buttonResults.totalResults}</p>
 
-              <Button variant="outline" size={buttonResults.size}>
+              <Button variant='outline' size={buttonResults.size}>
                 {buttonResults.label}
                 {buttonResults.icon && <buttonResults.icon />}
               </Button>
             </div>
-            <div className="me-28 flex items-center gap-3">
+            <div className='me-28 flex items-center gap-3'>
               {buttonPagination.map((button, index) => (
                 <Button
                   key={index}
-                  variant="outline"
+                  variant='outline'
                   className={button.className}
                 >
                   {button.icon && button.label === 'Previous' && (
