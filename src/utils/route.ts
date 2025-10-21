@@ -5,6 +5,8 @@ export const ROUTES = {
   REGISTER: '/register',
   DASHBOARD: '/dashboard',
   DASHBOARD_CATEGORIES: '/dashboard/categories',
+  DASHBOARD_ADD_CATEGORIES: '/dashboard/categories/create',
+  DASHBOARD_UPDATE_CATEGORIES: '/dashboard/categories/update',
   DASHBOARD_USERS: '/dashboard/users',
   DASHBOARD_ADD_USERS: '/dashboard/users/create',
   DASHBOARD_UPDATE_USERS: '/dashboard/users/update',

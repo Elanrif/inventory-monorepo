@@ -8,8 +8,6 @@ import {
   Calendar,
   ChevronDown,
   ListFilter,
-  Pen,
-  Trash,
   ArrowRight,
   MoreHorizontal,
   ArrowLeft,
@@ -95,26 +93,15 @@ export const data = {
     ],
     table: {
       columns: [
-        { label: <Checkbox className="rounded-xs border-2 border-gray-400" /> },
+        {
+          label: <Checkbox className='rounded-xs border-2 border-gray-400' />,
+        },
         { label: 'Name' },
         { label: 'Email' },
         { label: 'Phone' },
         { label: 'Address' },
         { label: 'Created' },
         { label: 'Action' },
-      ],
-      actions: [
-        {
-          icon: <Pen color="blue" />,
-          label: 'Edit',
-          url: DASHBOARD_UPDATE_USERS,
-          className: 'text-blue-700',
-        },
-        {
-          icon: <Trash color="red" />,
-          label: 'Delete',
-          className: 'text-red-700',
-        },
       ],
       footer: {
         buttonResults: {

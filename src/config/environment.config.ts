@@ -10,6 +10,7 @@ const environment = {
       endpoints: {
         // Inventory Management Service
         users: `${INV_MGT_BASEURL}/users`,
+        categories: `${INV_MGT_BASEURL}/categories`,
       },
     },
   },

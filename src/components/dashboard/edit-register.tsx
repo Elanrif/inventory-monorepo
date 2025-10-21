@@ -99,12 +99,12 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
         >
           <FormField
             control={form.control}
-            name="username"
+            name='username'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Nom de l&apos;utilisateur</FormLabel>
                 <FormControl>
-                  <Input placeholder="Entrez votre Nom" {...field} />
+                  <Input placeholder='Entrez votre Nom' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -112,12 +112,12 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
           />
           <FormField
             control={form.control}
-            name="email"
+            name='email'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Saisissez votre email" {...field} />
+                  <Input placeholder='Saisissez votre email' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -125,12 +125,12 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
           />
           <FormField
             control={form.control}
-            name="password"
+            name='password'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Mot de passe</FormLabel>
                 <FormControl>
-                  <Input placeholder="Entrez votre mot de passe" {...field} />
+                  <Input placeholder='Entrez votre mot de passe' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -138,13 +138,13 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
           />
           <FormField
             control={form.control}
-            name="phone"
+            name='phone'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Téléphone</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Entrez votre numéro de téléphone"
+                    placeholder='Entrez votre numéro de téléphone'
                     {...field}
                   />
                 </FormControl>
@@ -154,21 +154,21 @@ export function EditRegister({ className, editUser }: ResgisterProps) {
           />
           <FormField
             control={form.control}
-            name="address"
+            name='address'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Adresse</FormLabel>
                 <FormControl>
-                  <Input placeholder="Entrez votre adresse" {...field} />
+                  <Input placeholder='Entrez votre adresse' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <div className="flex flex-col items-center gap-4">
-            <Button type="submit" className="w-full rounded-full bg-purple-700">
+          <div className='flex flex-col items-center gap-4'>
+            <Button type='submit' className='w-full rounded-full bg-purple-700'>
               <span>Modifier le compte</span>
-              {loading && <Loader2 className="ml-2 h-4 w-4 animate-spin" />}
+              {loading && <Loader2 className='ml-2 h-4 w-4 animate-spin' />}
             </Button>
           </div>
         </form>

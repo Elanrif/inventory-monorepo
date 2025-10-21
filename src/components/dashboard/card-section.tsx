@@ -11,7 +11,6 @@ import { Input } from '@/components/ui/input';
 import TableFooterSection, {
   FooterTableProps,
 } from './table/table-footer-section';
-import { ButtonActionProps } from './table/table-body-categories';
 
 export type TableColumnProps = {
   label: string | JSX.Element;
@@ -20,7 +19,6 @@ export type TableColumnProps = {
 
 export type TableSectionProps = {
   columns: TableColumnProps[];
-  actions: ButtonActionProps[];
   footer: FooterTableProps;
 };
 
@@ -45,34 +43,34 @@ export function CardSection<R>({
 }: CardSectionProps<R>) {
   const { columns, footer } = table;
   return (
-    <Card className="mt-6">
-      <CardHeader className="flex justify-between p-4">
-        <div className="relative ms-2">
-          <Input placeholder="Search" className="w-[240px]" />
-          <Search className="absolute top-2 left-52 size-5 text-stone-400" />
+    <Card className='mt-6'>
+      <CardHeader className='flex justify-between p-4'>
+        <div className='relative ms-2'>
+          <Input placeholder='Search' className='w-[240px]' />
+          <Search className='absolute top-2 left-52 size-5 text-stone-400' />
         </div>
-        <div className="hidden gap-4 xl:flex">
+        <div className='hidden gap-4 xl:flex'>
           {actions.map((action, id) => (
             <CardAction
-              className="flex cursor-pointer flex-row items-center gap-2 px-3 py-2 text-sm"
+              className='flex cursor-pointer flex-row items-center gap-2 px-3 py-2 text-sm'
               key={id}
             >
               {action.icon1 && <action.icon1 size={18} />}
-              <p className="capitalize">{action.title}</p>
+              <p className='capitalize'>{action.title}</p>
               {action.icon2 && <action.icon2 size={18} />}
             </CardAction>
           ))}
         </div>
       </CardHeader>
       <CardContent>
-        <Table className="mt-4 w-full">
-          <TableHeader className="bg-muted">
+        <Table className='mt-4 w-full'>
+          <TableHeader className='bg-muted'>
             <TableRow>
               {columns.map((column, index) => (
                 <TableHead key={index}>
                   {column.label}
                   {column.icon && (
-                    <column.icon size={15} className="ml-1 inline" />
+                    <column.icon size={15} className='ml-1 inline' />
                   )}
                 </TableHead>
               ))}

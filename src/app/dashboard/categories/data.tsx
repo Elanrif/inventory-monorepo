@@ -7,13 +7,13 @@ import {
   Calendar,
   ChevronDown,
   ListFilter,
-  Pen,
-  Trash,
   ArrowRight,
   MoreHorizontal,
   ArrowLeft,
 } from 'lucide-react';
+import { ROUTES } from '@/utils/route';
 
+const { DASHBOARD_ADD_CATEGORIES } = ROUTES;
 export const data = {
   headerData: {
     title: 'Categories',
@@ -29,6 +29,7 @@ export const data = {
       {
         icon: Plus,
         label: 'Add Category',
+        href: DASHBOARD_ADD_CATEGORIES,
         className: 'bg-purple-600 text-white hover:bg-purple-700',
         variant: 'default' as ButtonVariant,
       },
@@ -92,25 +93,18 @@ export const data = {
     ],
     table: {
       columns: [
-        { label: <Checkbox className="rounded-xs border-2 border-gray-400" /> },
+        {
+          label: <Checkbox className='rounded-xs border-2 border-gray-400' />,
+        },
         { label: 'Name' },
         { label: 'Description' },
-        { label: 'Status', icon: ChevronDown },
+        {
+          label: 'Status',
+          icon: ChevronDown,
+        },
         { label: 'Is_featured' },
-        { label: 'Created_at' },
+        { label: 'created' },
         { label: 'Action' },
-      ],
-      actions: [
-        {
-          icon: <Pen color="blue" />,
-          label: 'Edit',
-          className: 'text-blue-700',
-        },
-        {
-          icon: <Trash color="red" />,
-          label: 'Delete',
-          className: 'text-red-700',
-        },
       ],
       footer: {
         buttonResults: {

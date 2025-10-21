@@ -78,16 +78,16 @@ export default function Login() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-[450px space-y-5"
+          className='w-[450px space-y-5'
         >
           <FormField
             control={form.control}
-            name="email"
+            name='email'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input placeholder="Saisir votre Email" {...field} />
+                  <Input placeholder='Saisir votre Email' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -95,24 +95,24 @@ export default function Login() {
           />
           <FormField
             control={form.control}
-            name="password"
+            name='password'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Mot de passe</FormLabel>
                 <FormControl>
-                  <Input placeholder="Saisir votre mot de passe" {...field} />
+                  <Input placeholder='Saisir votre mot de passe' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <a href="#" className="text-md text-blue-500 hover:underline">
+          <a href='#' className='text-md text-blue-500 hover:underline'>
             Mot de passe oublié ?
           </a>
-          <div className="mt-4 flex items-center gap-31">
+          <div className='mt-4 flex items-center gap-31'>
             <p>Se souvenir des détails de connexion</p>
             <button
-              type="button"
+              type='button'
               onClick={() => setChecked((v) => !v)}
               className={`flex h-6 w-12 items-center rounded-full p-1 duration-300 ease-in-out ${checked ? 'bg-blue-500' : 'bg-gray-300'}`}
             >
@@ -121,29 +121,29 @@ export default function Login() {
               />
             </button>
           </div>
-          <div className="flex flex-col gap-4">
-            <Button type="submit" className="w-full rounded-full bg-purple-700">
+          <div className='flex flex-col gap-4'>
+            <Button type='submit' className='w-full rounded-full bg-purple-700'>
               Se connecter
             </Button>
-            <div className="flex w-[355px] items-center text-gray-700">
-              <div className="flex-1 border-1 border-gray-300" />
-              <span className="mx-2 text-gray-500">OU</span>
-              <div className="flex-1 border-1 border-gray-300" />
+            <div className='flex w-[355px] items-center text-gray-700'>
+              <div className='flex-1 border-1 border-gray-300' />
+              <span className='mx-2 text-gray-500'>OU</span>
+              <div className='flex-1 border-1 border-gray-300' />
             </div>
             <Button
-              type="submit"
-              className="flex w-full items-center rounded-full bg-gray-200 px-4 font-bold text-black hover:bg-slate-200"
+              type='submit'
+              className='flex w-full items-center rounded-full bg-gray-200 px-4 font-bold text-black hover:bg-slate-200'
             >
-              <FcGoogle className="size-6" />
-              <span className="flex-1 text-center">
+              <FcGoogle className='size-6' />
+              <span className='flex-1 text-center'>
                 Se connecter avec Google
               </span>
             </Button>
           </div>
-          <div className="opacity-60">
+          <div className='opacity-60'>
             Vous n&apos;avez pas de compte?{' '}
             <Link href={ROUTES.REGISTER}>
-              <span className="cursor-pointer font-bold text-purple-700 hover:underline">
+              <span className='cursor-pointer font-bold text-purple-700 hover:underline'>
                 S&apos;inscrire
               </span>
             </Link>

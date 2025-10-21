@@ -10,7 +10,7 @@ export default async function UserPage() {
   const users = await getAllUsers();
   return (
     <>
-      <SidebarBreadcrumb label="Users" />
+      <SidebarBreadcrumb label='Users' />
       <HeaderSection
         headerButtons={data.headerData.headerButtons}
         title={data.headerData.title}
