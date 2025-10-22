@@ -6,7 +6,6 @@ import SubCardSofa from '@/components/custom/body/sub-card-sofa';
 import Banner from '@/components/custom/body/banner';
 import Footer from '@/components/custom/footer/footer';
 import SubFooter from '@/components/custom/footer/sub-footer';
-import { NavMain } from '@/components/nav-main';
 
 export default function Home() {
   return (
@@ -15,9 +14,7 @@ export default function Home() {
       <SubHeader />
       <GridSofa />
       <SubCardSofa />
-
       <Banner />
-
       <Footer />
       <SubFooter />
     </>
