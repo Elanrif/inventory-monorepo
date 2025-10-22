@@ -34,6 +34,7 @@ export const data = {
       totalTitle: 'total users:',
       totalValue: '10,356788',
       title: 'users:',
+      value: '6828',
     },
     colors: [
       { className: 'bg-green-600 w-[150px]' },

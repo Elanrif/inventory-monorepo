@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardDescription } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
-interface subHeaderProps {
+export interface SubHeaderProps {
   subHeader: {
     totalTitle: string;
     totalValue: string;
@@ -23,7 +23,7 @@ export default function SubHeaderSection({
   subHeader,
   data,
   colors,
-}: subHeaderProps) {
+}: SubHeaderProps) {
   return (
     <div className='mt-4 flex flex-col items-center justify-center gap-2 md:flex-row'>
       <Card className='w-full ps-6 md:w-1/4'>

@@ -80,11 +80,11 @@ export const data = {
       },
       {
         title: 'amount status',
-        icon2: ChevronDown,
+        rightIcon: ChevronDown,
       },
       {
         title: 'status',
-        icon2: ChevronDown,
+        rightIcon: ChevronDown,
       },
       {
         leftIcon: ListFilter,
