@@ -15,7 +15,9 @@ export default function Home() {
       <SubHeader />
       <GridSofa />
       <SubCardSofa />
+
       <Banner />
+
       <Footer />
       <SubFooter />
     </>
