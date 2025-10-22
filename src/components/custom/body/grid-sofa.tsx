@@ -66,7 +66,7 @@ export const cardSofaData: CardSofaProps[] = [
 
 export default function GridSofa() {
   return (
-    <div className='mx-12 mt-10 mb-10 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+    <div className='mx-12 mt-10 mb-11 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
       {cardSofaData.map((Sofa, index) => (
         <div className='' key={index}>
           <CardSofa {...Sofa} />
