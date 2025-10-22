@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prettier:check": "npx prettier --check .",
-    "prettier:write": "npx prettier --write .",
+    "check": "npx prettier --check .",
+    "format": "npx prettier --write .",
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
