@@ -2,30 +2,24 @@ import { ButtonVariant } from '@/components/dashboard/header-section';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ROUTES } from '@/utils/route';
 import {
-  Upload,
-  Plus,
-  FileText,
+  ArrowLeft,
+  ArrowRight,
   Calendar,
   ChevronDown,
+  FileText,
   ListFilter,
-  ArrowRight,
   MoreHorizontal,
-  ArrowLeft,
+  Plus,
+  Upload,
 } from 'lucide-react';
 
-const { DASHBOARD_ADD_USERS, DASHBOARD_UPDATE_USERS } = ROUTES;
+const { DASHBOARD_ADD_USERS } = ROUTES;
 export const data = {
   headerData: {
     title: 'Users',
     headerButtons: [
-      {
-        icon: Upload,
-        label: 'Import',
-      },
-      {
-        icon: FileText,
-        label: 'Export',
-      },
+      { icon: Upload, label: 'Import' },
+      { icon: FileText, label: 'Export' },
       {
         icon: Plus,
         label: 'Add User',
@@ -40,18 +34,11 @@ export const data = {
       totalTitle: 'total users:',
       totalValue: '10,356788',
       title: 'users:',
-      value: '2379',
     },
     colors: [
-      {
-        className: 'bg-green-600 w-[150px]',
-      },
-      {
-        className: 'bg-yellow-400 w-[70px]',
-      },
-      {
-        className: 'bg-red-600 w-[120px]',
-      },
+      { className: 'bg-green-600 w-[150px]' },
+      { className: 'bg-yellow-400 w-[70px]' },
+      { className: 'bg-red-600 w-[120px]' },
     ],
     data: [
       {
@@ -74,28 +61,17 @@ export const data = {
   payload: {
     headerBtn: [
       {
-        icon1: Calendar,
+        leftIcon: Calendar,
         title: '12 sep-28 oct 2024',
-        icon2: ChevronDown,
+        rightIcon: ChevronDown,
       },
-      {
-        title: 'amount status',
-        icon2: ChevronDown,
-      },
-      {
-        title: 'status',
-        icon2: ChevronDown,
-      },
-      {
-        icon1: ListFilter,
-        title: ' filter',
-      },
+      { title: 'amount status', rightIcon: ChevronDown },
+      { title: 'status', rightIcon: ChevronDown },
+      { leftIcon: ListFilter, title: ' filter' },
     ],
     table: {
       columns: [
-        {
-          label: <Checkbox className='rounded-xs border-2 border-gray-400' />,
-        },
+        { label: <Checkbox className='rounded-xs border-2 border-gray-400' /> },
         { label: 'Name' },
         { label: 'Email' },
         { label: 'Phone' },
@@ -116,26 +92,12 @@ export const data = {
             icon: ArrowLeft,
             className: 'flex items-center',
           },
-          {
-            label: '1',
-            className: 'border border-purple-700',
-          },
-          {
-            label: '2',
-          },
-          {
-            label: '3',
-          },
-          {
-            icon: MoreHorizontal,
-          },
-          {
-            label: '12',
-          },
-          {
-            label: 'Next',
-            icon: ArrowRight,
-          },
+          { label: '1', className: 'border border-purple-700' },
+          { label: '2' },
+          { label: '3' },
+          { icon: MoreHorizontal },
+          { label: '12' },
+          { label: 'Next', icon: ArrowRight },
         ],
       },
     },

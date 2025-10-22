@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input';
 import TableFooterSection, {
   FooterTableProps,
 } from './table/table-footer-section';
+import AlertEmptyData from '../alert-empty-data';
 
 export type TableColumnProps = {
   label: string | JSX.Element;
@@ -23,24 +24,30 @@ export type TableSectionProps = {
 };
 
 type CardHeaderProps = {
-  icon1?: LucideIcon;
+  leftIcon?: LucideIcon;
   title: string;
-  icon2?: LucideIcon;
+  rightIcon?: LucideIcon;
 };
 
-export type CardSectionProps<R> = {
+type EmptyAction = { label: string; href?: string };
+
+export type CardSectionProps<T> = {
   actions: CardHeaderProps[];
-  data: R;
+  data: T[];
   table: TableSectionProps;
-  render: (xy: R) => React.ReactNode;
+  render: (xy: T[]) => React.ReactNode;
+  emptyMessage?: string;
+  emptyAction?: EmptyAction;
 };
 
-export function CardSection<R>({
+export function CardSection<T>({
   actions,
   table,
   data,
   render,
-}: CardSectionProps<R>) {
+  emptyMessage,
+  emptyAction,
+}: CardSectionProps<T>) {
   const { columns, footer } = table;
   return (
     <Card className='mt-6'>
@@ -55,30 +62,38 @@ export function CardSection<R>({
               className='flex cursor-pointer flex-row items-center gap-2 px-3 py-2 text-sm'
               key={id}
             >
-              {action.icon1 && <action.icon1 size={18} />}
+              {action.leftIcon && <action.leftIcon size={18} />}
               <p className='capitalize'>{action.title}</p>
-              {action.icon2 && <action.icon2 size={18} />}
+              {action.rightIcon && <action.rightIcon size={18} />}
             </CardAction>
           ))}
         </div>
       </CardHeader>
       <CardContent>
-        <Table className='mt-4 w-full'>
-          <TableHeader className='bg-muted'>
-            <TableRow>
-              {columns.map((column, index) => (
-                <TableHead key={index}>
-                  {column.label}
-                  {column.icon && (
-                    <column.icon size={15} className='ml-1 inline' />
-                  )}
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          {render(data)}
-          <TableFooterSection footerTable={footer} />
-        </Table>
+        {data.length > 0 ? (
+          <Table className='mt-4 w-full'>
+            <TableHeader className='bg-muted'>
+              <TableRow>
+                {columns.map((column, index) => (
+                  <TableHead key={index}>
+                    {column.label}
+                    {column.icon && (
+                      <column.icon size={15} className='ml-1 inline' />
+                    )}
+                  </TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+            {render(data)}
+            <TableFooterSection footerTable={footer} />
+          </Table>
+        ) : (
+          <AlertEmptyData
+            className='mx-auto max-w-3xl'
+            message={emptyMessage}
+            action={emptyAction}
+          />
+        )}
       </CardContent>
     </Card>
   );

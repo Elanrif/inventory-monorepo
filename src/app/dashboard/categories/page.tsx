@@ -5,6 +5,7 @@ import SubHeaderSection from '@/components/dashboard/sub-header-section';
 import { CardSection } from '@/components/dashboard/card-section';
 import TableBodyCategories from '@/components/dashboard/table/table-body-categories';
 import { getAllCategories } from '@/lib/category/services/category.service';
+import { ROUTES } from '@/utils/route';
 
 export default async function CategoriePage() {
   const categories = await getAllCategories();
@@ -20,6 +21,11 @@ export default async function CategoriePage() {
       <CardSection
         actions={data.payload.headerBtn}
         table={data.payload.table}
+        emptyMessage={'Aucune catégorie trouvée'}
+        emptyAction={{
+          label: 'Créer une catégorie',
+          href: ROUTES.DASHBOARD_ADD_CATEGORIES,
+        }}
         data={categories}
         render={(c) => <TableBodyCategories categories={c} />}
       />

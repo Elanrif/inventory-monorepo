@@ -74,9 +74,9 @@ export const data = {
   payload: {
     headerBtn: [
       {
-        icon1: Calendar,
+        leftIcon: Calendar,
         title: '12 sep-28 oct 2024',
-        icon2: ChevronDown,
+        rightIcon: ChevronDown,
       },
       {
         title: 'amount status',
@@ -87,7 +87,7 @@ export const data = {
         icon2: ChevronDown,
       },
       {
-        icon1: ListFilter,
+        leftIcon: ListFilter,
         title: ' filter',
       },
     ],
