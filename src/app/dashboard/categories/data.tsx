@@ -20,15 +20,15 @@ export const data = {
     headerButtons: [
       {
         icon: Upload,
-        label: 'Import',
+        label: 'Importer',
       },
       {
         icon: FileText,
-        label: 'Export',
+        label: 'Exporter',
       },
       {
         icon: Plus,
-        label: 'Add Category',
+        label: 'Ajouter catégorie',
         href: DASHBOARD_ADD_CATEGORIES,
         className: 'bg-purple-600 text-white hover:bg-purple-700',
         variant: 'default' as ButtonVariant,
@@ -39,7 +39,7 @@ export const data = {
     subHeader: {
       totalTitle: 'total users:',
       totalValue: '10,356788',
-      title: 'users:',
+      title: 'utilisateurs:',
       value: '2379',
     },
     colors: [
@@ -96,10 +96,10 @@ export const data = {
         {
           label: <Checkbox className='rounded-xs border-2 border-gray-400' />,
         },
-        { label: 'Name' },
+        { label: 'Nom' },
         { label: 'Description' },
         {
-          label: 'Status',
+          label: 'Statuts',
           icon: ChevronDown,
         },
         { label: 'Is_featured' },
