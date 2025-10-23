@@ -20,15 +20,15 @@ export const data = {
     headerButtons: [
       {
         icon: Upload,
-        label: 'Import',
+        label: 'Importer',
       },
       {
         icon: FileText,
-        label: 'Export',
+        label: 'Exporter',
       },
       {
         icon: Plus,
-        label: 'Add Category',
+        label: 'Ajouter une catégorie',
         href: DASHBOARD_ADD_CATEGORIES,
         className: 'bg-purple-600 text-white hover:bg-purple-700',
         variant: 'default' as ButtonVariant,
@@ -37,9 +37,9 @@ export const data = {
   },
   subHeaderData: {
     subHeader: {
-      totalTitle: 'total users:',
+      totalTitle: 'Catégories total:',
       totalValue: '10,356788',
-      title: 'users:',
+      title: 'Catégories:',
       value: '2379',
     },
     colors: [
@@ -56,17 +56,17 @@ export const data = {
     data: [
       {
         className: 'bg-green-600 py-1.5 w-[5px]',
-        text: 'in stock: ',
+        text: 'en stock: ',
         number: '1452',
       },
       {
         className: 'bg-yellow-600 py-1.5 w-[5px]',
-        text: 'low stock: ',
+        text: 'stock faible: ',
         number: '355',
       },
       {
         className: 'bg-red-600 py-1.5 w-[5px] ',
-        text: 'out of stock:',
+        text: 'rupture de stock:',
         number: '186',
       },
     ],
@@ -79,16 +79,16 @@ export const data = {
         rightIcon: ChevronDown,
       },
       {
-        title: 'amount status',
+        title: 'statut des montants',
         rightIcon: ChevronDown,
       },
       {
-        title: 'status',
+        title: 'statut des catégories',
         rightIcon: ChevronDown,
       },
       {
         leftIcon: ListFilter,
-        title: ' filter',
+        title: ' filtrage',
       },
     ],
     table: {
@@ -96,26 +96,26 @@ export const data = {
         {
           label: <Checkbox className='rounded-xs border-2 border-gray-400' />,
         },
-        { label: 'Name' },
+        { label: 'Nom' },
         { label: 'Description' },
         {
-          label: 'Status',
+          label: 'Statut',
           icon: ChevronDown,
         },
-        { label: 'Is_featured' },
-        { label: 'created' },
-        { label: 'Action' },
+        { label: 'Mise en avant' },
+        { label: 'Créé le' },
+        { label: 'Actions' },
       ],
       footer: {
         buttonResults: {
-          totalResults: 'Result 1-10 of 45',
+          totalResults: 'résultat 1-10 de 45',
           label: '10',
           icon: ChevronDown,
           size: 'sm',
         },
         buttonPagination: [
           {
-            label: 'Previous',
+            label: 'Précédent',
             icon: ArrowLeft,
             className: 'flex items-center',
           },
@@ -136,7 +136,7 @@ export const data = {
             label: '12',
           },
           {
-            label: 'Next',
+            label: 'Suivant',
             icon: ArrowRight,
           },
         ],

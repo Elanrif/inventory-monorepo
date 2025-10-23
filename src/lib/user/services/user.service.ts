@@ -21,6 +21,16 @@ export const getAllUsers = async (): Promise<UserDto[]> => {
     });
 };
 
+export const fetchByOrderByIdDesc = async (): Promise<UserDto[]> => {
+  return axios
+    .get<UserDto[]>(`${userUrl}/desc`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error('Erreur fetchByOrderByIdDesc:', error);
+      return [];
+    });
+};
+
 export const getUserById = async (id: number): Promise<UserDto | null> =>
   axios
     .get<UserDto>(`${userUrl}/${id}`)

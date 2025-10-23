@@ -5,16 +5,19 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { UserDto } from '@/lib/user/models/user.model';
 import { deleteUser } from '@/lib/user/services/user.service';
+import { dayjsLocale } from '@/shared/index-shared';
 import { ROUTES } from '@/utils/route';
 import { Pen } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 type BodyTableCategoryProps = {
   users: UserDto[];
 };
 
 export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
+  const router = useRouter();
   return (
     <TableBody className='text-md'>
       {users.map((user, id) => (
@@ -35,7 +38,7 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
           <TableCell>{user.email}</TableCell>
           <TableCell>{user.phone}</TableCell>
           <TableCell>{user.address}</TableCell>
-          <TableCell>{user.createdAt}</TableCell>
+          <TableCell>{dayjsLocale(user.createdAt)}</TableCell>
           <TableCell className='flex items-center gap-2 text-center'>
             <Link
               href={`${ROUTES.DASHBOARD_UPDATE_USERS}/${user.id}`}
@@ -45,7 +48,8 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
             </Link>
             <ConfirmationDialog
               item={user}
-              onDelete={(user) => deleteUser(user.id)}
+              onDelete={async (user) => { await deleteUser(user.id);
+              router.refresh(); }}
               title='Supprimer cet utilisateur ?'
               description='Cette action est irréversible.'
             />

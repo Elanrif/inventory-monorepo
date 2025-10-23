@@ -21,6 +21,16 @@ export const getAllCategories = async (): Promise<CategoryDto[]> => {
     });
 };
 
+export const fetchCategoriesByOrderByIdDesc = async (): Promise<CategoryDto[]> => {
+  return axios
+    .get<CategoryDto[]>(`${categoryUrl}/desc`)
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error('Erreur fetchCategoriesByOrderByIdDesc:', error);
+      return [];
+    });
+};
+
 export const getCategoryById = async (
   id: number,
 ): Promise<CategoryDto | null> =>
