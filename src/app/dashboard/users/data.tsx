@@ -16,13 +16,13 @@ import {
 const { DASHBOARD_ADD_USERS } = ROUTES;
 export const data = {
   headerData: {
-    title: 'Users',
+    title: 'Utilisateurs',
     headerButtons: [
-      { icon: Upload, label: 'Import' },
-      { icon: FileText, label: 'Export' },
+      { icon: Upload, label: 'Importer' },
+      { icon: FileText, label: 'Exporter' },
       {
         icon: Plus,
-        label: 'Add User',
+        label: 'Ajouter utilisateur',
         href: DASHBOARD_ADD_USERS,
         className: 'bg-purple-600 text-white hover:bg-purple-700',
         variant: 'default' as ButtonVariant,
@@ -31,9 +31,9 @@ export const data = {
   },
   subHeaderData: {
     subHeader: {
-      totalTitle: 'total users:',
+      totalTitle: 'utilisateurs total:',
       totalValue: '10,356788',
-      title: 'users:',
+      title: 'utilisateurs:',
       value: '6828',
     },
     colors: [
@@ -44,17 +44,17 @@ export const data = {
     data: [
       {
         className: 'bg-green-600 py-1.5 w-[5px]',
-        text: 'in stock: ',
+        text: 'en stock: ',
         number: '1452',
       },
       {
         className: 'bg-yellow-600 py-1.5 w-[5px]',
-        text: 'low stock: ',
+        text: 'stock faible :',
         number: '355',
       },
       {
         className: 'bg-red-600 py-1.5 w-[5px] ',
-        text: 'out of stock:',
+        text: 'en rupture de stock:',
         number: '186',
       },
     ],
@@ -73,11 +73,11 @@ export const data = {
     table: {
       columns: [
         { label: <Checkbox className='rounded-xs border-2 border-gray-400' /> },
-        { label: 'Name' },
+        { label: 'Nom' },
         { label: 'Email' },
-        { label: 'Phone' },
-        { label: 'Address' },
-        { label: 'Created' },
+        { label: 'Téléphone' },
+        { label: 'Adresse' },
+        { label: 'Créer le' },
         { label: 'Action' },
       ],
       footer: {
@@ -89,7 +89,7 @@ export const data = {
         },
         buttonPagination: [
           {
-            label: 'Previous',
+            label: 'Précédente',
             icon: ArrowLeft,
             className: 'flex items-center',
           },
@@ -98,7 +98,8 @@ export const data = {
           { label: '3' },
           { icon: MoreHorizontal },
           { label: '12' },
-          { label: 'Next', icon: ArrowRight },
+          { label: 'Suivante',
+             icon: ArrowRight },
         ],
       },
     },

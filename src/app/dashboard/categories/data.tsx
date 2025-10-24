@@ -37,7 +37,7 @@ export const data = {
   },
   subHeaderData: {
     subHeader: {
-      totalTitle: 'total users:',
+      totalTitle: 'utilisateurs total:',
       totalValue: '10,356788',
       title: 'utilisateurs:',
       value: '2379',
@@ -56,17 +56,17 @@ export const data = {
     data: [
       {
         className: 'bg-green-600 py-1.5 w-[5px]',
-        text: 'in stock: ',
+        text: 'en stock: ',
         number: '1452',
       },
       {
         className: 'bg-yellow-600 py-1.5 w-[5px]',
-        text: 'low stock: ',
+        text: 'stock faible :',
         number: '355',
       },
       {
         className: 'bg-red-600 py-1.5 w-[5px] ',
-        text: 'out of stock:',
+        text: 'en rupture de stock:',
         number: '186',
       },
     ],
@@ -99,11 +99,11 @@ export const data = {
         { label: 'Nom' },
         { label: 'Description' },
         {
-          label: 'Statuts',
+          label: 'Statut',
           icon: ChevronDown,
         },
-        { label: 'Is_featured' },
-        { label: 'created' },
+        { label: 'En vedette' },
+        { label: 'Créer le' },
         { label: 'Action' },
       ],
       footer: {
@@ -115,7 +115,7 @@ export const data = {
         },
         buttonPagination: [
           {
-            label: 'Previous',
+            label: 'Précédente',
             icon: ArrowLeft,
             className: 'flex items-center',
           },
@@ -136,7 +136,7 @@ export const data = {
             label: '12',
           },
           {
-            label: 'Next',
+            label: 'Suivante',
             icon: ArrowRight,
           },
         ],

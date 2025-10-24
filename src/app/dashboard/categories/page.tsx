@@ -8,7 +8,7 @@ import { getAllCategories } from '@/lib/category/services/category.service';
 import { ROUTES } from '@/utils/route';
 
 export default async function CategoriePage() {
-  const categories = await getAllCategories("asc");
+  const categories = await getAllCategories("desc");
 
   return (
     <>
