@@ -6,7 +6,7 @@ import { TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { CategoryDto } from '@/lib/category/models/category.model';
 import { deleteCategory } from '@/lib/category/services/category.service';
 import 'dayjs/locale/fr';
-import { dayjsLocale } from '@/shared/index-shared';
+import { dayjsLocale, truncateStr } from '@/shared/index-shared';
 import { ROUTES } from '@/utils/route';
 import { Dot, Pen } from 'lucide-react';
 import Image from 'next/image';
@@ -20,13 +20,8 @@ type BodyTableCategoryProps = {
 export default function TableBodyCategories({
   categories,
 }: BodyTableCategoryProps) {
+  
   const router = useRouter();
-  const truncateStr = (MessageChannel: string, length = 10): string => {
-    const result =
-      MessageChannel.slice(0, length) +
-      (MessageChannel.length > 10 ? '...' : '');
-    return result;
-  };
 
   return (
     <TableBody className='text-md'>
@@ -64,7 +59,7 @@ export default function TableBodyCategories({
                   : 'bg-gray-100 text-gray-600'
               }`}
             >
-              {category.isFeatured ? 'Yes' : 'No'}
+              {category.isFeatured ? 'oui' : 'non'}
             </span>
           </TableCell>
           <TableCell>{dayjsLocale(category.createdAt)}</TableCell>
