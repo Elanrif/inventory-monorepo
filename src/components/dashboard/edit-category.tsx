@@ -186,8 +186,8 @@ export function EditCategory({ category }: { category: CategoryDto }) {
                             <SelectContent>
                               <SelectGroup>
                                 <SelectLabel>Mise en avant</SelectLabel>
-                                <SelectItem value='true'>Yes</SelectItem>
-                                <SelectItem value='false'>No</SelectItem>
+                                <SelectItem value='true'>Oui</SelectItem>
+                                <SelectItem value='false'>Non</SelectItem>
                               </SelectGroup>
                             </SelectContent>
                           </Select>

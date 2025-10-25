@@ -64,7 +64,7 @@ export default function TableBodyCategories({
                   : 'bg-gray-100 text-gray-600'
               }`}
             >
-              {category.isFeatured ? 'Yes' : 'No'}
+              {category.isFeatured ? 'Oui' : 'Non'}
             </span>
           </TableCell>
           <TableCell>{dayjsLocale(category.createdAt)}</TableCell>
