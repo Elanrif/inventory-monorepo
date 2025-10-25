@@ -21,12 +21,12 @@ export const getAllUsers = async (): Promise<UserDto[]> => {
     });
 };
 
-export const fetchByOrderByIdDesc = async (): Promise<UserDto[]> => {
+export const fetchAllUsers = (order?: string): Promise<UserDto[]> => {
   return axios
-    .get<UserDto[]>(`${userUrl}/desc`)
+    .get<UserDto[]>(userUrl, { params: { order } })
     .then((res) => res.data)
     .catch((error) => {
-      console.error('Erreur fetchByOrderByIdDesc:', error);
+      console.error('Erreur fetchAllUsers:', error);
       return [];
     });
 };

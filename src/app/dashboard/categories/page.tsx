@@ -4,11 +4,11 @@ import HeaderSection from '@/components/dashboard/header-section';
 import SubHeaderSection from '@/components/dashboard/sub-header-section';
 import { CardSection } from '@/components/dashboard/card-section';
 import TableBodyCategories from '@/components/dashboard/table/table-body-categories';
-import { fetchCategoriesByOrderByIdDesc } from '@/lib/category/services/category.service';
+import { fetchAllCategories } from '@/lib/category/services/category.service';
 import { ROUTES } from '@/utils/route';
 
 export default async function CategoriePage() {
-  const categories = await fetchCategoriesByOrderByIdDesc();
+  const categories = await fetchAllCategories('desc');
 
   return (
     <>

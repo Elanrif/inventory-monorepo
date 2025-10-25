@@ -21,12 +21,12 @@ export const getAllCategories = async (): Promise<CategoryDto[]> => {
     });
 };
 
-export const fetchCategoriesByOrderByIdDesc = async (): Promise<CategoryDto[]> => {
+export const fetchAllCategories = (order?: string): Promise<CategoryDto[]> => {
   return axios
-    .get<CategoryDto[]>(`${categoryUrl}/desc`)
+    .get<CategoryDto[]>(categoryUrl, { params: { order } })
     .then((res) => res.data)
     .catch((error) => {
-      console.error('Erreur fetchCategoriesByOrderByIdDesc:', error);
+      console.error('Erreur fetchAllCategories:', error);
       return [];
     });
 };
