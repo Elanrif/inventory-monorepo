@@ -11,9 +11,11 @@ const {
   },
 } = environment;
 
-export const getAllCategories = async (): Promise<CategoryDto[]> => {
+export const getAllCategories = async (
+  order?: 'asc' | 'desc',
+): Promise<CategoryDto[]> => {
   return axios
-    .get<CategoryDto[]>(`${categoryUrl}`)
+    .get<CategoryDto[]>(`${categoryUrl}`, { params: { order } })
     .then((res) => res.data)
     .catch((error) => {
       console.error('Erreur getAllCategories:', error);
