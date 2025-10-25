@@ -4,12 +4,12 @@ import HeaderSection from '@/components/dashboard/header-section';
 import SubHeaderSection from '@/components/dashboard/sub-header-section';
 import { CardSection } from '@/components/dashboard/card-section';
 import TableBodyCategories from '@/components/dashboard/table/table-body-categories';
-import { fetchAllCategories } from '@/lib/category/services/category.service';
+import {getAllCategories } from '@/lib/category/services/category.service';
 import { ROUTES } from '@/utils/route';
 
 export default async function CategoriePage() {
-  const categories = await fetchAllCategories('desc');
-
+  const categories = await getAllCategories('desc');
+  console.dir(categories, { depth: null });
   return (
     <>
       <SidebarBreadcrumb label='Categories' />
