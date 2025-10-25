@@ -66,14 +66,14 @@ export const data = {
         title: '12 sep-28 oct 2024',
         rightIcon: ChevronDown,
       },
-      { title: 'amount status', rightIcon: ChevronDown },
+      { title: 'statut du montant', rightIcon: ChevronDown },
       { title: 'status', rightIcon: ChevronDown },
-      { leftIcon: ListFilter, title: ' filter' },
+      { leftIcon: ListFilter, title: ' filtre' },
     ],
     table: {
       columns: [
         { label: <Checkbox className='rounded-xs border-2 border-gray-400' /> },
-        { label: 'Nom' },
+        { label: 'Nom & Prénom'},
         { label: 'Email' },
         { label: 'Téléphone' },
         { label: 'Adresse' },
@@ -82,7 +82,7 @@ export const data = {
       ],
       footer: {
         buttonResults: {
-          totalResults: 'Result 1-10 of 45',
+          totalResults: 'Résultat 1-10 sur 45',
           label: '10',
           icon: ChevronDown,
           size: 'sm',

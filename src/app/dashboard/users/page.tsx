@@ -7,7 +7,7 @@ import { CardSection } from '@/components/dashboard/card-section';
 import TableBodyUsers from '@/components/dashboard/table/table-body-users';
 
 export default async function UserPage() {
-  const users = await getAllUsers();
+  const users = await getAllUsers("desc");
   return (
     <>
       <SidebarBreadcrumb label='Users' />

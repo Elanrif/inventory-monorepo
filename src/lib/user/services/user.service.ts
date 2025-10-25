@@ -11,9 +11,12 @@ const {
   },
 } = environment;
 
-export const getAllUsers = async (): Promise<UserDto[]> => {
+export const getAllUsers = async (
+  order?: "asc" | "desc"
+): Promise<UserDto[]> => {
+  const qs = order ? `?order=${order}` : "";
   return axios
-    .get<UserDto[]>(`${userUrl}`)
+    .get<UserDto[]>(`${userUrl}${qs}`)
     .then((res) => res.data)
     .catch((error) => {
       console.error('Erreur getAllUsers:', error);

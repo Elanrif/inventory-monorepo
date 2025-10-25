@@ -42,8 +42,8 @@ const statusOptions = [
   },
 ];
 const featuredOptions = [
-  { value: 'true', label: 'Yes' },
-  { value: 'false', label: 'No' },
+  { value: 'true', label: 'Oui' },
+  { value: 'false', label: 'Non' },
 ];
 
 const formSchema = z.object({

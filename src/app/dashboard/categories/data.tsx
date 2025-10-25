@@ -79,16 +79,16 @@ export const data = {
         rightIcon: ChevronDown,
       },
       {
-        title: 'amount status',
+        title: 'statut du montant',
         rightIcon: ChevronDown,
       },
       {
-        title: 'status',
+        title: 'statuts',
         rightIcon: ChevronDown,
       },
       {
         leftIcon: ListFilter,
-        title: ' filter',
+        title: ' filtre',
       },
     ],
     table: {
