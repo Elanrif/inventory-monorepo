@@ -1,33 +1,41 @@
 name: reviewdog
-on: 
+run-name: reviewdog ESLint on push and pull request
+
+on:
     push:
         branches:
-        - main
+            - main
     pull_request:
 jobs:
-  eslint:
-    name: runner / eslint
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Use Node.js 20
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'npm'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build project
-        run: npm run build --if-present
-      - name: Remove .next folder
-        run: rm -rf .next
+    eslint:
+        name: runner / eslint
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            pull-requests: write
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Installing Node.js 20
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 20
+                  cache: "npm"
+            - name: Install dependencies
+              run: npm ci
+            - uses: haya14busa/action-cond@v1
+              id: reporter
+              with:
+                  cond: ${{github.event_name == 'pull_request'}}
+                  if_true: "github-pr-check"
+                  if_false: "github-check"
 
-      - uses: reviewdog/action-eslint@v1 # v1.33.2
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-check # Change reporter.
-          eslint_flags: "src/"
+            - name: Run ESLint with reviewdog
+              uses: reviewdog/action-eslint@v1
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  reporter: ${{ steps.reporter.outputs.value }}
+                  eslint_flags: "src/"
+
+            - name : Fail CI on ESLint errors
+              run: npx eslint . --ext .js,.jsx,.ts,.tsx || exit $?    
