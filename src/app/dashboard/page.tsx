@@ -1,7 +1,6 @@
 import SidebarBreadcrumb from '@/components/sidebar-breadcrumb';
 
 export default function DashboardPage() {
-  const data = 'elanrif';
   return (
     <>
       <SidebarBreadcrumb label='Chargement des données' />

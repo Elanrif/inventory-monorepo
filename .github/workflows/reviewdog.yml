@@ -38,4 +38,4 @@ jobs:
                   eslint_flags: "src/"
 
             - name : Fail CI on ESLint errors
-              run: npx eslint . --ext .js,.jsx,.ts,.tsx || exit $?    
+              run: npx eslint . --ext .js,.jsx,.ts,.tsx || exit $?
