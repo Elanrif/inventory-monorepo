@@ -12,9 +12,8 @@ const {
 } = environment;
 
 export const getAllCategories = async (order?: "asc" | "desc"): Promise<CategoryDto[]> => {
-  const qs = order ? `?order=${order}` : "";
   return axios
-    .get<CategoryDto[]>(`${categoryUrl}${qs}`)
+    .get<CategoryDto[]>(`${categoryUrl}`, { params: { order }})
     .then((res) => res.data)
     .catch((error) => {
       console.error('Erreur getAllCategories:', error);

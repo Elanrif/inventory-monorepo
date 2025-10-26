@@ -5,7 +5,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { UserDto } from '@/lib/user/models/user.model';
 import { deleteUser } from '@/lib/user/services/user.service';
-import { dayjsLocale } from '@/shared/index-shared';
+import { dayjsLocale, truncateText } from '@/shared/index-shared';
 import { ROUTES } from '@/utils/route';
 import { Pen } from 'lucide-react';
 import Image from 'next/image';
@@ -18,12 +18,7 @@ type BodyTableCategoryProps = {
 
 export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
   const router = useRouter();
-    const truncateStr = (MessageChannel: string, length = 10): string => {
-      const result =
-        MessageChannel.slice(0, length) +
-        (MessageChannel.length > 10 ? '...' : '');
-      return result;
-    };
+    
 
   return (
     <TableBody className='text-md'>
@@ -40,7 +35,7 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
               height={10}
               className='mr-2 rounded-md'
             />
-            {truncateStr(user.username)}
+            {truncateText(user.username)}
           </TableCell>
           <TableCell>{user.email}</TableCell>
           <TableCell>{user.phone}</TableCell>
