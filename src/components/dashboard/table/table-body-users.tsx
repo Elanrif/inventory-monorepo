@@ -5,7 +5,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { UserDto } from '@/lib/user/models/user.model';
 import { deleteUser } from '@/lib/user/services/user.service';
-import { dayjsLocale, truncateText } from '@/shared/index-shared';
+import { dayjsLocale, truncateName} from '@/shared/index-shared';
 import { ROUTES } from '@/utils/route';
 import { Pen } from 'lucide-react';
 import Image from 'next/image';
@@ -35,7 +35,7 @@ export default function TableBodyUsers({ users }: BodyTableCategoryProps) {
               height={10}
               className='mr-2 rounded-md'
             />
-            {truncateText(user.username)}
+            {truncateName(user.username)}
           </TableCell>
           <TableCell>{user.email}</TableCell>
           <TableCell>{user.phone}</TableCell>
