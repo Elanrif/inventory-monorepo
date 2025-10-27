@@ -120,7 +120,7 @@ export function CreateCategory({ className }: { className?: string }) {
                 name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nom de la catégorie</FormLabel>
+                    <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Nom de la catégorie</FormLabel>
                     <FormControl>
                       <Input
                         placeholder='Entrez le nom de la catégorie'
@@ -136,7 +136,7 @@ export function CreateCategory({ className }: { className?: string }) {
                 name='description'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Description</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder='Saisissez la description'
@@ -153,7 +153,7 @@ export function CreateCategory({ className }: { className?: string }) {
                 name='imageUrl'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Image URL</FormLabel>
+                    <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Image URL</FormLabel>
                     <FormControl>
                       <Input placeholder="Entrez l'URL de l'image" {...field} />
                     </FormControl>
@@ -168,7 +168,7 @@ export function CreateCategory({ className }: { className?: string }) {
                     name='status'
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Status</FormLabel>
+                        <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Status</FormLabel>
                         <FormControl>
                           <Select
                             value={field.value}
@@ -179,7 +179,7 @@ export function CreateCategory({ className }: { className?: string }) {
                             </SelectTrigger>
                             <SelectContent>
                               <SelectGroup>
-                                <SelectLabel>Status</SelectLabel>
+                                <SelectLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Status</SelectLabel>
                                 {statusOptions.map((status, index) => (
                                   <SelectItem key={index} value={status.value}>
                                     {status.label}
@@ -198,7 +198,7 @@ export function CreateCategory({ className }: { className?: string }) {
                     name='isFeatured'
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Mise en avant</FormLabel>
+                        <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Mise en avant</FormLabel>
                         <FormControl>
                           <Select
                             value={field.value ? 'true' : 'false'}

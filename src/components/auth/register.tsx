@@ -110,7 +110,9 @@ export function Register({
             name='username'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Nom de l&apos;utilisateur</FormLabel>
+                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>
+                  Nom de l&apos;utilisateur
+                </FormLabel>
                 <FormControl>
                   <Input placeholder='Entrez votre Nom' {...field} />
                 </FormControl>
@@ -123,7 +125,9 @@ export function Register({
             name='email'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>
+                  Email
+                </FormLabel>
                 <FormControl>
                   <Input placeholder='Saisissez votre email' {...field} />
                 </FormControl>
@@ -136,7 +140,9 @@ export function Register({
             name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Mot de passe</FormLabel>
+                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>
+                  Mot de passe
+                </FormLabel>
                 <FormControl>
                   <Input placeholder='Entrez votre mot de passe' {...field} />
                 </FormControl>
@@ -149,7 +155,9 @@ export function Register({
             name='phone'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Téléphone</FormLabel>
+                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>
+                  Téléphone
+                </FormLabel>
                 <FormControl>
                   <Input
                     placeholder='Entrez votre numéro de téléphone'
@@ -165,7 +173,9 @@ export function Register({
             name='address'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Adresse</FormLabel>
+                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>
+                  Adresse
+                </FormLabel>
                 <FormControl>
                   <Input placeholder='Entrez votre adresse' {...field} />
                 </FormControl>

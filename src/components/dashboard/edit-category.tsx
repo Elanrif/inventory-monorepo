@@ -97,7 +97,7 @@ export function EditCategory({ category }: { category: CategoryDto }) {
                 name='name'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Nom de la catégorie</FormLabel>
+                    <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Nom de la catégorie</FormLabel>
                     <FormControl>
                       <Input
                         placeholder='Entrez le nom de la catégorie'
@@ -113,7 +113,7 @@ export function EditCategory({ category }: { category: CategoryDto }) {
                 name='description'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Description</FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder='Saisissez la description'
@@ -130,7 +130,7 @@ export function EditCategory({ category }: { category: CategoryDto }) {
                 name='imageUrl'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>URL de l&apos;image</FormLabel>
+                    <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>URL de l&apos;image</FormLabel>
                     <FormControl>
                       <Input placeholder="Entrez l'URL de l'image" {...field} />
                     </FormControl>
@@ -145,7 +145,7 @@ export function EditCategory({ category }: { category: CategoryDto }) {
                     name='status'
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Status</FormLabel>
+                        <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Status</FormLabel>
                         <FormControl>
                           <Select
                             value={field.value}
@@ -156,7 +156,7 @@ export function EditCategory({ category }: { category: CategoryDto }) {
                             </SelectTrigger>
                             <SelectContent>
                               <SelectGroup>
-                                <SelectLabel>Status</SelectLabel>
+                                <SelectLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Status</SelectLabel>
                                 <SelectItem value='ACTIVE'>Active</SelectItem>
                                 <SelectItem value='INACTIVE'>
                                   Inactive
