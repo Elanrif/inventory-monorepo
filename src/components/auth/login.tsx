@@ -85,7 +85,7 @@ export default function Login() {
             name='email'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Email</FormLabel>
                 <FormControl>
                   <Input placeholder='Saisir votre Email' {...field} />
                 </FormControl>
@@ -98,7 +98,7 @@ export default function Login() {
             name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Mot de passe</FormLabel>
+                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Mot de passe</FormLabel>
                 <FormControl>
                   <Input placeholder='Saisir votre mot de passe' {...field} />
                 </FormControl>

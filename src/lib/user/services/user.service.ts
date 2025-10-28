@@ -11,12 +11,25 @@ const {
   },
 } = environment;
 
-export const getAllUsers = async (): Promise<UserDto[]> => {
+export const getAllUsers = async (
+  order?: 'asc' | 'desc',
+): Promise<UserDto[]> => {
   return axios
-    .get<UserDto[]>(`${userUrl}`)
+    .get<UserDto[]>(`${userUrl}`, { params: { order } })
     .then((res) => res.data)
     .catch((error) => {
       console.error('Erreur getAllUsers:', error);
+      return [];
+    });
+};
+
+
+export const fetchAllUsers = (order?: string): Promise<UserDto[]> => {
+  return axios
+    .get<UserDto[]>(userUrl, { params: { order } })
+    .then((res) => res.data)
+    .catch((error) => {
+      console.error('Erreur fetchAllUsers:', error);
       return [];
     });
 };
