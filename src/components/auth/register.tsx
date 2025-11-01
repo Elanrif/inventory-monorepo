@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
-import { createUser } from '@/lib/user/services/user.service';
+import { signUp } from '@/lib/user/services/user.service';
 import {
   Form,
   FormControl,
@@ -67,7 +67,7 @@ export function Register({
   async function onSubmit(data: z.infer<typeof formSchema>) {
     setLoading(true);
     try {
-      const user = await createUser(data);
+      const user = await signUp(data);
       // user = axios.then ->  User || axios.catch -> throw new Error
       if (user) {
         toast.success('Inscription réussie !', {
@@ -110,7 +110,7 @@ export function Register({
             name='username'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>
+                <FormLabel className='after:ml-0.5 after:text-red-500 after:content-["*"]'>
                   Nom de l&apos;utilisateur
                 </FormLabel>
                 <FormControl>
@@ -125,7 +125,7 @@ export function Register({
             name='email'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>
+                <FormLabel className='after:ml-0.5 after:text-red-500 after:content-["*"]'>
                   Email
                 </FormLabel>
                 <FormControl>
@@ -140,7 +140,7 @@ export function Register({
             name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>
+                <FormLabel className='after:ml-0.5 after:text-red-500 after:content-["*"]'>
                   Mot de passe
                 </FormLabel>
                 <FormControl>
@@ -155,7 +155,7 @@ export function Register({
             name='phone'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>
+                <FormLabel className='after:ml-0.5 after:text-red-500 after:content-["*"]'>
                   Téléphone
                 </FormLabel>
                 <FormControl>
@@ -173,7 +173,7 @@ export function Register({
             name='address'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>
+                <FormLabel className='after:ml-0.5 after:text-red-500 after:content-["*"]'>
                   Adresse
                 </FormLabel>
                 <FormControl>
