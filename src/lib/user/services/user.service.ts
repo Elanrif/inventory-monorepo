@@ -2,6 +2,7 @@ import environment from '@config/environment.config';
 import { LoginReqDTO, UserDto, UserReqDTO } from '../models/user.model';
 //import apiClient from "@config/api.config";
 import axios, { AxiosRequestConfig } from 'axios';
+import apiClient from '@/config/api.config';
 
 const {
   api: {
@@ -20,13 +21,7 @@ export const getAllUsers = async (
     params: { order },
   };
 
-  if (token) {
-    config.headers = {
-      Authorization: `Bearer ${token}`,
-    };
-  }
-
-  return axios
+  return apiClient(token)
     .get<UserDto[]>(`${userUrl}`, config)
     .then((res) => res.data)
     .catch((error) => {
@@ -45,8 +40,11 @@ export const fetchAllUsers = (order?: string): Promise<UserDto[]> => {
     });
 };
 
-export const getUserById = async (id: number): Promise<UserDto | null> =>
-  axios
+export const getUserById = async (
+  id: number,
+  token?: string,
+): Promise<UserDto | null> =>
+  apiClient(token)
     .get<UserDto>(`${userUrl}/${id}`)
     .then((res) => {
       return res.data;

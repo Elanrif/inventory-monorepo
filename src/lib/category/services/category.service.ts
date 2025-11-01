@@ -1,5 +1,5 @@
 import environment from '@config/environment.config';
-//import apiClient from "@config/api.config";
+import apiClient from '@config/api.config';
 import axios from 'axios';
 import { CategoryDto, CategoryReqDTO } from '../models/category.model';
 
@@ -13,12 +13,13 @@ const {
 
 export const getAllCategories = async (
   order?: 'asc' | 'desc',
+  token?: string,
 ): Promise<CategoryDto[]> => {
-  return axios
+  return apiClient(token)
     .get<CategoryDto[]>(`${categoryUrl}`, { params: { order } })
     .then((res) => res.data)
     .catch((error) => {
-    console.error('Erreur getAllCategories:', error);
+      console.error('Erreur getAllCategories:', error);
       return [];
     });
 };
@@ -26,7 +27,7 @@ export const getAllCategories = async (
 export const getCategoryById = async (
   id: number,
 ): Promise<CategoryDto | null> =>
-  axios
+  apiClient()
     .get<CategoryDto>(`${categoryUrl}/${id}`)
     .then((res) => {
       return res.data;
@@ -39,7 +40,7 @@ export const getCategoryById = async (
 export const createCategory = async (
   categoryData: Partial<CategoryReqDTO>,
 ): Promise<CategoryDto> =>
-  axios
+  apiClient()
     .post<CategoryDto>(`${categoryUrl}`, categoryData)
     .then((response) => {
       console.log('Backend response:', response.data);

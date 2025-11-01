@@ -17,7 +17,6 @@ import { Input } from '@/components/ui/input';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { signIn } from '@/lib/user/services/user.service';
-import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/utils/route';
 import { FcGoogle } from 'react-icons/fc';
@@ -51,13 +50,8 @@ export default function Login() {
         const token = resp?.accessToken || resp?.data?.accessToken;
         const refreshToken = resp?.refreshToken || resp?.data?.refreshToken;
         if (token) {
-          try {
-            sessionStorage.setItem('accessToken', token);
-            if (refreshToken)
-              sessionStorage.setItem('refreshToken', refreshToken);
-          } catch (e) {
-            console.warn('Could not persist token to sessionStorage', e);
-          }
+          sessionStorage.setItem('accessToken', token);
+          sessionStorage.setItem('refreshToken', refreshToken);
         }
         toast.success('Bienvenue !', {
           position: 'top-right',

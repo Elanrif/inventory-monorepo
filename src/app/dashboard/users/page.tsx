@@ -3,34 +3,13 @@ import SidebarBreadcrumb from '@/components/sidebar-breadcrumb';
 import { data } from './data';
 import HeaderSection from '@/components/dashboard/header-section';
 import SubHeaderSection from '@/components/dashboard/sub-header-section';
-import { getAllUsers } from '@/lib/user/services/user.service';
 import { CardSection } from '@/components/dashboard/card-section';
 import TableBodyUsers from '@/components/dashboard/table/table-body-users';
 import { ROUTES } from '@/utils/route';
-import { useEffect, useState } from 'react';
-import { UserDto } from '@/lib/user/models/user.model';
+import { useUser } from '@/hooks/use-entity';
 
 export default function UserPageClient() {
-  const [users, setUsers] = useState<UserDto[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const token =
-      sessionStorage.getItem('accessToken') ??
-      sessionStorage.getItem('token') ??
-      undefined;
-    (async () => {
-      try {
-        const u = await getAllUsers('desc', token);
-        setUsers(u);
-      } catch (e) {
-        console.error('Erreur fetch users', e);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
-
+  const { users, loading } = useUser();
   if (loading) return <div>Chargement...</div>;
 
   return (
