@@ -9,6 +9,7 @@ const environment = {
     rest: {
       endpoints: {
         // Inventory Management Service
+        auth: `${INV_MGT_BASEURL}/auth`,
         users: `${INV_MGT_BASEURL}/users`,
         categories: `${INV_MGT_BASEURL}/categories`,
       },

@@ -1,28 +1,39 @@
 import environment from '@config/environment.config';
 import { LoginReqDTO, UserDto, UserReqDTO } from '../models/user.model';
 //import apiClient from "@config/api.config";
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 const {
   api: {
     rest: {
-      endpoints: { users: userUrl },
+      endpoints: { auth: authUrl, users: userUrl },
     },
   },
 } = environment;
 
+// Authorization: Bearer <token> in the request headers.
 export const getAllUsers = async (
   order?: 'asc' | 'desc',
+  token?: string,
 ): Promise<UserDto[]> => {
+  const config: AxiosRequestConfig = {
+    params: { order },
+  };
+
+  if (token) {
+    config.headers = {
+      Authorization: `Bearer ${token}`,
+    };
+  }
+
   return axios
-    .get<UserDto[]>(`${userUrl}`, { params: { order } })
+    .get<UserDto[]>(`${userUrl}`, config)
     .then((res) => res.data)
     .catch((error) => {
       console.error('Erreur getAllUsers:', error);
       return [];
     });
 };
-
 
 export const fetchAllUsers = (order?: string): Promise<UserDto[]> => {
   return axios
@@ -45,11 +56,9 @@ export const getUserById = async (id: number): Promise<UserDto | null> =>
       return null;
     });
 
-export const createUser = async (
-  userData: Partial<UserReqDTO>,
-): Promise<UserDto> =>
+export const signUp = async (userData: Partial<UserReqDTO>): Promise<UserDto> =>
   axios
-    .post<UserDto>(`${userUrl}/register`, userData)
+    .post<UserDto>(`${authUrl}/signup`, userData)
     .then((response) => {
       return response.data;
     })
@@ -61,11 +70,11 @@ export const createUser = async (
     });
 
 //LOGIN
-export const loginUser = async (
+export const signIn = async (
   loginData: Partial<LoginReqDTO>,
 ): Promise<UserDto> =>
   axios
-    .post<UserDto>(`${userUrl}/login`, loginData)
+    .post<UserDto>(`${authUrl}/signin`, loginData)
     .then((response) => {
       return response.data;
     })
