@@ -1,14 +1,17 @@
+'use client';
 import SidebarBreadcrumb from '@/components/sidebar-breadcrumb';
 import { data } from './data';
 import HeaderSection from '@/components/dashboard/header-section';
 import SubHeaderSection from '@/components/dashboard/sub-header-section';
-import {getAllUsers } from '@/lib/user/services/user.service';
 import { CardSection } from '@/components/dashboard/card-section';
 import TableBodyUsers from '@/components/dashboard/table/table-body-users';
 import { ROUTES } from '@/utils/route';
+import { useUser } from '@/hooks/use-entity';
 
-export default async function UserPage() {
-  const users = await getAllUsers('desc');
+export default function UserPageClient() {
+  const { users, loading } = useUser();
+  if (loading) return <div>Chargement...</div>;
+
   return (
     <>
       <SidebarBreadcrumb label='Users' />

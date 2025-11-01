@@ -1,15 +1,16 @@
 import httpClient from '@config/axios.config';
 
-export default function apiClient() {
+export default function apiClient(token?: string) {
   const instance = httpClient();
-  // Intercepteur de requête (optionnel) -- CLIENT Request
+
   instance.interceptors.request.use(
     (config) => {
-      console.log('[NextJs] Request:');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
       return config;
     },
     (error) => {
-      console.error('[NextJs] Request Error:');
       return Promise.reject(error);
     },
   );
