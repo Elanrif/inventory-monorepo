@@ -16,7 +16,8 @@ import {
 import { Input } from '@/components/ui/input';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import { loginUser } from '@/lib/user/services/user.service';
+import { signIn } from '@/lib/user/services/user.service';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { ROUTES } from '@/utils/route';
 import { FcGoogle } from 'react-icons/fc';
@@ -43,9 +44,22 @@ export default function Login() {
 
   async function onSubmit(data: z.infer<typeof formSchema>) {
     try {
-      const user = await loginUser(data);
-      if (user) {
-        toast.success('Connexion réussie !', {
+      const response = await signIn(data);
+      if (response) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const resp: any = response;
+        const token = resp?.accessToken || resp?.data?.accessToken;
+        const refreshToken = resp?.refreshToken || resp?.data?.refreshToken;
+        if (token) {
+          try {
+            sessionStorage.setItem('accessToken', token);
+            if (refreshToken)
+              sessionStorage.setItem('refreshToken', refreshToken);
+          } catch (e) {
+            console.warn('Could not persist token to sessionStorage', e);
+          }
+        }
+        toast.success('Bienvenue !', {
           position: 'top-right',
           autoClose: 3000,
           hideProgressBar: false,
@@ -54,7 +68,6 @@ export default function Login() {
           draggable: true,
           progress: undefined,
         });
-        //nextNavigation to dashboard.
         route.push(ROUTES.DASHBOARD);
         form.reset();
       }
@@ -85,7 +98,9 @@ export default function Login() {
             name='email'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Email</FormLabel>
+                <FormLabel className='after:ml-0.5 after:text-red-500 after:content-["*"]'>
+                  Email
+                </FormLabel>
                 <FormControl>
                   <Input placeholder='Saisir votre Email' {...field} />
                 </FormControl>
@@ -98,7 +113,9 @@ export default function Login() {
             name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel className='after:content-["*"] after:ml-0.5 after:text-red-500'>Mot de passe</FormLabel>
+                <FormLabel className='after:ml-0.5 after:text-red-500 after:content-["*"]'>
+                  Mot de passe
+                </FormLabel>
                 <FormControl>
                   <Input placeholder='Saisir votre mot de passe' {...field} />
                 </FormControl>
